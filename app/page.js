@@ -28,15 +28,6 @@ export default function Home() {
       ></div>
       <Films />
       <Series />
-      {/* <div className="flex flex-row">
-        <div className="flex flex-col w-9/12">
-          <Films />
-          <Series />
-        </div>
-        <div className="w-3/12 max-xl:hidden mt-5 p-5 bg-red-900 rounded-xl">
-          asd
-        </div>
-      </div> */}
       <Footer />
     </main>
   ) : (
