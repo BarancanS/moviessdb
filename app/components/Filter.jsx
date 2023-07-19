@@ -20,7 +20,7 @@ const Filter = () => {
     SetFilteredPosts(posts);
   }
   return (
-    <div>
+    <div className="flex flex-col">
       <button onClick={FilterNetflixButtonClick}>Netflix</button>
       <button onClick={FilterAmazonButtonClick}>Amazon</button>
       <button onClick={ClearFilterButtonClick}>Clear</button>

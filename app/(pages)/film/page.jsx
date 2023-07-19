@@ -6,7 +6,6 @@ import { MainContext } from "/app/components/Context";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
 import { SearchMovies } from "/app/components/SearchMovies";
-import Filter from "/app/components/Filter";
 
 const Movies = () => {
   const { posts } = useContext(MainContext);
@@ -48,7 +47,7 @@ const Movies = () => {
     <div>
       <Navbar />
       <SearchMovies />
-      <div className="flex flex-row items-center justify-center text-xl mt-5">
+      <div className="flex flex-col items-center justify-center text-xl mt-5">
         <button
           onClick={FilterNetflixButtonClick}
           className="p-1 mr-2 border-2 rounded-2xl border-sky-100"
