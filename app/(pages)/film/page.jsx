@@ -47,8 +47,8 @@ const Movies = () => {
     <div>
       <Navbar />
       <SearchMovies />
-      <div className="max-xl:flex max-xl:flex-row">
-        <div className="flex flex-col items-start mx-auto w-30 justify-start text-xl mt-5">
+      <div className="xl:flex xl:flex-row">
+        <div className="flex flex-col items-start xl:items-center mx-auto w-30 justify-start text-xl mt-5">
           <button
             onClick={FilterNetflixButtonClick}
             className="p-1 mr-2 mt-2 border-2 rounded-2xl border-sky-100"
