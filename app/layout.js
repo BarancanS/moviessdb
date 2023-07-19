@@ -24,7 +24,6 @@ export default function RootLayout({ children }) {
   useEffect(() => {
     getPost();
     getSeries();
-    setMerge(combined);
   }, []);
 
   const getPost = async () => {

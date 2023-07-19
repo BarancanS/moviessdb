@@ -19,7 +19,7 @@ const Navbar = () => {
     }
   });
   return (
-    <navbar className="h-20 w-10/12 mx-auto flex flex-row justify-between items-center">
+    <div className="h-20 w-10/12 mx-auto flex flex-row justify-between items-center">
       <Link href="/">
         <h1 className="text-3xl">BaranFlix</h1>
       </Link>
@@ -31,11 +31,11 @@ const Navbar = () => {
           <Link href="/series">
             <li>Series</li>
           </Link>
-          <Link href="/categories">
-            <li>Categories</li>
-          </Link>
           <Link href="/bests">
             <li>Bests</li>
+          </Link>
+          <Link href="/categories">
+            <li>Categories</li>
           </Link>
           <Link href="/platform">
             <li>Platform</li>
@@ -76,13 +76,13 @@ const Navbar = () => {
               <Link href="/series">
                 <li className="border-2 py-1 px-9 mb-3 rounded-2xl">Series</li>
               </Link>
+              <Link href="/bests">
+                <li className="border-2 py-1 px-10 mb-3 rounded-2xl">Bests</li>
+              </Link>
               <Link href="/categories">
                 <li className="border-2 py-1 px-4 mb-3 rounded-2xl">
                   Categories
                 </li>
-              </Link>
-              <Link href="/bests">
-                <li className="border-2 py-1 px-10 mb-3 rounded-2xl">Bests</li>
               </Link>
               <Link href="/platform">
                 <li className="border-2 py-1 px-7 mb-3 rounded-2xl">
@@ -93,7 +93,7 @@ const Navbar = () => {
           </main>
         </section>
       )}
-    </navbar>
+    </div>
   );
 };
 

@@ -2,32 +2,30 @@
 import SignIn from "/app/components/SignIn";
 import { useSession } from "next-auth/react";
 import { useState, useEffect, useContext } from "react";
-import { MainContext } from "../components/Context";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
-import { Tiny } from "../components/Tiny";
+import { MainContext } from "/app/components/Context";
+import Footer from "/app/components/Footer";
+import Navbar from "/app/components/Navbar";
+import { SearchSeries } from "/app/components/SearchSeries";
 
 const page = () => {
-  const { merge, setMerge, combined } = useContext(MainContext);
+  const { series } = useContext(MainContext);
   const session = useSession();
   const [authSession, setAuthSession] = useState();
 
   useEffect(() => {
-    setMerge(combined);
     if (session.status === "unauthenticated") {
       setAuthSession(false);
     } else {
       setAuthSession(true);
     }
-  }, [session]);
-
+  });
   return authSession ? (
     <div>
       <Navbar />
-      <Tiny />
-      <div className="w-9/12 min-h-[calc(100vh-13rem)] mx-auto">
+      <SearchSeries />
+      <div className="w-9/12 min-h-[calc(100vh-15rem)] mx-auto">
         <div className="grid grid-cols-5  max-2xl:grid-cols-3 max-lg:grid-cols-2 max-md:grid-cols-2 max-sm:grid-cols-1 justify-items-center mt-10">
-          {merge.map((items, index) => {
+          {series.map((items, index) => {
             return (
               <div key={index}>
                 <div
@@ -43,7 +41,7 @@ const page = () => {
       <Footer />
     </div>
   ) : (
-    <main className=" min-h-[calc(100vh-10rem)] w-5/6 mx-auto flex items-center justify-center">
+    <main className="w-full min-h-[calc(100vh-10rem)] flex items-center justify-center">
       <SignIn />
     </main>
   );

@@ -2,8 +2,8 @@
 import SignIn from "/app/components/SignIn";
 import { useSession } from "next-auth/react";
 import { useState, useEffect, useContext } from "react";
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import Footer from "/app/components/Footer";
+import Navbar from "/app/components/Navbar";
 
 const page = () => {
   const session = useSession();
