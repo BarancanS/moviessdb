@@ -7,7 +7,7 @@ import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
 import { SearchSeries } from "/app/components/SearchSeries";
 
-const page = () => {
+const Series = () => {
   const { series } = useContext(MainContext);
   const session = useSession();
   const [authSession, setAuthSession] = useState();
@@ -47,4 +47,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Series;

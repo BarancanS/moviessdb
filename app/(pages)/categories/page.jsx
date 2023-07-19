@@ -5,7 +5,7 @@ import { useState, useEffect, useContext } from "react";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
 
-const page = () => {
+const Categories = () => {
   const session = useSession();
   const [authSession, setAuthSession] = useState();
 
@@ -31,4 +31,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Categories;

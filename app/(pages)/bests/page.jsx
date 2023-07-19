@@ -7,7 +7,7 @@ import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
 import { SearchAll } from "/app/components/SearchAll";
 
-const page = () => {
+const Bests = () => {
   const { merge, setMerge, combined, posts, series } = useContext(MainContext);
   const session = useSession();
   const [authSession, setAuthSession] = useState();
@@ -19,7 +19,7 @@ const page = () => {
     } else {
       setAuthSession(true);
     }
-  }, [session]);
+  });
 
   return authSession ? (
     <div>
@@ -49,4 +49,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Bests;

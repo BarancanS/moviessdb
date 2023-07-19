@@ -8,7 +8,7 @@ import Navbar from "/app/components/Navbar";
 import { SearchMovies } from "/app/components/SearchMovies";
 import Filter from "/app/components/Filter";
 
-const page = () => {
+const Movies = () => {
   const { posts } = useContext(MainContext);
   const session = useSession();
   const [authSession, setAuthSession] = useState();
@@ -120,4 +120,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Movies;

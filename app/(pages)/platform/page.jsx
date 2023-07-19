@@ -6,7 +6,7 @@ import React from "react";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
 
-const page = () => {
+const Platforms = () => {
   const session = useSession();
   const [authSession, setAuthSession] = useState();
 
@@ -32,4 +32,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Platforms;
