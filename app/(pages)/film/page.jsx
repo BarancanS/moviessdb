@@ -54,7 +54,7 @@ const Movies = () => {
               onChange={(e) => SetOptionValue(e.target.value)}
               className="bg-black border-2"
             >
-              <option></option>
+              <option>Select Platform...</option>
               <option value="Netflix">Netflix</option>
               <option value="Amazon">Amazon</option>
               <option value="YouTube">YouTube</option>
@@ -63,7 +63,7 @@ const Movies = () => {
               onClick={FilterAllButtonClick}
               className="p-1 mr-2 mt-2 border-2 rounded-2xl border-sky-100"
             >
-              FilterAll
+              ApplyFilter
             </button>
             <button
               onClick={ClearFilterButtonClick}
