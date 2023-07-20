@@ -74,9 +74,11 @@ const Navbar = () => {
                     className="rounded-full w-[4rem] h-[4rem]"
                   />
                   <div className="flex flex-row gap-2">
-                    <button className="bg-red-500 w-24 h-18 p-2 rounded-lg">
-                      Profile
-                    </button>
+                    <Link href="">
+                      <button className="bg-red-500 w-24 h-18 p-2 rounded-lg">
+                        Profile
+                      </button>
+                    </Link>
                     <SignIn />
                   </div>
                 </div>
