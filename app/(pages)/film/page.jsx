@@ -54,7 +54,7 @@ const Movies = () => {
               onChange={(e) => SetOptionValue(e.target.value)}
               className="bg-black border-2"
             >
-              <option>Select Platform...</option>
+              <option value="">Select Platform...</option>
               <option value="Netflix">Netflix</option>
               <option value="Amazon">Amazon</option>
               <option value="YouTube">YouTube</option>
