@@ -63,6 +63,23 @@ const Navbar = () => {
                 <h1 className="max-sm:text-lg max-md:text-2xl max-lg:text-3xl">
                   BaranFlix
                 </h1>
+                <div className="flex flex-col gap-2">
+                  <img
+                    src={
+                      authSession
+                        ? session?.data?.user?.image
+                        : "/john-wick.jpg"
+                    }
+                    alt="user-image"
+                    className="rounded-full w-[4rem] h-[4rem]"
+                  />
+                  <div className="flex flex-row gap-2">
+                    <button className="bg-red-500 w-24 h-18 p-2 rounded-lg">
+                      Profile
+                    </button>
+                    <SignIn />
+                  </div>
+                </div>
               </Link>
               <VscChromeClose
                 className="max-sm:text-lg max-md:text-2xl max-lg:text-3xl"

@@ -19,7 +19,7 @@ const Bests = () => {
     } else {
       setAuthSession(true);
     }
-  }, []);
+  }, [session]);
 
   return authSession ? (
     <div>
