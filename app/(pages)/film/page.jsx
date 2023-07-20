@@ -59,18 +59,7 @@ const Movies = () => {
               <option value="Amazon">Amazon</option>
               <option value="YouTube">YouTube</option>
             </select>
-            <button
-              onClick={FilterAllButtonClick}
-              className="p-1 mr-2 mt-2 border-2 rounded-2xl border-sky-100"
-            >
-              ApplyFilter
-            </button>
-            <button
-              onClick={ClearFilterButtonClick}
-              className="p-1 mr-2 mt-2 border-2 rounded-2xl border-sky-100"
-            >
-              Clear
-            </button>
+
             {/* <button
             onClick={FilterNetflixButtonClick}
             className="p-1 mr-2 mt-2 border-2 rounded-2xl border-sky-100"
@@ -95,28 +84,42 @@ const Movies = () => {
           >
             Imdb
           </button> */}
-            <input
-              type="range"
-              id="vol"
-              name="vol"
-              min="0"
-              max="10"
-              value={lowestRange}
-              step={0.1}
-              onChange={(e) => SetLowestRange(e.target.value)}
-            />
-            <p>{lowestRange}</p>
-            <input
-              type="range"
-              id="vol"
-              name="vol"
-              min="0"
-              max="10"
-              value={highestRange}
-              step={0.1}
-              onChange={(e) => SetHighestRange(e.target.value)}
-            />
-            <p>{highestRange}</p>
+            <div className="flex flex-col">
+              <input
+                type="range"
+                id="vol"
+                name="vol"
+                min="0"
+                max="10"
+                value={lowestRange}
+                step={0.1}
+                onChange={(e) => SetLowestRange(e.target.value)}
+              />
+              <p>{lowestRange}</p>
+              <input
+                type="range"
+                id="vol"
+                name="vol"
+                min="0"
+                max="10"
+                value={highestRange}
+                step={0.1}
+                onChange={(e) => SetHighestRange(e.target.value)}
+              />
+              <p>{highestRange}</p>
+            </div>
+            <button
+              onClick={FilterAllButtonClick}
+              className="p-1 mr-2 mt-2 border-2 rounded-2xl border-sky-100"
+            >
+              ApplyFilter
+            </button>
+            <button
+              onClick={ClearFilterButtonClick}
+              className="p-1 mr-2 mt-2 border-2 rounded-2xl border-sky-100"
+            >
+              Clear
+            </button>
           </div>
         </div>
         <div className="w-full">
