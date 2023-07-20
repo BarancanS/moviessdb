@@ -63,50 +63,44 @@ const Navbar = () => {
                 <h1 className="max-sm:text-lg max-md:text-2xl max-lg:text-3xl">
                   BaranFlix
                 </h1>
-                <div className="flex flex-col gap-2">
-                  <img
-                    src={
-                      authSession
-                        ? session?.data?.user?.image
-                        : "/john-wick.jpg"
-                    }
-                    alt="user-image"
-                    className="rounded-full w-[4rem] h-[4rem]"
-                  />
-                  <div className="flex flex-col gap-2">
-                    <Link href="">
-                      <button className="bg-red-600 rounded-xl p-2 w-24 h-18">
-                        Profile
-                      </button>
-                    </Link>
-                    <SignIn />
-                  </div>
-                </div>
               </Link>
               <VscChromeClose
                 className="max-sm:text-lg max-md:text-2xl max-lg:text-3xl"
                 onClick={() => setHamburgerMenu(!hamburgerMenu)}
               />
             </div>
-            <ul className="h-screen flex flex-col items-center max-md:text-base text-xl justify-center mt-2">
+            <div className="flex flex-col items-center w-full gap-2 mt-2">
+              <img
+                src={
+                  authSession ? session?.data?.user?.image : "/john-wick.jpg"
+                }
+                alt="user-image"
+                className="rounded-full w-[4rem] h-[4rem]"
+              />
+              <div className="flex flex-col gap-2">
+                <Link href="">
+                  <button className="bg-red-600 rounded-xl p-2 w-24 h-18">
+                    Profile
+                  </button>
+                </Link>
+                <SignIn />
+              </div>
+            </div>
+            <ul className="h-screen flex flex-col items-center max-md:text-base text-xl mt-20">
               <Link href="/film">
-                <li className="border-2 py-1 px-8 mb-3 rounded-2xl">Movies</li>
+                <li className="border-b-2 py-1 px-8 mb-3 ">Movies</li>
               </Link>
               <Link href="/series">
-                <li className="border-2 py-1 px-9 mb-3 rounded-2xl">Series</li>
+                <li className="border-b-2 py-1 px-9 mb-3">Series</li>
               </Link>
               <Link href="/bests">
-                <li className="border-2 py-1 px-10 mb-3 rounded-2xl">Bests</li>
+                <li className="border-b-2 py-1 px-10 mb-3">Bests</li>
               </Link>
               <Link href="/categories">
-                <li className="border-2 py-1 px-4 mb-3 rounded-2xl">
-                  Categories
-                </li>
+                <li className="border-b-2 py-1 px-4 mb-3">Categories</li>
               </Link>
               <Link href="/platform">
-                <li className="border-2 py-1 px-7 mb-3 rounded-2xl">
-                  Platform
-                </li>
+                <li className="border-b-2 py-1 px-7 mb-3">Platform</li>
               </Link>
             </ul>
           </main>
