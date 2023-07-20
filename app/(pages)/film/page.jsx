@@ -46,8 +46,8 @@ const Movies = () => {
     <div>
       <Navbar />
       <SearchMovies />
-      <div className="flex flex-col sm:flex sm:flex-row">
-        <div className="flex flex-col items-center mx-auto w-1/6 justify-start text-xl mt-5 border-2 ml-2 h-2/5 rounded-xl">
+      <div className="flex flex-col max-md:items-center max-md:justify-center md:flex md:flex-row">
+        <div className="flex flex-col w-96 h-2/5 max-md:w-60 max-sm:w-52 text-xl mt-5 ml-2 border-2 rounded-xl">
           <div className="flex flex-col items-center justify-center p-5">
             <select
               name=""
