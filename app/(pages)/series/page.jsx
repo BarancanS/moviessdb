@@ -18,7 +18,7 @@ const Series = () => {
     } else {
       setAuthSession(true);
     }
-  });
+  }, [session]);
   return authSession ? (
     <div>
       <Navbar />
