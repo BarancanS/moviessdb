@@ -20,7 +20,7 @@ export default function Home() {
   });
 
   return authSession ? (
-    <main className=" min-h-[calc(100vh-10rem)] w-5/6 mx-auto">
+    <main className=" min-h-[calc(100vh-10rem)] 2xl:w-5/6 max-2xl:w-full  mx-auto">
       <Navbar />
       <div
         style={{ backgroundImage: "url(John-Wick.jpg)" }}
