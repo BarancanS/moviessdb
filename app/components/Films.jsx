@@ -11,7 +11,7 @@ const Films = () => {
       <div className="2xl:w-9/12 w-full">
         <h1 className="mb-3 ml-3 text-3xl text-left">Trend Movies</h1>
         <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
-          {posts.slice(0, 10).map((items, index) => {
+          {posts.slice(0, 20).map((items, index) => {
             return (
               <div key={index}>
                 <div
