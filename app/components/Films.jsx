@@ -8,7 +8,7 @@ const Films = () => {
   const { posts } = useContext(MainContext);
   return (
     <section className="flex flex-row mt-5 p-5">
-      <div className="w-9/12">
+      <div className="2xl:w-9/12 w-full">
         <h1 className="mb-3 text-3xl text-left">Trend Movies</h1>
         <div className="w-11/12 flex flex-row overflow-y-scroll items-start pl-10 py-10 justify-center  h-fit gap-10">
           {posts.slice(0, 10).map((items, index) => {
