@@ -9,7 +9,7 @@ const Films = () => {
   return (
     <section className="flex flex-row mt-5 ">
       <div className="2xl:w-9/12 w-full">
-        <h1 className="mb-3 text-3xl text-left">Trend Series</h1>
+        <h1 className="mb-3 ml-3 text-3xl text-left">Trend Series</h1>
         <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
           {series.map((items, index) => {
             return (

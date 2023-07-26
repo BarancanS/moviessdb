@@ -7,9 +7,9 @@ import { useContext } from "react";
 const Films = () => {
   const { posts } = useContext(MainContext);
   return (
-    <section className="flex flex-row mt-5 ">
+    <section className="flex flex-row mt-5">
       <div className="2xl:w-9/12 w-full">
-        <h1 className="mb-3 text-3xl text-left">Trend Movies</h1>
+        <h1 className="mb-3 ml-3 text-3xl text-left">Trend Movies</h1>
         <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
           {posts.slice(0, 10).map((items, index) => {
             return (
