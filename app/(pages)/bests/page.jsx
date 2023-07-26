@@ -31,7 +31,7 @@ const Bests = () => {
             return (
               <div key={index}>
                 <div
-                  style={{ backgroundImage: `url("${items.imageUrl}")` }}
+                  style={{ backgroundImage: `url("${items.posterUrl}")` }}
                   className="max-sm:w-32 max-sm:h-44 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                 ></div>
                 <h1 className="text-center mt-10">{items.title}</h1>

@@ -7,6 +7,9 @@ const nextConfig = {
       "assets.vogue.com",
       "m.media-amazon.com",
       "upload.wikimedia.org",
+      "images-na.ssl-images-amazon.com",
+      "ia.media-imdb.com",
+      "images.moviesanywhere.com",
     ],
   },
 };

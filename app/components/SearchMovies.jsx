@@ -51,7 +51,7 @@ export const SearchMovies = () => {
                         className="flex flex-row items-center mt-3"
                       >
                         <Image
-                          src={`${items.imageUrl}`}
+                          src={`${items.posterUrl}`}
                           width={500}
                           height={500}
                           alt="about-image"
