@@ -7,10 +7,10 @@ import { useContext } from "react";
 const Films = () => {
   const { series } = useContext(MainContext);
   return (
-    <section className="flex flex-row mt-5 p-5">
-      <div className="w-9/12">
-        <h1 className="mb-3 text-3xl text-center">Trend Series</h1>
-        <div className="w-11/12 flex flex-row overflow-y-scroll items-start pl-10 py-10 justify-center  h-fit gap-10">
+    <section className="flex flex-row mt-5 ">
+      <div className="2xl:w-9/12 w-full">
+        <h1 className="mb-3 text-3xl text-left">Trend Series</h1>
+        <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
           {series.map((items, index) => {
             return (
               <div key={index}>
