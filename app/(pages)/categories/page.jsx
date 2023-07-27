@@ -27,11 +27,11 @@ const Categories = () => {
   return authSession ? (
     <main>
       <Navbar />
-      <section className="flex flex-row mt-5">
+      <section className="flex flex-row mt-5 px-3">
         <div className="w-full">
           <div className="mt-10 p-4">
-            <h1 className="ml-10 text-3xl text-left">Action</h1>
-            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+            <h1 className="text-3xl text-left">Action</h1>
+            <div className="w-full flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
               {filteredMerge
                 .filter((items) => items.genres.includes("Action"))
                 .map((items, index) => {
@@ -48,8 +48,8 @@ const Categories = () => {
             </div>
           </div>
           <div className="mt-10 p-4">
-            <h1 className="ml-10 text-3xl text-left">Drama</h1>
-            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+            <h1 className="text-3xl text-left">Drama</h1>
+            <div className="w-full flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
               {filteredMerge
                 .filter((items) => items.genres.includes("Drama"))
                 .map((items, index) => {
@@ -66,8 +66,8 @@ const Categories = () => {
             </div>
           </div>
           <div className="mt-10 p-4">
-            <h1 className="ml-10 text-3xl text-left">Comedy</h1>
-            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+            <h1 className="text-3xl text-left">Comedy</h1>
+            <div className="w-full flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
               {filteredMerge
                 .filter((items) => items.genres.includes("Comedy"))
                 .map((items, index) => {
@@ -84,8 +84,8 @@ const Categories = () => {
             </div>
           </div>
           <div className="mt-10 p-4">
-            <h1 className="ml-10 text-3xl text-left">Fantasy</h1>
-            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+            <h1 className="text-3xl text-left">Fantasy</h1>
+            <div className="w-full flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
               {filteredMerge
                 .filter((items) => items.genres.includes("Fantasy"))
                 .map((items, index) => {
@@ -102,8 +102,8 @@ const Categories = () => {
             </div>
           </div>
           <div className="mt-10 p-4">
-            <h1 className="ml-10 text-3xl text-left">Action</h1>
-            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+            <h1 className="text-3xl text-left">Action</h1>
+            <div className="w-full flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
               {filteredMerge
                 .filter((items) => items.genres.includes("Action"))
                 .map((items, index) => {
@@ -120,8 +120,8 @@ const Categories = () => {
             </div>
           </div>
           <div className="mt-10 p-4">
-            <h1 className="ml-10 text-3xl text-left">Crime</h1>
-            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+            <h1 className="text-3xl text-left">Crime</h1>
+            <div className="w-full flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
               {filteredMerge
                 .filter((items) => items.genres.includes("Crime"))
                 .map((items, index) => {
@@ -138,8 +138,8 @@ const Categories = () => {
             </div>
           </div>
           <div className="mt-10 p-4">
-            <h1 className="ml-10 text-3xl text-left">Music</h1>
-            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+            <h1 className="text-3xl text-left">Music</h1>
+            <div className="w-full flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
               {filteredMerge
                 .filter((items) => items.genres.includes("Music"))
                 .map((items, index) => {
@@ -156,8 +156,8 @@ const Categories = () => {
             </div>
           </div>
           <div className="mt-10 p-4">
-            <h1 className="ml-10 text-3xl text-left">Adventure</h1>
-            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+            <h1 className="text-3xl text-left">Adventure</h1>
+            <div className="w-full flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
               {filteredMerge
                 .filter((items) => items.genres.includes("Adventure"))
                 .map((items, index) => {
@@ -174,8 +174,8 @@ const Categories = () => {
             </div>
           </div>
           <div className="mt-10 p-4">
-            <h1 className="ml-10 text-3xl text-left">History</h1>
-            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+            <h1 className="text-3xl text-left">History</h1>
+            <div className="w-full flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
               {filteredMerge
                 .filter((items) => items.genres.includes("History"))
                 .map((items, index) => {
@@ -192,8 +192,8 @@ const Categories = () => {
             </div>
           </div>
           <div className="mt-10 p-4">
-            <h1 className="ml-10 text-3xl text-left">Thriller</h1>
-            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+            <h1 className="text-3xl text-left">Thriller</h1>
+            <div className="w-full flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
               {filteredMerge
                 .filter((items) => items.genres.includes("Thriller"))
                 .map((items, index) => {
@@ -210,8 +210,8 @@ const Categories = () => {
             </div>
           </div>
           <div className="mt-10 p-4">
-            <h1 className="ml-10 text-3xl text-left">Family</h1>
-            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+            <h1 className="text-3xl text-left">Family</h1>
+            <div className="w-full flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
               {filteredMerge
                 .filter((items) => items.genres.includes("Family"))
                 .map((items, index) => {
@@ -228,8 +228,8 @@ const Categories = () => {
             </div>
           </div>
           <div className="mt-10 p-4">
-            <h1 className="ml-10 text-3xl text-left">Mystery</h1>
-            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+            <h1 className="text-3xl text-left">Mystery</h1>
+            <div className="w-full flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
               {filteredMerge
                 .filter((items) => items.genres.includes("Mystery"))
                 .map((items, index) => {
@@ -246,8 +246,8 @@ const Categories = () => {
             </div>
           </div>
           <div className="mt-10 p-4">
-            <h1 className="ml-10 text-3xl text-left">Biography</h1>
-            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+            <h1 className="text-3xl text-left">Biography</h1>
+            <div className="w-full flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
               {filteredMerge
                 .filter((items) => items.genres.includes("Biography"))
                 .map((items, index) => {
