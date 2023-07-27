@@ -28,7 +28,7 @@ const Films = () => {
         <h1 className="mb-3 ml-1 font-extrabold text-xl">Trend Series</h1>
         <div className="flex flex-col">
           <div className="w-96 bg-stone-700  p-4 rounded-2xl ">
-            {series.map((items, index) => {
+            {series.slice(0, 6).map((items, index) => {
               return (
                 <Link href="#" key={index}>
                   <div className="flex flex-row items-center mb-2">
