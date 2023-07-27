@@ -18,7 +18,7 @@ const Films = () => {
                   style={{ backgroundImage: `url("${items.Poster}")` }}
                   className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                 ></div>
-                {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
+                {/* <h1 className="text-left mt-3">{items.Plot}</h1> */}
               </div>
             );
           })}
@@ -46,7 +46,7 @@ const Films = () => {
                         {items.Title}
                       </h1>
                       <h4 className="text-sm font-bold">
-                        {items.plot.substring(0, 60)}
+                        {items.Plot.substring(0, 60)}
                         <span className="text-red-500"> ...Read More.</span>
                       </h4>
                     </div>
