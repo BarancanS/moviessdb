@@ -42,7 +42,7 @@ export const SearchMovies = () => {
               ) : (
                 posts
                   .filter((items) =>
-                    items.title.toLowerCase().includes(moviesQuery)
+                    items.Title.toLowerCase().includes(moviesQuery)
                   )
                   .map((items, index) => {
                     return (
@@ -51,13 +51,13 @@ export const SearchMovies = () => {
                         className="flex flex-row items-center mt-3"
                       >
                         <Image
-                          src={`${items.posterUrl}`}
+                          src={`${items.Poster}`}
                           width={500}
                           height={500}
                           alt="about-image"
                           className="w-20 h-20 rounded-full"
                         />
-                        <p>{items.title}</p>
+                        <p>{items.Title}</p>
                       </li>
                     );
                   })

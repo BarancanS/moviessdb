@@ -42,7 +42,7 @@ export const SearchAll = () => {
               ) : (
                 merge
                   .filter((items) =>
-                    items.title.toLowerCase().includes(allQuery)
+                    items.Title.toLowerCase().includes(allQuery)
                   )
                   .map((items, index) => {
                     return (
@@ -51,13 +51,13 @@ export const SearchAll = () => {
                         className="flex flex-row items-center mt-3"
                       >
                         <Image
-                          src={`${items.posterUrl}`}
+                          src={`${items.Poster}`}
                           width={500}
                           height={500}
                           alt="about-image"
                           className="w-20 h-20 rounded-full"
                         />
-                        <p>{items.title}</p>
+                        <p>{items.Title}</p>
                       </li>
                     );
                   })

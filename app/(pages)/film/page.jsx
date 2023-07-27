@@ -127,10 +127,10 @@ const Movies = () => {
               return (
                 <div key={index}>
                   <div
-                    style={{ backgroundImage: `url("${items.posterUrl}")` }}
+                    style={{ backgroundImage: `url("${items.Poster}")` }}
                     className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                   ></div>
-                  <h1 className="text-center mt-10">{items.title}</h1>
+                  <h1 className="text-center mt-10">{items.Title}</h1>
                 </div>
               );
             })}

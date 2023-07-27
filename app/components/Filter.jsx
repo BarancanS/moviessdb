@@ -30,7 +30,7 @@ const Filter = () => {
             {filteredPosts.map((items, index) => {
               return (
                 <div key={index}>
-                  <p>{items.title}</p>
+                  <p>{items.Title}</p>
                 </div>
               );
             })}
