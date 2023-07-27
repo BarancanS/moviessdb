@@ -137,6 +137,132 @@ const Categories = () => {
                 })}
             </div>
           </div>
+          <div className="mt-10 p-4">
+            <h1 className="ml-10 text-3xl text-left">Music</h1>
+            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+              {filteredMerge
+                .filter((items) => items.genres.includes("Music"))
+                .map((items, index) => {
+                  return (
+                    <div key={index}>
+                      <div
+                        style={{ backgroundImage: `url("${items.posterUrl}")` }}
+                        className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
+                      ></div>
+                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+          <div className="mt-10 p-4">
+            <h1 className="ml-10 text-3xl text-left">Adventure</h1>
+            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+              {filteredMerge
+                .filter((items) => items.genres.includes("Adventure"))
+                .map((items, index) => {
+                  return (
+                    <div key={index}>
+                      <div
+                        style={{ backgroundImage: `url("${items.posterUrl}")` }}
+                        className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
+                      ></div>
+                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+          <div className="mt-10 p-4">
+            <h1 className="ml-10 text-3xl text-left">History</h1>
+            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+              {filteredMerge
+                .filter((items) => items.genres.includes("History"))
+                .map((items, index) => {
+                  return (
+                    <div key={index}>
+                      <div
+                        style={{ backgroundImage: `url("${items.posterUrl}")` }}
+                        className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
+                      ></div>
+                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+          <div className="mt-10 p-4">
+            <h1 className="ml-10 text-3xl text-left">Thriller</h1>
+            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+              {filteredMerge
+                .filter((items) => items.genres.includes("Thriller"))
+                .map((items, index) => {
+                  return (
+                    <div key={index}>
+                      <div
+                        style={{ backgroundImage: `url("${items.posterUrl}")` }}
+                        className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
+                      ></div>
+                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+          <div className="mt-10 p-4">
+            <h1 className="ml-10 text-3xl text-left">Family</h1>
+            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+              {filteredMerge
+                .filter((items) => items.genres.includes("Family"))
+                .map((items, index) => {
+                  return (
+                    <div key={index}>
+                      <div
+                        style={{ backgroundImage: `url("${items.posterUrl}")` }}
+                        className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
+                      ></div>
+                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+          <div className="mt-10 p-4">
+            <h1 className="ml-10 text-3xl text-left">Mystery</h1>
+            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+              {filteredMerge
+                .filter((items) => items.genres.includes("Mystery"))
+                .map((items, index) => {
+                  return (
+                    <div key={index}>
+                      <div
+                        style={{ backgroundImage: `url("${items.posterUrl}")` }}
+                        className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
+                      ></div>
+                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+          <div className="mt-10 p-4">
+            <h1 className="ml-10 text-3xl text-left">Biography</h1>
+            <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
+              {filteredMerge
+                .filter((items) => items.genres.includes("Biography"))
+                .map((items, index) => {
+                  return (
+                    <div key={index}>
+                      <div
+                        style={{ backgroundImage: `url("${items.posterUrl}")` }}
+                        className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
+                      ></div>
+                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
         </div>
       </section>
       <Footer />
