@@ -16,8 +16,8 @@ export const SearchMovies = () => {
   }
   return (
     <div className="flex flex-col items-center justify-center">
-      <div className="flex items-center justify-center w-80">
-        <div className="relative w-80">
+      <div className="flex items-center justify-center lg:h-3/5 lg:w-3/5 w-80">
+        <div className="relative lg:w-3/5 lg:h-3/5 w-80">
           <div className="flex flex-row items-center justify-center">
             <BsSearch className="text-2xl" />
             <input
@@ -55,9 +55,9 @@ export const SearchMovies = () => {
                           width={500}
                           height={500}
                           alt="about-image"
-                          className="w-20 h-20 rounded-full"
+                          className="w-20 h-20 rounded-full ml-5"
                         />
-                        <p>{items.title}</p>
+                        <p className="ml-2">{items.title}</p>
                       </li>
                     );
                   })
