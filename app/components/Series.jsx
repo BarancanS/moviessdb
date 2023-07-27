@@ -15,10 +15,10 @@ const Films = () => {
             return (
               <div key={index}>
                 <div
-                  style={{ backgroundImage: `url("${items.Poster}")` }}
+                  style={{ backgroundImage: `url("${items.posterUrl}")` }}
                   className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                 ></div>
-                {/* <h1 className="text-left mt-3">{items.Plot}</h1> */}
+                {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
               </div>
             );
           })}
@@ -34,7 +34,7 @@ const Films = () => {
                   <div className="flex flex-row items-center mb-2">
                     <div className="w-3/12">
                       <Image
-                        src={items.Poster}
+                        src={`${items.posterUrl}`}
                         width={500}
                         height={500}
                         alt="about-image"
@@ -43,10 +43,10 @@ const Films = () => {
                     </div>
                     <div className="w-9/12">
                       <h1 className="text-black font-bold text-base">
-                        {items.Title}
+                        {items.title}
                       </h1>
                       <h4 className="text-sm font-bold">
-                        {items.Plot.substring(0, 60)}
+                        {items.plot.substring(0, 60)}
                         <span className="text-red-500"> ...Read More.</span>
                       </h4>
                     </div>

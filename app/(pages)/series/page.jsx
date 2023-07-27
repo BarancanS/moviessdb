@@ -29,10 +29,10 @@ const Series = () => {
             return (
               <div key={index}>
                 <div
-                  style={{ backgroundImage: `url("${items.Poster}")` }}
+                  style={{ backgroundImage: `url("${items.posterUrl}")` }}
                   className="max-sm:w-32 max-sm:h-44 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                 ></div>
-                <h1 className="text-center mt-10">{items.Title}</h1>
+                <h1 className="text-center mt-10">{items.title}</h1>
               </div>
             );
           })}

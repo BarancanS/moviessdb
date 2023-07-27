@@ -42,7 +42,7 @@ export const SearchSeries = () => {
               ) : (
                 series
                   .filter((items) =>
-                    items.Title.toLowerCase().includes(seriesQuery)
+                    items.title.toLowerCase().includes(seriesQuery)
                   )
                   .map((items, index) => {
                     return (
@@ -51,14 +51,14 @@ export const SearchSeries = () => {
                         className="flex flex-row items-center mt-3"
                       >
                         <Image
-                          src={`${items.Poster}`}
+                          src={`${items.posterUrl}`}
                           width={500}
                           height={500}
                           alt="about-image"
                           className="w-20 h-20 rounded-full"
                         />
                         <div className="flex flex-col ml-2">
-                          <p className="text-xl">{items.Title}</p>
+                          <p className="text-xl">{items.title}</p>
                           <p>IMDB:{items.imdb}</p>
                         </div>
                       </li>
