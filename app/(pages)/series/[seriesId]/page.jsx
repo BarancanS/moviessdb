@@ -34,7 +34,7 @@ export default function Page({ params }) {
                 backgroundImage: `url("${items.posterUrl}")`,
               }}
             >
-              <div className="bg-black/[.66] w-full min-h-[50vh] p-2">
+              <div className="bg-black/[.66] w-full min-h-[50vh] px-2 py-4">
                 <div className="w-full min-h-[50vh] max-md:flex-col flex flex-row justify-center items-center gap-10">
                   <div
                     style={{
@@ -58,11 +58,13 @@ export default function Page({ params }) {
                           .replace(/([A-Z])/g, " $1")
                           .trim()}
                       </h1>
-                      <h1 className="text-sm font-light">-{items.platform}</h1>
                       <h1 className="text-sm font-light">
                         -{items.runtime}minute
                       </h1>
                     </div>
+                    <h1 className="text-sm font-light">
+                      Platform:{items.platform}
+                    </h1>
                     <h1 className="text-sm font-light">
                       Actors:{items.actors}
                     </h1>
