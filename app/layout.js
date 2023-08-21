@@ -18,8 +18,8 @@ const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
   const [posts, setPosts] = useState([]);
   const [series, setSeries] = useState([]);
-  const [merge, setMerge] = useState();
   const combined = posts.concat(series);
+  const [merge, setMerge] = useState(combined);
 
   useEffect(() => {
     getPost();

@@ -13,13 +13,15 @@ const Films = () => {
         <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
           {posts.slice(0, 20).map((items, index) => {
             return (
-              <div key={index}>
-                <div
-                  style={{ backgroundImage: `url("${items.posterUrl}")` }}
-                  className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
-                ></div>
-                {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
-              </div>
+              <Link href={`http://localhost:3000/film/${items.title}`}>
+                <div key={index}>
+                  <div
+                    style={{ backgroundImage: `url("${items.posterUrl}")` }}
+                    className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
+                  ></div>
+                  {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
+                </div>
+              </Link>
             );
           })}
         </div>
