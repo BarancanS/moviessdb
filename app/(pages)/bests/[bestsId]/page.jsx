@@ -13,7 +13,10 @@ export default function Page({ params }) {
     setDetail(
       combined.filter((items) =>
         items.title.includes(
-          `${params.bestsId.replace(/%20/g, " ").replace(/%3A/g, ":")}`
+          `${params.bestsId
+            .replace(/%20/g, " ")
+            .replace(/%3A/g, ":")
+            .replace(/%26/g, "&")}`
         )
       )
     );
