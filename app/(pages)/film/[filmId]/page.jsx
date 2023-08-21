@@ -13,7 +13,10 @@ export default function Page({ params }) {
     setDetail(
       posts.filter((items) =>
         items.title.includes(
-          `${params.filmId.replace(/%20/g, " ").replace(/%3A/g, ":")}`
+          `${params.filmId
+            .replace(/%20/g, " ")
+            .replace(/%3A/g, ":")
+            .replace(/%26/g, "&")}`
         )
       )
     );
