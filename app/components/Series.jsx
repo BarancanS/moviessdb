@@ -32,7 +32,10 @@ const Films = () => {
           <div className="w-96 bg-stone-700  p-4 rounded-2xl ">
             {series.slice(0, 6).map((items, index) => {
               return (
-                <Link href="#" key={index}>
+                <Link
+                  href={`http://localhost:3000/series/${items.title}`}
+                  key={index}
+                >
                   <div className="flex flex-row items-center mb-2">
                     <div className="w-3/12">
                       <Image
