@@ -13,7 +13,7 @@ const Films = () => {
         <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
           {posts.slice(0, 20).map((items, index) => {
             return (
-              <Link href={`https://baranflix.vercel.app/film/${items.title}`}>
+              <Link href={`film/${items.title}`} key={index}>
                 <div key={index}>
                   <div
                     style={{ backgroundImage: `url("${items.posterUrl}")` }}
@@ -32,10 +32,7 @@ const Films = () => {
           <div className="w-96 bg-stone-700  p-4 rounded-2xl ">
             {posts.slice(0, 6).map((items, index) => {
               return (
-                <Link
-                  href={`https://baranflix.vercel.app/film/${items.title}`}
-                  key={index}
-                >
+                <Link href={`film/${items.title}`} key={index}>
                   <div className="flex flex-row items-center mb-2">
                     <div className="w-3/12">
                       <Image
