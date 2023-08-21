@@ -26,12 +26,13 @@ export default function Page({ params }) {
         {detail.map((items, index) => {
           return (
             <div
+              key={index}
               className="bg-[length:1920px_700px] bg-no-repeat bg-center border mx-auto  w-full h-[50vh] shadow-md shadow-slate-500"
               style={{
                 backgroundImage: `url("${items.posterUrl}")`,
               }}
             >
-              <div key={index} className="bg-black/[.66] w-full h-[50vh] p-2">
+              <div className="bg-black/[.66] w-full h-[50vh] p-2">
                 <div className="w-7/12 h-full mx-auto flex flex-row items-center gap-10">
                   <div
                     style={{
