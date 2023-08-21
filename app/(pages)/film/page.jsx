@@ -168,7 +168,10 @@ const Movies = () => {
                     </h1>
                     <h1 className="text-left ">{items.year}</h1>
                     <h1 className="text-left block max-md:hidden">
-                      {items.genres}
+                      {items.genres
+                        .toString()
+                        .replace(/([A-Z])/g, " $1")
+                        .trim()}
                     </h1>
                   </div>
                 </Link>
