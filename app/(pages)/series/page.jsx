@@ -154,7 +154,7 @@ const Series = () => {
           </div>
         </div>
         <div className="w-full">
-          <div className="grid grid-cols-5 max-[1364px]:grid-cols-3 max-[1650px]:grid-cols-4   max-[1100px]:grid-cols-2 max-lg:grid-cols-2 max-md:grid-cols-2 max-sm:grid-cols-1 justify-items-center mt-10">
+          <div className="grid grid-cols-5 max-[1364px]:grid-cols-3 max-[1650px]:grid-cols-4   max-[1100px]:grid-cols-2 max-lg:grid-cols-2 max-md:grid-cols-2 max-sm:grid-cols-2 justify-items-center mt-10">
             {filteredSeries.map((items, index) => {
               return (
                 <Link key={index} href={`/series/${items.title}`}>
