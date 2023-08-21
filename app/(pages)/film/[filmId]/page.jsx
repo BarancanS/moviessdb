@@ -27,20 +27,20 @@ export default function Page({ params }) {
           return (
             <div
               key={index}
-              className="bg-[length:1920px_700px] bg-no-repeat bg-center border mx-auto  w-full h-[50vh] shadow-md shadow-slate-500"
+              className="bg-[length:1920px_700px] bg-no-repeat bg-center border w-full  min-h-[50vh] shadow-md shadow-slate-500"
               style={{
                 backgroundImage: `url("${items.posterUrl}")`,
               }}
             >
-              <div className="bg-black/[.66] w-full h-[50vh] p-2">
-                <div className="w-7/12 h-full mx-auto flex flex-row items-center gap-10">
+              <div className="bg-black/[.66] w-full min-h-[50vh] p-2">
+                <div className="w-full min-h-[50vh] max-md:flex-col flex flex-row justify-center items-center gap-10">
                   <div
                     style={{
                       backgroundImage: `url("${items.posterUrl}")`,
                     }}
-                    className="max-sm:w-28 max-sm:h-40 w-72 h-96 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
+                    className="max-sm:w-36 max-sm:h-52 max-md:w-44 max-md:h-60 max-lg:w-56 max-lg:h-72 w-72 h-96 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                   ></div>
-                  <div className="w-5/12">
+                  <div className="w-5/12 max-md:w-11/12">
                     <div className="flex flex-row">
                       <h1 className="text-left mt-2 text-white font-extrabold">
                         {items.title.substring(0, 13)}
@@ -50,28 +50,24 @@ export default function Page({ params }) {
                       </h1>
                     </div>
                     <div className="flex flex-row gap-2">
-                      <h1 className="text-left block max-md:hidden text-sm font-light">
+                      <h1 className="text-sm font-light">
                         {items.genres
                           .toString()
                           .replace(/([A-Z])/g, " $1")
                           .trim()}
                       </h1>
-                      <h1 className="text-left block max-md:hidden text-sm font-light">
-                        -{items.platform}
-                      </h1>
-                      <h1 className="text-left block max-md:hidden text-sm font-light">
+                      <h1 className="text-sm font-light">-{items.platform}</h1>
+                      <h1 className="text-sm font-light">
                         -{items.runtime}minute
                       </h1>
                     </div>
-                    <h1 className="text-left block max-md:hidden text-sm font-light">
+                    <h1 className="text-sm font-light">
                       Actors:{items.actors}
                     </h1>
-                    <h1 className="text-left block max-md:hidden text-sm font-light">
+                    <h1 className="text-sm font-light">
                       Director:{items.director}
                     </h1>
-                    <h1 className="text-left block max-md:hidden text-sm font-light">
-                      Plot:{items.plot}
-                    </h1>
+                    <h1 className="text-sm font-light">Plot:{items.plot}</h1>
                   </div>
                 </div>
               </div>
