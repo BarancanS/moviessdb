@@ -64,15 +64,29 @@ export default function Page({ params }) {
                       </h1>
                     </div>
                     <h1 className="text-sm font-light">
-                      Platform:{items.platform}
+                      <span className="font-bold text-red-700 text-base">
+                        Platform:
+                      </span>
+                      {items.platform}
                     </h1>
                     <h1 className="text-sm font-light">
-                      Actors:{items.actors}
+                      <span className="font-bold text-red-700 text-base">
+                        Actors:
+                      </span>
+                      {items.actors}
                     </h1>
                     <h1 className="text-sm font-light">
-                      Director:{items.director}
+                      <span className="font-bold text-red-700 text-base">
+                        Director:
+                      </span>
+                      {items.director}
                     </h1>
-                    <h1 className="text-sm font-light">Plot:{items.plot}</h1>
+                    <h1 className="text-sm font-light">
+                      <span className="font-bold text-red-700 text-base">
+                        Plot:
+                      </span>
+                      {items.plot}
+                    </h1>
                   </div>
                 </div>
               </div>
