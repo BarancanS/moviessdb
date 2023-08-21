@@ -36,13 +36,14 @@ const Categories = () => {
                 .filter((items) => items.genres.includes("Action"))
                 .map((items, index) => {
                   return (
-                    <div key={index}>
+                    <Link href={`/bests/${items.title}`} key={index}>
                       <div
-                        style={{ backgroundImage: `url("${items.posterUrl}")` }}
+                        style={{
+                          backgroundImage: `url("${items.posterUrl}")`,
+                        }}
                         className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                       ></div>
-                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
-                    </div>
+                    </Link>
                   );
                 })}
             </div>
@@ -54,13 +55,12 @@ const Categories = () => {
                 .filter((items) => items.genres.includes("Drama"))
                 .map((items, index) => {
                   return (
-                    <div key={index}>
+                    <Link href={`/bests/${items.title}`} key={index}>
                       <div
                         style={{ backgroundImage: `url("${items.posterUrl}")` }}
                         className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                       ></div>
-                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
-                    </div>
+                    </Link>
                   );
                 })}
             </div>
@@ -72,13 +72,12 @@ const Categories = () => {
                 .filter((items) => items.genres.includes("Comedy"))
                 .map((items, index) => {
                   return (
-                    <div key={index}>
+                    <Link href={`/bests/${items.title}`} key={index}>
                       <div
                         style={{ backgroundImage: `url("${items.posterUrl}")` }}
                         className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                       ></div>
-                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
-                    </div>
+                    </Link>
                   );
                 })}
             </div>
@@ -90,13 +89,12 @@ const Categories = () => {
                 .filter((items) => items.genres.includes("Fantasy"))
                 .map((items, index) => {
                   return (
-                    <div key={index}>
+                    <Link href={`/bests/${items.title}`} key={index}>
                       <div
                         style={{ backgroundImage: `url("${items.posterUrl}")` }}
                         className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                       ></div>
-                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
-                    </div>
+                    </Link>
                   );
                 })}
             </div>
@@ -108,13 +106,12 @@ const Categories = () => {
                 .filter((items) => items.genres.includes("Action"))
                 .map((items, index) => {
                   return (
-                    <div key={index}>
+                    <Link href={`/bests/${items.title}`} key={index}>
                       <div
                         style={{ backgroundImage: `url("${items.posterUrl}")` }}
                         className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                       ></div>
-                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
-                    </div>
+                    </Link>
                   );
                 })}
             </div>
@@ -126,13 +123,12 @@ const Categories = () => {
                 .filter((items) => items.genres.includes("Crime"))
                 .map((items, index) => {
                   return (
-                    <div key={index}>
+                    <Link href={`/bests/${items.title}`} key={index}>
                       <div
                         style={{ backgroundImage: `url("${items.posterUrl}")` }}
                         className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                       ></div>
-                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
-                    </div>
+                    </Link>
                   );
                 })}
             </div>
@@ -144,13 +140,12 @@ const Categories = () => {
                 .filter((items) => items.genres.includes("Music"))
                 .map((items, index) => {
                   return (
-                    <div key={index}>
+                    <Link href={`/bests/${items.title}`} key={index}>
                       <div
                         style={{ backgroundImage: `url("${items.posterUrl}")` }}
                         className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                       ></div>
-                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
-                    </div>
+                    </Link>
                   );
                 })}
             </div>
@@ -162,13 +157,12 @@ const Categories = () => {
                 .filter((items) => items.genres.includes("Adventure"))
                 .map((items, index) => {
                   return (
-                    <div key={index}>
+                    <Link href={`/bests/${items.title}`} key={index}>
                       <div
                         style={{ backgroundImage: `url("${items.posterUrl}")` }}
                         className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                       ></div>
-                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
-                    </div>
+                    </Link>
                   );
                 })}
             </div>
@@ -180,13 +174,12 @@ const Categories = () => {
                 .filter((items) => items.genres.includes("History"))
                 .map((items, index) => {
                   return (
-                    <div key={index}>
+                    <Link href={`/bests/${items.title}`} key={index}>
                       <div
                         style={{ backgroundImage: `url("${items.posterUrl}")` }}
                         className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                       ></div>
-                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
-                    </div>
+                    </Link>
                   );
                 })}
             </div>
@@ -198,13 +191,12 @@ const Categories = () => {
                 .filter((items) => items.genres.includes("Thriller"))
                 .map((items, index) => {
                   return (
-                    <div key={index}>
+                    <Link href={`/bests/${items.title}`} key={index}>
                       <div
                         style={{ backgroundImage: `url("${items.posterUrl}")` }}
                         className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                       ></div>
-                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
-                    </div>
+                    </Link>
                   );
                 })}
             </div>
@@ -216,13 +208,12 @@ const Categories = () => {
                 .filter((items) => items.genres.includes("Family"))
                 .map((items, index) => {
                   return (
-                    <div key={index}>
+                    <Link href={`/bests/${items.title}`} key={index}>
                       <div
                         style={{ backgroundImage: `url("${items.posterUrl}")` }}
                         className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                       ></div>
-                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
-                    </div>
+                    </Link>
                   );
                 })}
             </div>
@@ -234,13 +225,12 @@ const Categories = () => {
                 .filter((items) => items.genres.includes("Mystery"))
                 .map((items, index) => {
                   return (
-                    <div key={index}>
+                    <Link href={`/bests/${items.title}`} key={index}>
                       <div
                         style={{ backgroundImage: `url("${items.posterUrl}")` }}
                         className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                       ></div>
-                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
-                    </div>
+                    </Link>
                   );
                 })}
             </div>
@@ -252,13 +242,12 @@ const Categories = () => {
                 .filter((items) => items.genres.includes("Biography"))
                 .map((items, index) => {
                   return (
-                    <div key={index}>
+                    <Link href={`/bests/${items.title}`} key={index}>
                       <div
                         style={{ backgroundImage: `url("${items.posterUrl}")` }}
                         className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
                       ></div>
-                      {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
-                    </div>
+                    </Link>
                   );
                 })}
             </div>
