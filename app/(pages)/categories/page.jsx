@@ -19,7 +19,7 @@ const Categories = () => {
   useEffect(() => {
     setMerge(combined);
     SetFilteredMerge(combined);
-  });
+  }, [posts, series]);
   return user ? (
     <main>
       <Navbar />

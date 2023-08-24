@@ -41,7 +41,7 @@ const Bests = () => {
   useEffect(() => {
     setMerge(combined);
     SetFilteredMerge(combined);
-  }, [posts]);
+  }, [posts, series]);
 
   return user ? (
     <div>
