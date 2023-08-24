@@ -34,14 +34,16 @@ const SignIn = () => {
       />
     </div>
   ) : (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <button
-        onClick={signIn}
-        className="bg-white w-26 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
-      >
-        <FcGoogle className="text-2xl" />
-        <h1 className="text-black ml-2 font-medium">SignIn</h1>
-      </button>
+    <div className="flex flex-col items-center w-full h-screen justify-center gap-4">
+      <div>
+        <button
+          onClick={signIn}
+          className="bg-white w-26 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
+        >
+          <FcGoogle className="text-2xl" />
+          <h1 className="text-black ml-2 font-medium">SignIn</h1>
+        </button>
+      </div>
     </div>
   );
 };
