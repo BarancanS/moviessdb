@@ -1,38 +1,47 @@
 "use client";
 import React from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
-import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+import { initFirebase } from "../../shared/FirebaseConfig";
+import {
+  getAuth,
+  signInWithPopup,
+  signOut,
+  GoogleAuthProvider,
+} from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const SignIn = () => {
-  const session = useSession();
-  if (session.status === "unauthenticated") {
-    return (
-      <div className="flex flex-col items-center justify-center gap-4">
-        <h1 className="text-3xl">Sign In For Continue</h1>
-        <div
-          onClick={() => signIn("google")}
-          className="bg-white w-52 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
-        >
-          <FcGoogle className="text-2xl" />
-          <h1 className="text-black ml-2 font-medium">SignIn With Google</h1>
-        </div>
-      </div>
-    );
-  }
-  if (session.status === "authenticated") {
-    return (
-      <div
-        onClick={() => signOut("google")}
-        className="bg-red-600 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
+  initFirebase();
+  const provider = new GoogleAuthProvider();
+  const auth = getAuth();
+  const signIn = async () => {
+    const result = await signInWithPopup(auth, provider);
+    console.log(result);
+  };
+  const [user, loading] = useAuthState(auth);
+  return user ? (
+    <div className="flex flex-row max-lg:flex-col-reverse justify-center items-center gap-3">
+      <button
+        onClick={() => signOut(auth)}
+        className="bg-red-600 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
       >
         Sign Out
-      </div>
-    );
-  }
-  return (
-    <div>
-      <h1>Sign In</h1>
+      </button>
+      <img
+        src={user.photoURL}
+        alt="user-image"
+        className="rounded-full w-[4rem] h-[4rem]"
+      />
+    </div>
+  ) : (
+    <div className="flex flex-col items-center justify-center gap-4">
+      <button
+        onClick={signIn}
+        className="bg-white w-26 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
+      >
+        <FcGoogle className="text-2xl" />
+        <h1 className="text-black ml-2 font-medium">SignIn</h1>
+      </button>
     </div>
   );
 };

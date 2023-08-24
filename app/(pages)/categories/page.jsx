@@ -1,6 +1,4 @@
 "use client";
-import SignIn from "/app/components/SignIn";
-import { useSession } from "next-auth/react";
 import { useState, useEffect, useContext } from "react";
 import { MainContext } from "/app/components/Context";
 import Footer from "/app/components/Footer";
@@ -8,23 +6,21 @@ import Navbar from "/app/components/Navbar";
 import Films from "../../components/Films";
 import Link from "next/link";
 import Image from "next/image";
+import { getAuth } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import SignIn from "../../components/SignIn";
 
 const Categories = () => {
   const { merge, setMerge, combined, posts, series } = useContext(MainContext);
-  const session = useSession();
-  const [authSession, setAuthSession] = useState();
   const [filteredMerge, SetFilteredMerge] = useState(merge);
+  const auth = getAuth();
+  const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
     setMerge(combined);
     SetFilteredMerge(combined);
-    if (session.status === "unauthenticated") {
-      setAuthSession(false);
-    } else {
-      setAuthSession(true);
-    }
-  }, [session]);
-  return authSession ? (
+  });
+  return user ? (
     <main>
       <Navbar />
       <section className="flex flex-row mt-5 xl:px-10 px-1">
@@ -257,9 +253,7 @@ const Categories = () => {
       <Footer />
     </main>
   ) : (
-    <main className="w-full min-h-[calc(100vh-10rem)] flex items-center justify-center">
-      <SignIn />
-    </main>
+    <SignIn />
   );
 };
 

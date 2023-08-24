@@ -1,6 +1,4 @@
 "use client";
-import SignIn from "/app/components/SignIn";
-import { useSession } from "next-auth/react";
 import { useState, useEffect, useContext } from "react";
 import { MainContext } from "/app/components/Context";
 import Footer from "/app/components/Footer";
@@ -8,17 +6,20 @@ import Navbar from "/app/components/Navbar";
 import { SearchSeries } from "/app/components/SearchSeries";
 import { AiFillCaretDown, AiFillCaretRight } from "react-icons/ai";
 import Link from "next/link";
+import { getAuth } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import SignIn from "../../components/SignIn";
 
 const Series = () => {
   const { series } = useContext(MainContext);
-  const session = useSession();
-  const [authSession, setAuthSession] = useState();
   const [filteredSeries, SetFilteredSeries] = useState(series);
   const [lowestRange, SetLowestRange] = useState(0);
   const [highestRange, SetHighestRange] = useState(10);
   const [platformValue, SetPlatformValue] = useState();
   const [filterBoolean, SetFilterBoolean] = useState(false);
   const [sortBoolean, SetSortBoolean] = useState(false);
+  const auth = getAuth();
+  const [user, loading] = useAuthState(auth);
 
   function FilterAllButtonClick() {
     SetFilteredSeries(
@@ -38,15 +39,10 @@ const Series = () => {
     );
   }
   useEffect(() => {
-    if (session.status === "unauthenticated") {
-      setAuthSession(false);
-    } else {
-      setAuthSession(true);
-    }
     SetFilteredSeries(series);
-  }, [session, series]);
+  }, [series]);
 
-  return authSession ? (
+  return user ? (
     <div>
       <Navbar />
       <SearchSeries />
@@ -183,9 +179,7 @@ const Series = () => {
       <Footer />
     </div>
   ) : (
-    <main className="w-full min-h-[calc(100vh-10rem)] flex items-center justify-center">
-      <SignIn />
-    </main>
+    <SignIn />
   );
 };
 

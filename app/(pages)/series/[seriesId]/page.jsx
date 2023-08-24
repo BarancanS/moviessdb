@@ -1,13 +1,17 @@
 "use client";
-import { useSession } from "next-auth/react";
 import { useState, useEffect, useContext } from "react";
 import { MainContext } from "/app/components/Context";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
+import { getAuth } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import SignIn from "../../../components/SignIn";
 
 export default function Page({ params }) {
   const { merge, setMerge, combined, posts, series } = useContext(MainContext);
   const [detail, setDetail] = useState(series);
+  const auth = getAuth();
+  const [user, loading] = useAuthState(auth);
 
   useEffect(() => {
     setDetail(
@@ -21,7 +25,7 @@ export default function Page({ params }) {
       )
     );
   }, [series]);
-  return (
+  return user ? (
     <section>
       <Navbar />
       <main className="w-full min-h-[calc(100vh-10rem)] mx-auto flex flex-col text-white text-2xl">
@@ -95,5 +99,7 @@ export default function Page({ params }) {
       </main>
       <Footer />
     </section>
+  ) : (
+    <SignIn />
   );
 }

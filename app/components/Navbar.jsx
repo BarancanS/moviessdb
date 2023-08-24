@@ -4,20 +4,10 @@ import { FaHamburger } from "react-icons/fa";
 import { VscChromeClose } from "react-icons/vsc";
 import Link from "next/link";
 import SignIn from "./SignIn";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
 const Navbar = () => {
   const [hamburgerMenu, setHamburgerMenu] = React.useState(false);
-  const session = useSession();
-  const [authSession, setAuthSession] = React.useState();
 
-  useEffect(() => {
-    if (session.status === "unauthenticated") {
-      setAuthSession(false);
-    } else {
-      setAuthSession(true);
-    }
-  });
   return (
     <div className="h-20 w-10/12 mx-auto flex flex-row justify-between items-center">
       <Link href="/">
@@ -45,11 +35,6 @@ const Navbar = () => {
           </li>
         </ul>
         {/* Burayi Image elementi ile değiştirmeyi unutma */}
-        <img
-          src={authSession ? session?.data?.user?.image : "/john-wick.jpg"}
-          alt="user-image"
-          className="rounded-full w-[4rem] h-[4rem]"
-        />
       </div>
       <FaHamburger
         className="lg:hidden text-2xl"
@@ -69,21 +54,14 @@ const Navbar = () => {
                 onClick={() => setHamburgerMenu(!hamburgerMenu)}
               />
             </div>
-            <div className="flex flex-col items-center w-full gap-2 mt-2">
-              <img
-                src={
-                  authSession ? session?.data?.user?.image : "/john-wick.jpg"
-                }
-                alt="user-image"
-                className="rounded-full w-[4rem] h-[4rem]"
-              />
-              <div className="flex flex-col gap-2">
+            <div className="flex flex-col  items-center w-full gap-2 mt-2">
+              <div className="flex items-center flex-col gap-2">
+                <SignIn />
                 <Link href="">
-                  <button className="bg-red-600 rounded-xl p-2 w-24 h-18">
+                  <button className="bg-red-600  rounded-xl p-2 w-24 h-18">
                     Profile
                   </button>
                 </Link>
-                <SignIn />
               </div>
             </div>
             <ul className="h-screen flex flex-col items-center max-md:text-base text-xl mt-20">

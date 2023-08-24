@@ -1,25 +1,17 @@
 "use client";
 import SignIn from "../app/components/SignIn";
-import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Films from "./components/Films";
 import Series from "./components/Series";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import { getAuth } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function Home() {
-  const session = useSession();
-  const [authSession, setAuthSession] = useState();
-
-  useEffect(() => {
-    if (session.status === "unauthenticated") {
-      setAuthSession(false);
-    } else {
-      setAuthSession(true);
-    }
-  });
-
-  return authSession ? (
+  const auth = getAuth();
+  const [user, loading] = useAuthState(auth);
+  return user ? (
     <main className=" min-h-[calc(100vh-10rem)] 2xl:w-5/6 max-2xl:w-full  mx-auto">
       <Navbar />
       <div
@@ -31,8 +23,6 @@ export default function Home() {
       <Footer />
     </main>
   ) : (
-    <main className=" min-h-[calc(100vh-10rem)] w-5/6 mx-auto flex items-center justify-center">
-      <SignIn />
-    </main>
+    <SignIn />
   );
 }

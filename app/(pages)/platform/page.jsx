@@ -1,23 +1,16 @@
 "use client";
-import SignIn from "/app/components/SignIn";
-import { useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import React from "react";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
+import { getAuth } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import SignIn from "../../components/SignIn";
 
 const Platforms = () => {
-  const session = useSession();
-  const [authSession, setAuthSession] = useState();
-
-  useEffect(() => {
-    if (session.status === "unauthenticated") {
-      setAuthSession(false);
-    } else {
-      setAuthSession(true);
-    }
-  });
-  return authSession ? (
+  const auth = getAuth();
+  const [user, loading] = useAuthState(auth);
+  return user ? (
     <section>
       <Navbar />
       <div className="w-full min-h-[calc(100vh-10rem)] flex flex-col items-center justify-center">
@@ -26,9 +19,7 @@ const Platforms = () => {
       <Footer />
     </section>
   ) : (
-    <main className="w-full min-h-[calc(100vh-10rem)] flex items-center justify-center">
-      <SignIn />
-    </main>
+    <SignIn />
   );
 };
 

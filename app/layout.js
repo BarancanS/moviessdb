@@ -4,7 +4,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { MainContext } from "../app/components/Context";
 import { useState, useEffect } from "react";
-import app from "../shared/FirebaseConfig";
+import { initFirebase } from "../shared/FirebaseConfig";
 import {
   getFirestore,
   doc,
@@ -27,14 +27,14 @@ export default function RootLayout({ children }) {
   }, []);
 
   const getPost = async () => {
-    const db = getFirestore(app);
+    const db = getFirestore(initFirebase);
     const querySnapshot = await getDocs(collection(db, "posts"));
     querySnapshot.forEach((doc) => {
       setPosts((posts) => [...posts, doc.data()]);
     });
   };
   const getSeries = async () => {
-    const db = getFirestore(app);
+    const db = getFirestore(initFirebase);
     const querySnapshot = await getDocs(collection(db, "series"));
     querySnapshot.forEach((doc) => {
       setSeries((series) => [...series, doc.data()]);
@@ -53,9 +53,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
-        <Provider>
-          <MainContext.Provider value={data}>{children}</MainContext.Provider>
-        </Provider>
+        <MainContext.Provider value={data}>{children}</MainContext.Provider>
       </body>
     </html>
   );

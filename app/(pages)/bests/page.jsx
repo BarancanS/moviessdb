@@ -1,6 +1,4 @@
 "use client";
-import SignIn from "/app/components/SignIn";
-import { useSession } from "next-auth/react";
 import { useState, useEffect, useContext } from "react";
 import { MainContext } from "/app/components/Context";
 import Footer from "/app/components/Footer";
@@ -8,17 +6,20 @@ import Navbar from "/app/components/Navbar";
 import { SearchAll } from "/app/components/SearchAll";
 import { AiFillCaretDown, AiFillCaretRight } from "react-icons/ai";
 import Link from "next/link";
+import { getAuth } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import SignIn from "../../components/SignIn";
 
 const Bests = () => {
   const { merge, setMerge, combined, posts, series } = useContext(MainContext);
-  const session = useSession();
-  const [authSession, setAuthSession] = useState();
-  const [filteredMerge, SetFilteredMerge] = useState();
+  const [filteredMerge, SetFilteredMerge] = useState(combined);
   const [lowestRange, SetLowestRange] = useState(0);
   const [highestRange, SetHighestRange] = useState(10);
   const [platformValue, SetPlatformValue] = useState();
   const [filterBoolean, SetFilterBoolean] = useState(false);
   const [sortBoolean, SetSortBoolean] = useState(false);
+  const auth = getAuth();
+  const [user, loading] = useAuthState(auth);
 
   function FilterAllButtonClick() {
     SetFilteredMerge(
@@ -40,14 +41,9 @@ const Bests = () => {
   useEffect(() => {
     setMerge(combined);
     SetFilteredMerge(combined);
-    if (session.status === "unauthenticated") {
-      setAuthSession(false);
-    } else {
-      setAuthSession(true);
-    }
-  }, [session, posts]);
+  }, [posts]);
 
-  return authSession ? (
+  return user ? (
     <div>
       <Navbar />
       <SearchAll />
@@ -184,9 +180,7 @@ const Bests = () => {
       <Footer />
     </div>
   ) : (
-    <main className="w-full min-h-[calc(100vh-10rem)] flex items-center justify-center">
-      <SignIn />
-    </main>
+    <SignIn />
   );
 };
 
