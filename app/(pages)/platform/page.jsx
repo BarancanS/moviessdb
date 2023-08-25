@@ -7,8 +7,6 @@ import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SignIn from "../../components/SignIn";
 import SignUp from "../../components/SignUp";
-import Login from "../../components/Login";
-import Register from "../../components/Register";
 
 const Platforms = () => {
   const auth = getAuth();

@@ -1,5 +1,4 @@
 "use client";
-import Provider from "./components/Provider";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { MainContext } from "../app/components/Context";
