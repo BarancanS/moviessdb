@@ -9,6 +9,7 @@ import Link from "next/link";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SignIn from "../../components/SignIn";
+import SignUp from "../../components/SignUp";
 
 const Movies = () => {
   const { posts } = useContext(MainContext);

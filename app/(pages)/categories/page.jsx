@@ -9,7 +9,7 @@ import Image from "next/image";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SignIn from "../../components/SignIn";
-
+import SignUp from "../../components/SignUp";
 const Categories = () => {
   const { merge, setMerge, combined, posts, series } = useContext(MainContext);
   const [filteredMerge, SetFilteredMerge] = useState(merge);
