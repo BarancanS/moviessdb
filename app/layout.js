@@ -4,7 +4,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { MainContext } from "../app/components/Context";
 import { useState, useEffect } from "react";
-import { initFirebase } from "../shared/FirebaseConfig";
+import { initFirebase } from "../shared/firebase";
 import {
   getFirestore,
   doc,
