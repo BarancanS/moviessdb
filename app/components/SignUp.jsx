@@ -3,7 +3,6 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { FcGoogle } from "react-icons/fc";
 import {
   auth,
-  logout,
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from "../../shared/firebase";

@@ -7,7 +7,9 @@ import {
   signInWithEmailAndPassword,
   signInWithGoogle,
 } from "../../shared/firebase";
+
 import { useAuthState } from "react-firebase-hooks/auth";
+import Link from "next/link";
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,6 +24,12 @@ function SignIn() {
       >
         Logout
       </button>
+      <Link
+        href="/profile"
+        className="bg-red-600 rounded-xl h-10 p-2 flex flex-row items-center justify-center cursor-pointer"
+      >
+        Profile
+      </Link>
       <img
         src={user.photoURL}
         alt="user-image"

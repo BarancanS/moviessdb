@@ -45,7 +45,7 @@ const Series = () => {
   }, [series]);
 
   return user ? (
-    <div>
+    <section>
       <Navbar />
       <SearchSeries />
       <div className="flex flex-col  lg:flex lg:flex-row">
@@ -179,23 +179,17 @@ const Series = () => {
         </div>
       </div>
       <Footer />
-    </div>
+    </section>
   ) : (
-    <div>
+    <section>
       {status ? (
         <div className="w-full flex flex-col items-center justify-center">
           <SignIn />
           <button
             onClick={() => setStatus(!status)}
-            className="bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
+            className="text-white font-medium bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
           >
-            {status ? (
-              <div>
-                <h1 className="text-white ml-2 font-medium">Register Page</h1>
-              </div>
-            ) : (
-              <h1 className="text-white ml-2 font-medium">Login Page</h1>
-            )}
+            Register Page
           </button>
         </div>
       ) : (
@@ -203,19 +197,13 @@ const Series = () => {
           <SignUp />
           <button
             onClick={() => setStatus(!status)}
-            className="bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
+            className="text-white font-medium bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
           >
-            {status ? (
-              <div>
-                <h1 className="text-white ml-2 font-medium">Register Page</h1>
-              </div>
-            ) : (
-              <h1 className="text-white ml-2 font-medium">Login Page</h1>
-            )}
+            Login Page
           </button>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

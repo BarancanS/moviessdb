@@ -187,15 +187,9 @@ const Movies = () => {
           <SignIn />
           <button
             onClick={() => setStatus(!status)}
-            className="bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
+            className="text-white font-medium bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
           >
-            {status ? (
-              <div>
-                <h1 className="text-white ml-2 font-medium">Register Page</h1>
-              </div>
-            ) : (
-              <h1 className="text-white ml-2 font-medium">Login Page</h1>
-            )}
+            Register Page
           </button>
         </div>
       ) : (
@@ -203,15 +197,9 @@ const Movies = () => {
           <SignUp />
           <button
             onClick={() => setStatus(!status)}
-            className="bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
+            className="text-white font-medium bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
           >
-            {status ? (
-              <div>
-                <h1 className="text-white ml-2 font-medium">Register Page</h1>
-              </div>
-            ) : (
-              <h1 className="text-white ml-2 font-medium">Login Page</h1>
-            )}
+            Login Page
           </button>
         </div>
       )}
