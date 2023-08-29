@@ -6,6 +6,7 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 import SignIn from "../../components/SignIn";
 import SignUp from "../../components/SignUp";
 import Link from "next/link";
+import Navbar from "../../components/Navbar";
 function Profile() {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
@@ -27,29 +28,19 @@ function Profile() {
   useEffect(() => {
     fetchUserName();
   }, [user, loading, list]);
-
   return user ? (
     <section className="w-full p-2 mx-auto min-h-[100vh]">
+      <Navbar />
       <main className="h-20 w-10/12 mx-auto flex flex-row justify-between items-center">
-        <Link href="/">
-          <h1 className="text-3xl">BaranFlix</h1>
-        </Link>
+        <h1 className="text-3xl">{user.displayName}'s List</h1>
         <div className="flex flex-row justify-center items-center gap-5 max-lg:hidden">
           <ul className="flex flex-row justify-center items-center gap-5 max-lg:hidden">
             <div>
-              <li>Logged in as:{name}</li>
+              <li>Name : {user.displayName}</li>
             </div>
             <div>
-              <li>{user?.email}</li>
+              <li>Email : {user?.email}</li>
             </div>
-            <li>
-              <button
-                className="bg-red-600 rounded-xl h-10 p-2 flex flex-row items-center justify-center cursor-pointer"
-                onClick={logout}
-              >
-                Logout
-              </button>
-            </li>
           </ul>
         </div>
       </main>
