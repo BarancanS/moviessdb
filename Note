@@ -1,3 +1,16 @@
+// const fetchUserName = async () => {
+//   try {
+//     const q = query(collection(db, "users", user.uid));
+//     const doc = await getDocs(q);
+//     const data = doc.docs[0].data();
+//     setList(data.List);
+//     console.log(data.List);
+//   } catch (err) {
+//     console.error(err);
+//     //   alert("An error occured while fetching user data");
+//   }
+// };
+
 const addTodoForUser = async (uid, todoText) => {
   try {
     const userRef = doc(db, "users", uid);
