@@ -1,0 +1,256 @@
+const addTodoForUser = async (uid, todoText) => {
+  try {
+    const userRef = doc(db, "users", uid);
+    const todoCollectionRef = collection(userRef, "todos");
+
+    await addDoc(todoCollectionRef, {
+      text: todoText,
+      timestamp: serverTimestamp(), // You might need to import this from firebase.firestore
+    });
+
+    console.log("Todo added successfully.");
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
+
+// Usage
+const currentUser = auth.currentUser;
+if (currentUser) {
+  addTodoForUser(currentUser.uid, "Buy groceries");
+} else {
+  alert("User not authenticated.");
+}
+
+const asd = async () => {
+  const querySnapshot = await getDocs(collection(db, "users"));
+  querySnapshot.forEach((doc) => {
+    const fgh = doc._key.path.segments[6];
+    console.log(fgh);
+  });
+};
+asd();
+/////////////////////////////////////////////////////////////////////////
+const fgh = async () => {
+  const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
+  const userDocRef = doc(db, "users", userId);
+
+  try {
+    // 2. Retrieve the current data
+    const userDoc = await getDoc(userDocRef);
+    const List = userDoc.data().List || {}; // If 'List' doesn't exist yet, create an empty object
+
+    // 3. Update the Nested Object
+    const updatedUserData = {
+      ...List,
+      movies: [
+        {
+          id: `${items.id}`,
+          title: `${items.title}`,
+          year: `${items.year}`,
+          runtime: `${items.runtime}`,
+          genres: [`${items.genres}`],
+          director: `${items.director}`,
+          actors: `${items.actors}`,
+          plot: `${items.plot}`,
+          posterUrl: `${items.posterUrl}`,
+        },
+      ], // Add the new 'location' field
+      series: [
+        {
+          id: `${items.id}`,
+          title: `${items.title}`,
+          year: `${items.year}`,
+          runtime: `${items.runtime}`,
+          genres: [`${items.genres}`],
+          director: `${items.director}`,
+          actors: `${items.actors}`,
+          plot: `${items.plot}`,
+          posterUrl: `${items.posterUrl}`,
+        },
+      ],
+    };
+
+    // 4. Update the Document
+    await updateDoc(userDocRef, { List: updatedUserData });
+
+    console.log("Document successfully updated!");
+  } catch (err) {
+    console.error(err);
+    alert("Failed to update document: " + err.message);
+  }
+};
+//////////////////////////////////////////////////////////////
+const fgh = async () => {
+  const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
+  const userDocRef = doc(db, "users", userId);
+
+  try {
+    // 2. Retrieve the current data
+    const userDoc = await getDoc(userDocRef);
+    const List = userDoc.data().List || {}; // If 'List' doesn't exist yet, create an empty object
+
+    // 3. Update the Nested Object
+    const updatedUserData = {
+      ...List,
+      id: items.id,
+      title: items.title,
+      year: items.year,
+      runtime: items.runtime,
+      genres: items.genres,
+      director: items.director,
+      actors: items.actors,
+      plot: items.plot,
+      posterUrl: items.posterUrl,
+    };
+
+    // 4. Update the Document
+    await updateDoc(userDocRef, { List: updatedUserData });
+
+    console.log("Document successfully updated!");
+  } catch (err) {
+    console.error(err);
+    alert("Failed to update document: " + err.message);
+  }
+};
+fgh();
+//////////////////////////////////////////////////////////////
+const fgh = async () => {
+  const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
+  const userDocRef = doc(db, "users", userId);
+
+  try {
+    // 2. Retrieve the current data
+    const userDoc = await getDoc(userDocRef);
+    const List = userDoc.data().List || {}; // If 'List' doesn't exist yet, create an empty object
+
+    // 3. Update the Nested Object
+    const yuio = {
+      id: items.id,
+      title: items.title,
+      year: items.year,
+      runtime: items.runtime,
+      genres: items.genres,
+      director: items.director,
+      actors: items.actors,
+      plot: items.plot,
+      posterUrl: items.posterUrl,
+    };
+    List.push(yuio),
+      // 4. Update the Document
+      await updateDoc(userDocRef, {
+        List: List,
+      });
+
+    console.log("Document successfully updated!");
+  } catch (err) {
+    console.error(err);
+    alert("Failed to update document: " + err.message);
+  }
+};
+////////////////////////////////////////////////////////
+const fgh = async () => {
+  const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
+  const userDocRef = doc(db, "users", userId);
+
+  try {
+    // 2. Retrieve the current data
+    const userDoc = await getDoc(userDocRef);
+    const List = userDoc.data().List || {}; // If 'List' doesn't exist yet, create an empty object
+
+    // 3. Update the Nested Object
+    const updatedUserData = {
+      ...List,
+      id: items.id,
+      title: items.title,
+      year: items.year,
+      runtime: items.runtime,
+      genres: items.genres,
+      director: items.director,
+      actors: items.actors,
+      plot: items.plot,
+      posterUrl: items.posterUrl,
+    };
+
+    // 4. Update the Document
+    await updateDoc(userDocRef, { List: updatedUserData });
+
+    console.log("Document successfully updated!");
+  } catch (err) {
+    console.error(err);
+    alert("Failed to update document: " + err.message);
+  }
+};
+//////////////////////////////////////////////////
+const fgh = async () => {
+  const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
+  const userDocRef = doc(db, "users", userId);
+
+  try {
+    // 2. Retrieve the current data
+    const userDoc = await getDoc(userDocRef);
+    const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
+
+    // 3. Create the new data object
+    const newData = {
+      id: items.id,
+      title: items.title,
+      year: items.year,
+      runtime: items.runtime,
+      genres: items.genres,
+      director: items.director,
+      actors: items.actors,
+      plot: items.plot,
+      posterUrl: items.posterUrl,
+    };
+
+    // 4. Update the Document with the combined data
+    const updatedUserData = [...List, newData];
+
+    await updateDoc(userDocRef, { List: updatedUserData });
+
+    console.log("Document successfully updated!");
+  } catch (err) {
+    console.error(err);
+    alert("Failed to update document: " + err.message);
+  }
+};
+///////////////////////////////////////////////////////////
+const fgh = async () => {
+  const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
+  const userDocRef = doc(db, "users", userId);
+
+  try {
+    // 2. Retrieve the current data
+    const userDoc = await getDoc(userDocRef);
+    const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
+
+    // 3. Check if the data already exists in the List using the 'id'
+    const newData = {
+      id: items.id,
+      title: items.title,
+      year: items.year,
+      runtime: items.runtime,
+      genres: items.genres,
+      director: items.director,
+      actors: items.actors,
+      plot: items.plot,
+      posterUrl: items.posterUrl,
+    };
+
+    const isDataAlreadyInList = List.some((item) => item.id === newData.id);
+
+    if (isDataAlreadyInList) {
+      console.log("Data already exists in the list.");
+    } else {
+      // 4. Update the Document with the combined data
+      const updatedUserData = [...List, newData];
+      await updateDoc(userDocRef, { List: updatedUserData });
+      console.log("Document successfully updated!");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Failed to update document: " + err.message);
+  }
+};

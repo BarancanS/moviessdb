@@ -15,6 +15,10 @@ import {
   collection,
   where,
   addDoc,
+  doc,
+  serverTimestamp,
+  updateDoc,
+  getDoc,
 } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyA5ZuEF1HeY9Mrhd-iFcWZAIx7j2v5t2FQ",
@@ -24,10 +28,11 @@ const firebaseConfig = {
   messagingSenderId: "651369653814",
   appId: "1:651369653814:web:662473a760947cbc349a97",
 };
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
+
 const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);

@@ -3,16 +3,41 @@ import { useState, useEffect, useContext } from "react";
 import { MainContext } from "/app/components/Context";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
-import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SignIn from "../../../components/SignIn";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signOut,
+} from "firebase/auth";
+import {
+  getFirestore,
+  query,
+  getDocs,
+  collection,
+  where,
+  addDoc,
+  doc,
+  serverTimestamp,
+  updateDoc,
+  getDoc,
+  setDoc,
+} from "firebase/firestore";
+import app from "../../../../shared/firebase";
 
 export default function Page({ params }) {
   const { merge, setMerge, combined, posts, series } = useContext(MainContext);
   const [detail, setDetail] = useState(posts);
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
+  // const [list, setList] = useState();
+  const db = getFirestore(app);
   useEffect(() => {
+    // fetchUserName();
     setDetail(
       posts.filter((items) =>
         items.title.includes(
@@ -24,12 +49,63 @@ export default function Page({ params }) {
       )
     );
   }, [posts]);
+  // const fetchUserName = async () => {
+  //   try {
+  //     const q = query(collection(db, "users", user.uid));
+  //     const doc = await getDocs(q);
+  //     const data = doc.docs[0].data();
+  //     setList(data.List);
+  //     console.log(data.List);
+  //   } catch (err) {
+  //     console.error(err);
+  //     //   alert("An error occured while fetching user data");
+  //   }
+  // };
 
   return user ? (
     <section>
       <Navbar />
       <main className="w-full min-h-[calc(100vh-10rem)] mx-auto flex flex-col text-white text-2xl">
         {detail.map((items, index) => {
+          const AddItemToList = async () => {
+            const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
+            const userDocRef = doc(db, "users", userId);
+
+            try {
+              // 2. Retrieve the current data
+              const userDoc = await getDoc(userDocRef);
+              const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
+
+              // 3. Check if the data already exists in the List using the 'id'
+              const newData = {
+                id: items.id,
+                title: items.title,
+                year: items.year,
+                runtime: items.runtime,
+                genres: items.genres,
+                director: items.director,
+                actors: items.actors,
+                plot: items.plot,
+                posterUrl: items.posterUrl,
+              };
+
+              const isDataAlreadyInList = List.some(
+                (item) => item.id === newData.id
+              );
+
+              if (isDataAlreadyInList) {
+                console.log("Data already exists in the list.");
+              } else {
+                // 4. Update the Document with the combined data
+                const updatedUserData = [...List, newData];
+                await updateDoc(userDocRef, { List: updatedUserData });
+                console.log("Document successfully updated!");
+              }
+            } catch (err) {
+              console.error(err);
+              alert("Failed to update document: " + err.message);
+            }
+          };
           return (
             <div
               key={index}
@@ -90,6 +166,12 @@ export default function Page({ params }) {
                       </span>
                       {items.plot}
                     </h1>
+                    <button
+                      onClick={() => AddItemToList(items.id)}
+                      className="bg-red-600 rounded-xl mt-2 h-10 p-2 flex flex-row items-center justify-center cursor-pointer"
+                    >
+                      Add Movie
+                    </button>
                   </div>
                 </div>
               </div>

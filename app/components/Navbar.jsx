@@ -57,11 +57,6 @@ const Navbar = () => {
             <div className="flex flex-col  items-center w-full gap-2 mt-2">
               <div className="flex items-center flex-col gap-2">
                 <SignIn />
-                <Link href="">
-                  <button className="bg-red-600  rounded-xl p-2 w-24 h-18">
-                    Profile
-                  </button>
-                </Link>
               </div>
             </div>
             <ul className="h-screen flex flex-col items-center max-md:text-base text-xl mt-20">
