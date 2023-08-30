@@ -12,13 +12,19 @@ function Profile() {
   const [name, setName] = useState("");
   const [list, setList] = useState();
   const [status, setStatus] = useState(true);
+
   const fetchUserName = async () => {
     try {
-      const q = query(collection(db, "users"), where("uid", "==", user?.uid));
-      const doc = await getDocs(q);
-      const data = doc.docs[0].data();
-      setList(data.List);
-      setName(data.name);
+      if (user && user.uid) {
+        // Make sure user and user.uid are defined
+        const q = query(collection(db, "users"), where("uid", "==", user.uid));
+        const doc = await getDocs(q);
+        if (!doc.empty) {
+          const data = doc.docs[0].data();
+          setList(data.List);
+          setName(data.name);
+        }
+      }
     } catch (err) {
       console.error(err);
     }
