@@ -15,10 +15,6 @@ import {
   collection,
   where,
   addDoc,
-  doc,
-  serverTimestamp,
-  updateDoc,
-  getDoc,
 } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyA5ZuEF1HeY9Mrhd-iFcWZAIx7j2v5t2FQ",
