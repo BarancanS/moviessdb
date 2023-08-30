@@ -24,7 +24,7 @@ export default function Page({ params }) {
         )
       )
     );
-  }, [series]);
+  }, [series, params.seriesId]);
   return user ? (
     <section>
       <Navbar />

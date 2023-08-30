@@ -24,7 +24,7 @@ export default function Page({ params }) {
         )
       )
     );
-  }, [combined]);
+  }, [combined, params.bestsId]);
 
   return user ? (
     <section>

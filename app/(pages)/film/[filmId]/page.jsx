@@ -26,7 +26,7 @@ export default function Page({ params }) {
         )
       )
     );
-  }, [posts]);
+  }, [posts, params.filmId]);
 
   return user ? (
     <section>
