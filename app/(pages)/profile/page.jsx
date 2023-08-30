@@ -25,6 +25,7 @@ function Profile() {
       //   alert("An error occured while fetching user data");
     }
   };
+
   useEffect(() => {
     fetchUserName();
   }, [user, loading]);
