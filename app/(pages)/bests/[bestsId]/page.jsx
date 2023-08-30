@@ -45,7 +45,7 @@ export default function Page({ params }) {
                     style={{
                       backgroundImage: `url("${items.posterUrl}")`,
                     }}
-                    className="max-sm:w-36 max-sm:h-52 max-md:w-44 max-md:h-60 max-lg:w-56 max-lg:h-72 w-72 h-96 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
+                    className="max-sm:w-36 max-sm:h-52 max-md:w-44 max-md:h-60 max-lg:w-56 max-lg:h-72 w-72 h-96 bg-cover bg-no-repeat bg-center rounded-xl"
                   ></div>
                   <div className="w-5/12 max-md:w-11/12">
                     <div className="flex flex-row">
