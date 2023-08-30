@@ -72,7 +72,6 @@ export default function Page({ params }) {
               }
             } catch (err) {
               console.error(err);
-              alert("Failed to update document: " + err.message);
             }
           };
           return (

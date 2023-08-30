@@ -7,10 +7,10 @@ import {
   signInWithEmailAndPassword,
   signInWithGoogle,
 } from "../../shared/firebase";
-
 import { useAuthState } from "react-firebase-hooks/auth";
 import Link from "next/link";
 import Image from "next/image";
+
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
