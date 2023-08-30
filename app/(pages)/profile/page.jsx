@@ -1,38 +1,41 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, db, logout } from "../../../shared/firebase";
+import {
+  auth,
+  db,
+  logout,
+  getAuth,
+  onSnapshot,
+} from "../../../shared/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import SignIn from "../../components/SignIn";
 import SignUp from "../../components/SignUp";
 import Link from "next/link";
 import Navbar from "../../components/Navbar";
+
 function Profile() {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
-  const [list, setList] = useState();
+  const [list, setList] = useState([]);
   const [status, setStatus] = useState(true);
 
-  const fetchUserName = async () => {
-    try {
-      if (user && user.uid) {
-        // Make sure user and user.uid are defined
-        const q = query(collection(db, "users"), where("uid", "==", user.uid));
-        const doc = await getDocs(q);
-        if (!doc.empty) {
-          const data = doc.docs[0].data();
+  useEffect(() => {
+    if (user && user.uid) {
+      const userRef = collection(db, "users");
+      const userQuery = query(userRef, where("uid", "==", user.uid));
+
+      const unsubscribe = onSnapshot(userQuery, (querySnapshot) => {
+        if (!querySnapshot.empty) {
+          const data = querySnapshot.docs[0].data();
           setList(data.List);
           setName(data.name);
         }
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
+      });
 
-  useEffect(() => {
-    fetchUserName();
-  }, [user, loading]);
+      return () => unsubscribe();
+    }
+  }, [user]);
 
   return user ? (
     <section className="w-full mx-auto min-h-[100vh]">

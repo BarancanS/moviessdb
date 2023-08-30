@@ -14,6 +14,7 @@ export default function Page({ params }) {
   const [detail, setDetail] = useState(posts);
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
+
   useEffect(() => {
     setDetail(
       posts.filter((items) =>
@@ -138,7 +139,7 @@ export default function Page({ params }) {
                       onClick={() => AddItemToList(items.id)}
                       className="bg-[#FFCC00] rounded-xl mt-2 h-10 p-2 flex flex-row items-center justify-center cursor-pointer"
                     >
-                      Add Movie
+                      Add to List
                     </button>
                   </div>
                 </div>

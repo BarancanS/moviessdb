@@ -15,6 +15,7 @@ import {
   collection,
   where,
   addDoc,
+  onSnapshot,
 } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyA5ZuEF1HeY9Mrhd-iFcWZAIx7j2v5t2FQ",
@@ -94,4 +95,5 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
+  onSnapshot,
 };

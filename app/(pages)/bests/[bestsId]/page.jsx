@@ -3,9 +3,11 @@ import { useState, useEffect, useContext } from "react";
 import { MainContext } from "/app/components/Context";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
-import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SignIn from "../../../components/SignIn";
+import { getAuth } from "firebase/auth";
+import { getFirestore, doc, updateDoc, getDoc } from "firebase/firestore";
+import { db } from "../../../../shared/firebase";
 
 export default function Page({ params }) {
   const { merge, setMerge, combined, posts, series } = useContext(MainContext);
@@ -31,6 +33,48 @@ export default function Page({ params }) {
       <Navbar />
       <main className="w-full min-h-[calc(100vh-10rem)] mx-auto flex flex-col text-white text-2xl">
         {detail.map((items, index) => {
+          const AddItemToList = async (itemId) => {
+            const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
+            const userDocRef = doc(db, "users", userId);
+
+            try {
+              // 2. Retrieve the current data
+              const userDoc = await getDoc(userDocRef);
+              const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
+
+              // 3. Check if the data already exists in the List using the 'id'
+              const isDataAlreadyInList = List.some(
+                (item) => item.id === itemId
+              );
+
+              if (isDataAlreadyInList) {
+                // Delete the data with the specified ID from the List
+                const updatedUserData = List.filter(
+                  (item) => item.id !== itemId
+                );
+                await updateDoc(userDocRef, { List: updatedUserData });
+                console.log("Document successfully updated! (Deleted)");
+              } else {
+                // Add the data to the List
+                const newData = {
+                  id: items.id,
+                  title: items.title,
+                  year: items.year,
+                  runtime: items.runtime,
+                  genres: items.genres,
+                  director: items.director,
+                  actors: items.actors,
+                  plot: items.plot,
+                  posterUrl: items.posterUrl,
+                };
+                const updatedUserData = [...List, newData];
+                await updateDoc(userDocRef, { List: updatedUserData });
+                console.log("Document successfully updated! (Added)");
+              }
+            } catch (err) {
+              console.error(err);
+            }
+          };
           return (
             <div
               key={index}
@@ -91,6 +135,12 @@ export default function Page({ params }) {
                       </span>
                       {items.plot}
                     </h1>
+                    <button
+                      onClick={() => AddItemToList(items.id)}
+                      className="bg-[#FFCC00] rounded-xl mt-2 h-10 p-2 flex flex-row items-center justify-center cursor-pointer"
+                    >
+                      Add to List
+                    </button>
                   </div>
                 </div>
               </div>
