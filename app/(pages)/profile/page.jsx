@@ -22,7 +22,7 @@ function Profile() {
       console.log(data.List);
     } catch (err) {
       console.error(err);
-      //   alert("An error occured while fetching user data");
+      alert("An error occured while fetching user data");
     }
   };
 
@@ -31,22 +31,40 @@ function Profile() {
   }, [user, loading]);
 
   return user ? (
-    <section className="w-full p-2 mx-auto min-h-[100vh]">
+    <section className="w-full mx-auto min-h-[100vh]">
       <Navbar />
-      <main className="h-20 w-10/12 mx-auto flex flex-row justify-between items-center">
-        <h1 className="text-3xl">{user.displayName}'s List</h1>
-        <div className="flex flex-row justify-center items-center gap-5 max-lg:hidden">
-          <ul className="flex flex-row justify-center items-center gap-5 max-lg:hidden">
+      <main className="w-full bg-[#6600CC] rounded-md">
+        <div className="h-32 w-10/12 max-sm:w-full mx-auto flex flex-col justify-center  items-start">
+          <h1 className="text-3xl text-white max-lg:text-2xl">
+            {user.displayName}'s List
+          </h1>
+          <ul className="">
             <div>
-              <li>Name : {user.displayName}</li>
+              <li>
+                <span className="text-[#FFCC00] font-bold text-xl max-lg:text-base">
+                  Name :
+                </span>
+                <span className="text-white font-bold text-xl max-lg:text-base ">
+                  {" "}
+                  {user.displayName}
+                </span>
+              </li>
             </div>
             <div>
-              <li>Email : {user?.email}</li>
+              <li>
+                <span className="text-[#FFCC00] font-bold text-xl max-lg:text-base ">
+                  Email :
+                </span>
+                <span className="text-white font-bold text-xl  max-lg:text-base ">
+                  {" "}
+                  {user?.email.slice(0, 23)}
+                </span>
+              </li>
             </div>
           </ul>
         </div>
       </main>
-      <main className=" ">
+      <main className="mt-4">
         <h1 className="w-11/12 mx-auto text-3xl text-left">List</h1>
         <div className="grid grid-cols-5 max-[1364px]:grid-cols-3 max-[1650px]:grid-cols-4   max-[1100px]:grid-cols-2 max-lg:grid-cols-2 max-md:grid-cols-2 max-sm:grid-cols-2 justify-items-center mt-5">
           {list?.map((items, index) => {

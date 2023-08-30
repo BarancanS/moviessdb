@@ -112,32 +112,32 @@ export default function Page({ params }) {
                       </h1>
                     </div>
                     <h1 className="text-sm font-light">
-                      <span className="font-bold text-red-700 text-base">
+                      <span className="font-bold text-[#FFCC00] text-base">
                         Platform:
                       </span>
                       {items.platform}
                     </h1>
                     <h1 className="text-sm font-light">
-                      <span className="font-bold text-red-700 text-base">
+                      <span className="font-bold text-[#FFCC00] text-base">
                         Actors:
                       </span>
                       {items.actors}
                     </h1>
                     <h1 className="text-sm font-light">
-                      <span className="font-bold text-red-700 text-base">
+                      <span className="font-bold text-[#FFCC00] text-base">
                         Director:
                       </span>
                       {items.director}
                     </h1>
                     <h1 className="text-sm font-light">
-                      <span className="font-bold text-red-700 text-base">
+                      <span className="font-bold text-[#FFCC00] text-base">
                         Plot:
                       </span>
                       {items.plot}
                     </h1>
                     <button
                       onClick={() => AddItemToList(items.id)}
-                      className="bg-red-600 rounded-xl mt-2 h-10 p-2 flex flex-row items-center justify-center cursor-pointer"
+                      className="bg-[#FFCC00] rounded-xl mt-2 h-10 p-2 flex flex-row items-center justify-center cursor-pointer"
                     >
                       Add Movie
                     </button>
