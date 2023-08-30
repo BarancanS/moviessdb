@@ -38,17 +38,17 @@ function Profile() {
     <section className="w-full mx-auto min-h-[100vh]">
       <Navbar />
       <main className="w-full bg-[#6600CC] rounded-md">
-        <div className="h-32 w-10/12 max-sm:w-full mx-auto flex flex-col justify-center  items-start">
+        <div className="h-32 w-10/12 max-sm:w-full mx-auto flex flex-col justify-center max-sm:px-2 items-start">
           <h1 className="text-3xl text-white max-lg:text-2xl">
             {user.displayName}'s List
           </h1>
           <ul className="">
             <div>
               <li>
-                <span className="text-[#FFCC00] font-bold text-xl max-lg:text-base">
+                <span className="text-[#FFCC00] font-bold text-xl max-lg:text-base max-sm:text-sm">
                   Name :
                 </span>
-                <span className="text-white font-bold text-xl max-lg:text-base ">
+                <span className="text-white font-bold text-xl max-lg:text-base max-sm:text-sm ">
                   {" "}
                   {user.displayName}
                 </span>
@@ -56,12 +56,12 @@ function Profile() {
             </div>
             <div>
               <li>
-                <span className="text-[#FFCC00] font-bold text-xl max-lg:text-base ">
+                <span className="text-[#FFCC00] font-bold text-xl max-lg:text-base max-sm:text-sm">
                   Email :
                 </span>
-                <span className="text-white font-bold text-xl  max-lg:text-base ">
+                <span className="text-white font-bold text-xl  max-lg:text-base max-sm:text-sm">
                   {" "}
-                  {user?.email.slice(0, 23)}
+                  {user?.email.slice(0, 30)}
                 </span>
               </li>
             </div>
