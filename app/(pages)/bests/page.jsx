@@ -40,7 +40,6 @@ const Bests = () => {
       })
     );
   }
-
   useEffect(() => {
     setMerge(combined);
     SetFilteredMerge(combined);
