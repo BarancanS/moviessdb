@@ -3,7 +3,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { MainContext } from "../app/components/Context";
 import { useState, useEffect } from "react";
-import { initFirebase } from "../shared/firebase";
+import { app } from "../shared/firebase";
 import {
   getFirestore,
   doc,
@@ -26,14 +26,14 @@ export default function RootLayout({ children }) {
   }, []);
 
   const getPost = async () => {
-    const db = getFirestore(initFirebase);
+    const db = getFirestore(app);
     const querySnapshot = await getDocs(collection(db, "posts"));
     querySnapshot.forEach((doc) => {
       setPosts((posts) => [...posts, doc.data()]);
     });
   };
   const getSeries = async () => {
-    const db = getFirestore(initFirebase);
+    const db = getFirestore(app);
     const querySnapshot = await getDocs(collection(db, "series"));
     querySnapshot.forEach((doc) => {
       setSeries((series) => [...series, doc.data()]);
