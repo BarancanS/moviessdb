@@ -4,7 +4,7 @@ import { FaHamburger } from "react-icons/fa";
 import { VscChromeClose } from "react-icons/vsc";
 import Link from "next/link";
 import SignIn from "./SignIn";
-import Image from "next/image";
+
 const Navbar = () => {
   const [hamburgerMenu, setHamburgerMenu] = React.useState(false);
 
@@ -14,7 +14,7 @@ const Navbar = () => {
         <h1 className="text-3xl">BaranFlix</h1>
       </Link>
       <div className="flex flex-row justify-center items-center gap-5 max-lg:hidden">
-        <ul className="flex flex-row justify-center items-center gap-5 max-lg:hidden">
+        <ul className="flex flex-row justify-center items-center gap-5 max-lg:hidden text-xl">
           <Link href="/film">
             <li>Film</li>
           </Link>
@@ -26,9 +26,6 @@ const Navbar = () => {
           </Link>
           <Link href="/categories">
             <li>Categories</li>
-          </Link>
-          <Link href="/platform">
-            <li>Platform</li>
           </Link>
           <li>
             <SignIn />
@@ -71,9 +68,6 @@ const Navbar = () => {
               </Link>
               <Link href="/categories">
                 <li className="border-b-2 py-1 px-4 mb-3">Categories</li>
-              </Link>
-              <Link href="/platform">
-                <li className="border-b-2 py-1 px-7 mb-3">Platform</li>
               </Link>
             </ul>
           </main>
