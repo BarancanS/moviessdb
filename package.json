@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@types/node": "20.3.1",
-    "@types/react": "18.2.13"
+    "@types/react": "18.2.13",
+    "encoding": "^0.1.13"
   }
 }
