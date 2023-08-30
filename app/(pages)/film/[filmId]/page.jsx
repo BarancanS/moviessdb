@@ -14,6 +14,8 @@ export default function Page({ params }) {
   const [detail, setDetail] = useState(posts);
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
+  const [display, setDisplay] = useState();
+
   useEffect(() => {
     setDetail(
       posts.filter((items) =>
@@ -25,7 +27,7 @@ export default function Page({ params }) {
         )
       )
     );
-  }, [posts]);
+  }, [posts, display]);
 
   return user ? (
     <section>
@@ -40,6 +42,7 @@ export default function Page({ params }) {
               // 2. Retrieve the current data
               const userDoc = await getDoc(userDocRef);
               const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
+              setDisplay(List);
 
               // 3. Check if the data already exists in the List using the 'id'
               const isDataAlreadyInList = List.some(
@@ -139,7 +142,7 @@ export default function Page({ params }) {
                       onClick={() => AddItemToList(items.id)}
                       className="bg-red-600 rounded-xl mt-2 h-10 p-2 flex flex-row items-center justify-center cursor-pointer"
                     >
-                      {List.some((item) => item.id === items.id)
+                      {display.some((item) => item.id === items.id)
                         ? "Remove Movie"
                         : "Add Movie"}
                     </button>
