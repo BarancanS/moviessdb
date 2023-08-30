@@ -10,6 +10,7 @@ import {
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import Link from "next/link";
+import Image from "next/image";
 function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,8 +31,10 @@ function SignIn() {
       >
         Profile
       </Link>
-      <img
+      <Image
         src={user.photoURL}
+        width={50}
+        height={50}
         alt="user-image"
         className="rounded-full w-[4rem] h-[4rem]"
       />
