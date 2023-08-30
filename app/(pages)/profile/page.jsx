@@ -27,7 +27,7 @@ function Profile() {
   };
   useEffect(() => {
     fetchUserName();
-  }, [user, loading, list]);
+  }, [user, loading]);
 
   return user ? (
     <section className="w-full p-2 mx-auto min-h-[100vh]">
