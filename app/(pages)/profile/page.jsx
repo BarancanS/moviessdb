@@ -19,7 +19,6 @@ function Profile() {
       const data = doc.docs[0].data();
       setList(data.List);
       setName(data.name);
-      console.log(data.List);
     } catch (err) {
       console.error(err);
     }
