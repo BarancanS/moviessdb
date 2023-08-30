@@ -67,7 +67,6 @@ export default function Page({ params }) {
                   plot: items.plot,
                   posterUrl: items.posterUrl,
                 };
-
                 const updatedUserData = [...List, newData];
                 await updateDoc(userDocRef, { List: updatedUserData });
                 console.log("Document successfully updated! (Added)");
