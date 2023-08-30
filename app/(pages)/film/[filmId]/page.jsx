@@ -7,14 +7,13 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import SignIn from "../../../components/SignIn";
 import { getAuth } from "firebase/auth";
 import { getFirestore, doc, updateDoc, getDoc } from "firebase/firestore";
-import app from "../../../../shared/firebase";
+import { db } from "../../../../shared/firebase";
 
 export default function Page({ params }) {
   const { merge, setMerge, combined, posts, series } = useContext(MainContext);
   const [detail, setDetail] = useState(posts);
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
-  const db = getFirestore(app);
   useEffect(() => {
     setDetail(
       posts.filter((items) =>
