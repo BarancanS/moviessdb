@@ -24,16 +24,34 @@ export default function Page({ params }) {
   const [user, loading] = useAuthState(auth);
   const [documentId, setDocumentId] = useState();
   useEffect(() => {
-    setDetail(
-      posts.filter((items) =>
-        items.title.includes(
-          `${params.filmId
-            .replace(/%20/g, " ")
-            .replace(/%3A/g, ":")
-            .replace(/%26/g, "&")}`
-        )
-      )
-    );
+    const fetchData = async () => {
+      try {
+        const userRef = collection(db, "users");
+        const userQuery = query(userRef, where("uid", "==", user.uid));
+        const querySnapshot = await getDocs(userQuery);
+
+        if (!querySnapshot.empty) {
+          const data = querySnapshot.docs[0].id;
+          setDocumentId(data);
+        }
+
+        const filteredMovies = posts.filter((items) =>
+          items.title.includes(
+            `${params.filmId
+              .replace(/%20/g, " ")
+              .replace(/%3A/g, ":")
+              .replace(/%26/g, "&")}`
+          )
+        );
+        setDetail(filteredMovies);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    if (user && params.filmId) {
+      fetchData();
+    }
   }, [posts, params.filmId, documentId]);
   return user ? (
     <section>
@@ -41,14 +59,6 @@ export default function Page({ params }) {
       <main className="w-full min-h-[calc(100vh-10rem)] mx-auto flex flex-col text-white text-2xl">
         {detail.map((items, index) => {
           const AddItemToList = async (itemId) => {
-            const userRef = collection(db, "users");
-            const userQuery = query(userRef, where("uid", "==", user.uid));
-            {
-              onSnapshot(userQuery, (querySnapshot) => {
-                const data = querySnapshot.docs[0].id;
-                setDocumentId(data);
-              });
-            }
             const userId = documentId; // Replace with the actual user ID
             const userDocRef = doc(db, "users", userId);
 

@@ -22,19 +22,38 @@ export default function Page({ params }) {
   const [detail, setDetail] = useState(series);
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
-  const [documentId, setDocumentId] = useState();
+  const [documentId, setDocumentId] = useState("");
+
   useEffect(() => {
-    setDetail(
-      series.filter((items) =>
-        items.title.includes(
-          `${params.seriesId
-            .replace(/%20/g, " ")
-            .replace(/%3A/g, ":")
-            .replace(/%26/g, "&")}`
-        )
-      )
-    );
-  }, [series, params.seriesId, documentId]);
+    const fetchData = async () => {
+      try {
+        const userRef = collection(db, "users");
+        const userQuery = query(userRef, where("uid", "==", user.uid));
+        const querySnapshot = await getDocs(userQuery);
+
+        if (!querySnapshot.empty) {
+          const data = querySnapshot.docs[0].id;
+          setDocumentId(data);
+        }
+
+        const filteredSeries = series.filter((items) =>
+          items.title.includes(
+            `${params.seriesId
+              .replace(/%20/g, " ")
+              .replace(/%3A/g, ":")
+              .replace(/%26/g, "&")}`
+          )
+        );
+        setDetail(filteredSeries);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    if (user && params.seriesId) {
+      fetchData();
+    }
+  }, [series, params.seriesId, user]);
 
   return user ? (
     <section>
@@ -42,14 +61,6 @@ export default function Page({ params }) {
       <main className="w-full min-h-[calc(100vh-10rem)] mx-auto flex flex-col text-white text-2xl">
         {detail.map((items, index) => {
           const AddItemToList = async (itemId) => {
-            const userRef = collection(db, "users");
-            const userQuery = query(userRef, where("uid", "==", user.uid));
-            {
-              onSnapshot(userQuery, (querySnapshot) => {
-                const data = querySnapshot.docs[0].id;
-                setDocumentId(data);
-              });
-            }
             const userId = documentId; // Replace with the actual user ID
             const userDocRef = doc(db, "users", userId);
 

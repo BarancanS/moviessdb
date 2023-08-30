@@ -24,16 +24,34 @@ export default function Page({ params }) {
   const [user, loading] = useAuthState(auth);
   const [documentId, setDocumentId] = useState();
   useEffect(() => {
-    setDetail(
-      combined.filter((items) =>
-        items.title.includes(
-          `${params.bestsId
-            .replace(/%20/g, " ")
-            .replace(/%3A/g, ":")
-            .replace(/%26/g, "&")}`
-        )
-      )
-    );
+    const fetchData = async () => {
+      try {
+        const userRef = collection(db, "users");
+        const userQuery = query(userRef, where("uid", "==", user.uid));
+        const querySnapshot = await getDocs(userQuery);
+
+        if (!querySnapshot.empty) {
+          const data = querySnapshot.docs[0].id;
+          setDocumentId(data);
+        }
+
+        const filteredBests = combined.filter((items) =>
+          items.title.includes(
+            `${params.bestsId
+              .replace(/%20/g, " ")
+              .replace(/%3A/g, ":")
+              .replace(/%26/g, "&")}`
+          )
+        );
+        setDetail(filteredBests);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    if (user && params.bestsId) {
+      fetchData();
+    }
   }, [combined, params.bestsId, documentId]);
 
   return user ? (
@@ -42,14 +60,6 @@ export default function Page({ params }) {
       <main className="w-full min-h-[calc(100vh-10rem)] mx-auto flex flex-col text-white text-2xl">
         {detail.map((items, index) => {
           const AddItemToList = async (itemId) => {
-            const userRef = collection(db, "users");
-            const userQuery = query(userRef, where("uid", "==", user.uid));
-            {
-              onSnapshot(userQuery, (querySnapshot) => {
-                const data = querySnapshot.docs[0].id;
-                setDocumentId(data);
-              });
-            }
             const userId = documentId; // Replace with the actual user ID
             const userDocRef = doc(db, "users", userId);
 
