@@ -14,7 +14,6 @@ export default function Page({ params }) {
   const [detail, setDetail] = useState(posts);
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
-
   useEffect(() => {
     setDetail(
       posts.filter((items) =>
