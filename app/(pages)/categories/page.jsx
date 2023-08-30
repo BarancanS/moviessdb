@@ -13,15 +13,14 @@ import SignUp from "../../components/SignUp";
 
 const Categories = () => {
   const { merge, setMerge, combined, posts, series } = useContext(MainContext);
-  const [filteredMerge, SetFilteredMerge] = useState(merge);
+  const [filteredMerge, SetFilteredMerge] = useState();
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
   const [status, setStatus] = useState(true);
 
   useEffect(() => {
-    setMerge(combined);
     SetFilteredMerge(combined);
-  }, [posts, series]);
+  }, [combined, setMerge]);
   return user ? (
     <main>
       <Navbar />

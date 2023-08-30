@@ -40,10 +40,10 @@ const Bests = () => {
       })
     );
   }
+
   useEffect(() => {
-    setMerge(combined);
     SetFilteredMerge(combined);
-  }, [posts, series]);
+  }, [combined]);
 
   return user ? (
     <div>
