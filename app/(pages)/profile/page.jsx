@@ -1,13 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import {
-  auth,
-  db,
-  logout,
-  getAuth,
-  onSnapshot,
-} from "../../../shared/firebase";
+import { auth, db, onSnapshot } from "../../../shared/firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import SignIn from "../../components/SignIn";
 import SignUp from "../../components/SignUp";
@@ -28,6 +22,7 @@ function Profile() {
       const unsubscribe = onSnapshot(userQuery, (querySnapshot) => {
         if (!querySnapshot.empty) {
           const data = querySnapshot.docs[0].data();
+          console.log(querySnapshot.docs[0].id);
           setList(data.List);
           setName(data.name);
         }

@@ -6,15 +6,23 @@ import Navbar from "/app/components/Navbar";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SignIn from "../../../components/SignIn";
 import { getAuth } from "firebase/auth";
-import { getFirestore, doc, updateDoc, getDoc } from "firebase/firestore";
-import { db } from "../../../../shared/firebase";
+import {
+  doc,
+  updateDoc,
+  getDoc,
+  query,
+  collection,
+  getDocs,
+  where,
+} from "firebase/firestore";
+import { db, onSnapshot, auth } from "../../../../shared/firebase";
 
 export default function Page({ params }) {
-  const { merge, setMerge, combined, posts, series } = useContext(MainContext);
+  const { posts, series } = useContext(MainContext);
   const [detail, setDetail] = useState(posts);
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
-
+  const [documentId, setDocumentId] = useState();
   useEffect(() => {
     setDetail(
       posts.filter((items) =>
@@ -26,15 +34,22 @@ export default function Page({ params }) {
         )
       )
     );
-  }, [posts, params.filmId]);
-
+  }, [posts, params.filmId, documentId]);
   return user ? (
     <section>
       <Navbar />
       <main className="w-full min-h-[calc(100vh-10rem)] mx-auto flex flex-col text-white text-2xl">
         {detail.map((items, index) => {
           const AddItemToList = async (itemId) => {
-            const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
+            const userRef = collection(db, "users");
+            const userQuery = query(userRef, where("uid", "==", user.uid));
+            {
+              onSnapshot(userQuery, (querySnapshot) => {
+                const data = querySnapshot.docs[0].id;
+                setDocumentId(data);
+              });
+            }
+            const userId = documentId; // Replace with the actual user ID
             const userDocRef = doc(db, "users", userId);
 
             try {

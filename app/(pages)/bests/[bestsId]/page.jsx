@@ -6,7 +6,7 @@ import Navbar from "/app/components/Navbar";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SignIn from "../../../components/SignIn";
 import { getAuth } from "firebase/auth";
-import { getFirestore, doc, updateDoc, getDoc } from "firebase/firestore";
+import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { db } from "../../../../shared/firebase";
 
 export default function Page({ params }) {
