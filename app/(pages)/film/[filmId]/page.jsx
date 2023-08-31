@@ -23,6 +23,7 @@ export default function Page({ params }) {
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
   const [documentId, setDocumentId] = useState();
+  const [displayAddRemove, setDisplayAddRemove] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -52,7 +53,21 @@ export default function Page({ params }) {
     if (user && params.filmId) {
       fetchData();
     }
-  }, [posts, params.filmId, documentId]);
+    const renderingAddRemoveList = async (itemId) => {
+      const userId = documentId; // Replace with the actual user ID
+      const userDocRef = doc(db, "users", userId);
+
+      try {
+        // 2. Retrieve the current data
+        const userDoc = await getDoc(userDocRef);
+        const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
+        setDisplayAddRemove(List);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    renderingAddRemoveList();
+  }, [posts, params.filmId, documentId, displayAddRemove]);
   return user ? (
     <section>
       <Navbar />
@@ -66,7 +81,6 @@ export default function Page({ params }) {
               // 2. Retrieve the current data
               const userDoc = await getDoc(userDocRef);
               const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
-
               // 3. Check if the data already exists in the List using the 'id'
               const isDataAlreadyInList = List.some(
                 (item) => item.id === itemId
@@ -164,7 +178,9 @@ export default function Page({ params }) {
                       onClick={() => AddItemToList(items.id)}
                       className="bg-[#FFCC00] rounded-xl mt-2 h-10 p-2 flex flex-row items-center justify-center cursor-pointer"
                     >
-                      Add to List
+                      {displayAddRemove.some((item) => item.id === items.id)
+                        ? "Remove from List"
+                        : "Add to List"}
                     </button>
                   </div>
                 </div>
