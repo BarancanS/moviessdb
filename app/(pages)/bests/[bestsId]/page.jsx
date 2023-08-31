@@ -24,6 +24,7 @@ export default function Page({ params }) {
   const [user, loading] = useAuthState(auth);
   const [documentId, setDocumentId] = useState();
   const [displayAddRemove, setDisplayAddRemove] = useState([]);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -53,21 +54,67 @@ export default function Page({ params }) {
     if (user && params.bestsId) {
       fetchData();
     }
-    const renderingAddRemoveList = async (itemId) => {
-      const userId = documentId; // Replace with the actual user ID
-      const userDocRef = doc(db, "users", userId);
+  }, [combined, params.bestsId, documentId]);
 
+  useEffect(() => {
+    if (!user || !documentId) {
+      return;
+    }
+
+    const userDocRef = doc(db, "users", documentId);
+
+    const fetchData = async () => {
       try {
-        // 2. Retrieve the current data
         const userDoc = await getDoc(userDocRef);
-        const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
-        setDisplayAddRemove(List);
-      } catch (err) {
-        console.error(err);
+        const userDocData = userDoc.data();
+        if (userDocData && userDocData.List) {
+          const userItemListIds = userDocData.List.map((item) => item.id);
+          const updatedDisplayAddRemove = detail.map((item) => ({
+            id: item.id,
+            display: userItemListIds.includes(item.id),
+          }));
+          setDisplayAddRemove(updatedDisplayAddRemove);
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
       }
     };
-    renderingAddRemoveList();
-  }, [combined, params.bestsId, documentId, displayAddRemove]);
+
+    fetchData();
+  }, [user, documentId, detail]);
+
+  const handleAddRemove = async (itemId) => {
+    const userId = documentId;
+    const userDocRef = doc(db, "users", userId);
+
+    try {
+      const userDoc = await getDoc(userDocRef);
+      const List = userDoc.data().List || [];
+
+      const isDataAlreadyInList = List.some((item) => item.id === itemId);
+
+      if (isDataAlreadyInList) {
+        const updatedUserData = List.filter((item) => item.id !== itemId);
+        await updateDoc(userDocRef, { List: updatedUserData });
+        console.log("Document successfully updated! (Deleted)");
+      } else {
+        const itemToAdd = detail.find((item) => item.id === itemId);
+        if (itemToAdd) {
+          const updatedUserData = [...List, itemToAdd];
+          await updateDoc(userDocRef, { List: updatedUserData });
+          console.log("Document successfully updated! (Added)");
+        }
+      }
+
+      // Update the displayAddRemove state after the add/remove operation
+      const updatedDisplayAddRemove = displayAddRemove.map((item) =>
+        item.id === itemId ? { ...item, display: !isDataAlreadyInList } : item
+      );
+      setDisplayAddRemove(updatedDisplayAddRemove);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return user ? (
     <section>
@@ -82,6 +129,7 @@ export default function Page({ params }) {
               // 2. Retrieve the current data
               const userDoc = await getDoc(userDocRef);
               const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
+
               // 3. Check if the data already exists in the List using the 'id'
               const isDataAlreadyInList = List.some(
                 (item) => item.id === itemId
@@ -176,10 +224,11 @@ export default function Page({ params }) {
                       {items.plot}
                     </h1>
                     <button
-                      onClick={() => AddItemToList(items.id)}
+                      onClick={() => handleAddRemove(items.id)}
                       className="bg-[#FFCC00] rounded-xl mt-2 h-10 p-2 flex flex-row items-center justify-center cursor-pointer"
                     >
-                      {displayAddRemove.some((item) => item.id === items.id)
+                      {displayAddRemove.find((item) => item.id === items.id)
+                        ?.display
                         ? "Remove from List"
                         : "Add to List"}
                     </button>
