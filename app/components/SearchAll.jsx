@@ -10,7 +10,6 @@ export const SearchAll = () => {
   const { combined } = useContext(MainContext);
   const [allQuery, setAllQuery] = useState("");
 
-  console.log("asd");
   const ref = useRef(allQuery);
   function ClearInput() {
     setAllQuery("");

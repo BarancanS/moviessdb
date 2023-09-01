@@ -22,7 +22,6 @@ function Profile() {
       const unsubscribe = onSnapshot(userQuery, (querySnapshot) => {
         if (!querySnapshot.empty) {
           const data = querySnapshot.docs[0].data();
-          console.log(querySnapshot.docs[0].id);
           setList(data.List);
           setName(data.name);
         }
