@@ -180,51 +180,51 @@ export default function Page({ params }) {
                   ></div>
                   <div className="w-5/12 max-md:w-11/12">
                     <div className="flex flex-row">
-                      <h1 className="text-left mt-2 text-white font-extrabold">
+                      <h1 className="text-left mt-2 text-white text-4xl max-sm:text-3xl font-extrabold">
                         {items.title.substring(0, 13)}
                       </h1>
-                      <h1 className="text-left mt-2 text-white">
+                      <h1 className="text-left text-4xl max-sm:text-3xl mt-2 text-white">
                         ({items.year})
                       </h1>
                     </div>
-                    <div className="flex flex-row gap-2">
-                      <h1 className="text-sm font-light">
+                    <div className="flex flex-row gap-2 max-sm:flex-col">
+                      <h1 className="font-light text-lg">
                         {items.genres
                           .toString()
                           .replace(/([A-Z])/g, " $1")
                           .trim()}
                       </h1>
-                      <h1 className="text-sm font-light">
+                      <h1 className="font-semibold text-lg">
                         -{items.runtime}minute
                       </h1>
                     </div>
-                    <h1 className="text-sm font-light">
-                      <span className="font-bold text-[#FFCC00] text-base">
+                    <h1 className="text-sm font-semibold">
+                      <span className="font-extrabold text-[#FFCC00] text-lg">
                         Platform:
                       </span>
                       {items.platform}
                     </h1>
-                    <h1 className="text-sm font-light">
-                      <span className="font-bold text-[#FFCC00] text-base">
+                    <h1 className="text-sm font-semibold">
+                      <span className="font-extrabold text-[#FFCC00] text-lg">
                         Actors:
                       </span>
                       {items.actors}
                     </h1>
-                    <h1 className="text-sm font-light">
-                      <span className="font-bold text-[#FFCC00] text-base">
+                    <h1 className="text-sm font-semibold">
+                      <span className="font-extrabold text-[#FFCC00] text-lg">
                         Director:
                       </span>
                       {items.director}
                     </h1>
-                    <h1 className="text-sm font-light">
-                      <span className="font-bold text-[#FFCC00] text-base">
+                    <h1 className="text-sm font-semibold">
+                      <span className="font-extrabold text-[#FFCC00] text-lg">
                         Plot:
                       </span>
                       {items.plot}
                     </h1>
                     <button
                       onClick={() => handleAddRemove(items.id)}
-                      className="bg-[#FFCC00] rounded-xl mt-2 h-10 p-2 flex flex-row items-center justify-center cursor-pointer"
+                      className="bg-[#FFCC00] rounded-xl mt-2 h-10 p-2 max-sm:py-8 flex flex-row items-center justify-center cursor-pointer"
                     >
                       {displayAddRemove.find((item) => item.id === items.id)
                         ?.display

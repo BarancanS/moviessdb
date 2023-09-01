@@ -156,7 +156,7 @@ const Series = () => {
             {filteredSeries.map((items, index) => {
               return (
                 <Link key={index} href={`/series/${items.title}`}>
-                  <div className="border  rounded-2xl p-2 my-10 shadow-lg shadow-slate-500">
+                  <div className="border  rounded-2xl p-2 my-10 shadow-md shadow-slate-500">
                     <div
                       style={{ backgroundImage: `url("${items.posterUrl}")` }}
                       className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
