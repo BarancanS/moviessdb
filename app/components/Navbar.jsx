@@ -11,8 +11,17 @@ const Navbar = () => {
 
   return (
     <div className="h-20 w-10/12 mx-auto flex flex-row justify-between items-center">
-      <Link href="/">
-        <h1 className="text-3xl">BaranFlix</h1>
+      <Link href="/" className="flex flex-row">
+        <h1
+          className={`text-3xl ${
+            currentUrl === "http://localhost:3000/"
+              ? "text-red-600"
+              : "text-white"
+          }`}
+        >
+          Baran
+        </h1>
+        <h1 className="text-3xl">Flix</h1>
       </Link>
       <div className="flex flex-row justify-center items-center gap-5 max-lg:hidden">
         <ul className="flex flex-row justify-center items-center gap-5 max-lg:hidden text-xl">
@@ -74,9 +83,22 @@ const Navbar = () => {
         <section className="lg:hidden block fixed z-10 top-0 left-0 npm w-5/6 bg-slate-900 rounded-r-xl">
           <main className="flex flex-col">
             <div className="flex w-11/12 mx-auto mt-2 flex-row justify-between">
-              <Link href="/" onClick={() => setHamburgerMenu(!hamburgerMenu)}>
+              <Link
+                href="/"
+                className="flex flex-row"
+                onClick={() => setHamburgerMenu(!hamburgerMenu)}
+              >
+                <h1
+                  className={`max-sm:text-lg max-md:text-2xl max-lg:text-3xl ${
+                    currentUrl === "http://localhost:3000/"
+                      ? "text-red-600"
+                      : "text-white"
+                  }`}
+                >
+                  Baran
+                </h1>
                 <h1 className="max-sm:text-lg max-md:text-2xl max-lg:text-3xl">
-                  BaranFlix
+                  Flix
                 </h1>
               </Link>
               <VscChromeClose

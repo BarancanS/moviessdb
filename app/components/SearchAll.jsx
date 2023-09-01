@@ -4,11 +4,13 @@ import { MainContext } from "../components/Context";
 import { BsSearch } from "react-icons/bs";
 import { VscChromeClose } from "react-icons/vsc";
 import Image from "next/image";
+import Link from "next/link";
 
 export const SearchAll = () => {
-  const { merge, setMerge, combined, posts } = useContext(MainContext);
+  const { combined } = useContext(MainContext);
   const [allQuery, setAllQuery] = useState("");
 
+  console.log("asd");
   const ref = useRef(allQuery);
   function ClearInput() {
     setAllQuery("");
@@ -31,34 +33,33 @@ export const SearchAll = () => {
           </div>
           <div className="w-full h-full overflow-hidden">
             <ul
-              className={`absolute top-10 left-0 right-0 rounded-xl flex flex-col items-start p-3  ${
+              className={`absolute top-10 left-0 right-0 rounded-xl flex flex-col items-start p-3 z-10 lg:w-96 max-lg:w-60 box-content mx-auto   ${
                 allQuery === ""
                   ? ""
-                  : "bg-sky-900 h-[calc(30rem-5rem)] overflow-y-scroll scrollbar-hide"
-              }  w-9/12 box-content mx-auto `}
+                  : "bg-[#6600CC] h-[calc(35rem-5rem)] overflow-y-scroll "
+              } `}
             >
               {allQuery === "" ? (
                 <li></li>
               ) : (
-                merge
+                combined
                   .filter((items) =>
                     items.title.toLowerCase().includes(allQuery)
                   )
                   .map((items, index) => {
                     return (
-                      <li
-                        key={index}
-                        className="flex flex-row items-center mt-3"
-                      >
-                        <Image
-                          src={`${items.posterUrl}`}
-                          width={500}
-                          height={500}
-                          alt="about-image"
-                          className="w-20 h-20 rounded-full"
-                        />
-                        <p>{items.title}</p>
-                      </li>
+                      <Link href={`/bests/${items.title}`} key={index}>
+                        <li className="flex flex-row items-center mt-3">
+                          <Image
+                            src={`${items.posterUrl}`}
+                            width={500}
+                            height={500}
+                            alt="about-image"
+                            className="w-20 h-20 rounded-full ml-5"
+                          />
+                          <p className="ml-2">{items.title}</p>
+                        </li>
+                      </Link>
                     );
                   })
               )}
