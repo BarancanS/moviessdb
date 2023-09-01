@@ -80,7 +80,7 @@ const Navbar = () => {
         onClick={() => setHamburgerMenu(!hamburgerMenu)}
       />
       {hamburgerMenu && (
-        <section className="lg:hidden block fixed z-10 top-0 left-0 npm w-5/6 bg-slate-900 rounded-r-xl">
+        <section className="lg:hidden block fixed z-20 top-0 left-0 npm w-5/6 bg-slate-900 rounded-r-xl">
           <main className="flex flex-col">
             <div className="flex w-11/12 mx-auto mt-2 flex-row justify-between">
               <Link
