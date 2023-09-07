@@ -1,5 +1,6 @@
 "use client";
 import SignIn from "../app/components/SignIn";
+import SignUp from "./components/SignUp";
 import { useEffect, useState } from "react";
 import Films from "./components/Films";
 import Series from "./components/Series";
