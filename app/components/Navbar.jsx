@@ -9,7 +9,7 @@ const Navbar = () => {
   const currentUrl = window.location.href;
 
   return (
-    <nav className="bg-black text-white p-4">
+    <nav className="bg-black text-white p-4 fixed top-0 z-40 w-full">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center">
           <h1
@@ -71,80 +71,65 @@ const Navbar = () => {
           onClick={() => setHamburgerMenu(!hamburgerMenu)}
         />
       </div>
-      {hamburgerMenu && (
-        <div className="lg:hidden fixed inset-0 bg-black bg-opacity-80 z-50">
-          <div
-            className={`fixed inset-0 z-50  top-0 left-0 transform ${
-              hamburgerMenu ? "translate-x-0" : "translate-x-full"
-            } transition-transform duration-300 ease-in-out`}
-          >
-            <div className="p-4 flex justify-between items-center">
-              <Link
-                href="/"
-                className={`text-3xl ${
-                  currentUrl === "https://baranflix.vercel.app/"
-                    ? "text-red-600"
-                    : "text-white"
-                } hover:text-red-600`}
-                onClick={() => setHamburgerMenu(!hamburgerMenu)}
-              >
-                Baran
-              </Link>
-              <VscChromeClose
-                className="text-3xl cursor-pointer"
-                onClick={() => setHamburgerMenu(!hamburgerMenu)}
-              />
-            </div>
-            <div className="flex flex-col items-center space-y-4 mt-8">
-              <Link
-                href="/film"
-                className={`${
-                  currentUrl === "https://baranflix.vercel.app/film"
-                    ? "text-red-600"
-                    : "text-white"
-                } hover:text-red-600`}
-                onClick={() => setHamburgerMenu(!hamburgerMenu)}
-              >
-                Movies
-              </Link>
-              <Link
-                href="/series"
-                className={`${
-                  currentUrl === "https://baranflix.vercel.app/series"
-                    ? "text-red-600"
-                    : "text-white"
-                } hover:text-red-600`}
-                onClick={() => setHamburgerMenu(!hamburgerMenu)}
-              >
-                Series
-              </Link>
-              <Link
-                href="/bests"
-                className={`${
-                  currentUrl === "https://baranflix.vercel.app/bests"
-                    ? "text-red-600"
-                    : "text-white"
-                } hover:text-red-600`}
-                onClick={() => setHamburgerMenu(!hamburgerMenu)}
-              >
-                Bests
-              </Link>
-              <Link
-                href="/categories"
-                className={`${
-                  currentUrl === "https://baranflix.vercel.app/categories"
-                    ? "text-red-600"
-                    : "text-white"
-                } hover:text-red-600`}
-                onClick={() => setHamburgerMenu(!hamburgerMenu)}
-              >
-                Categories
-              </Link>
+      {
+        <div
+          className={`lg:hidden fixed inset-0 bg-black max-lg:bg-opacity-80 z-30 py-4 top-[68px] left-0  ${
+            hamburgerMenu ? "translate-x-0" : "translate-x-[-100%]"
+          } transition-transform duration-500 ease-in-out`}
+        >
+          <div>
+            <div className="flex flex-col-reverse">
+              <div className="flex flex-col items-center space-y-4 mt-8 ">
+                <Link
+                  href="/film"
+                  className={`${
+                    currentUrl === "https://baranflix.vercel.app/film"
+                      ? "text-red-600"
+                      : "text-white"
+                  } hover:text-red-600`}
+                  onClick={() => setHamburgerMenu(!hamburgerMenu)}
+                >
+                  Movies
+                </Link>
+                <Link
+                  href="/series"
+                  className={`${
+                    currentUrl === "https://baranflix.vercel.app/series"
+                      ? "text-red-600"
+                      : "text-white"
+                  } hover:text-red-600`}
+                  onClick={() => setHamburgerMenu(!hamburgerMenu)}
+                >
+                  Series
+                </Link>
+                <Link
+                  href="/bests"
+                  className={`${
+                    currentUrl === "https://baranflix.vercel.app/bests"
+                      ? "text-red-600"
+                      : "text-white"
+                  } hover:text-red-600`}
+                  onClick={() => setHamburgerMenu(!hamburgerMenu)}
+                >
+                  Bests
+                </Link>
+                <Link
+                  href="/categories"
+                  className={`${
+                    currentUrl === "https://baranflix.vercel.app/categories"
+                      ? "text-red-600"
+                      : "text-white"
+                  } hover:text-red-600`}
+                  onClick={() => setHamburgerMenu(!hamburgerMenu)}
+                >
+                  Categories
+                </Link>
+              </div>
               <SignIn />
             </div>
           </div>
         </div>
-      )}
+      }
     </nav>
   );
 };

@@ -14,11 +14,11 @@ export default function Home() {
   const [user, loading] = useAuthState(auth);
   const [status, setStatus] = useState(true);
   return user ? (
-    <main className=" min-h-[calc(100vh-10rem)] 2xl:w-5/6 max-2xl:w-full  mx-auto">
+    <main className=" min-h-[calc(100vh-10rem)] 2xl:w-5/6 max-2xl:w-full mx-auto">
       <Navbar />
       <div
         style={{ backgroundImage: "url(John-Wick.jpg)" }}
-        className="min-h-[calc(100vh-6rem)]  hover:opacity-80 opacity-40 transition-all duration-1000 ease-in-out bg-cover bg-no-repeat bg-center"
+        className="min-h-[calc(100vh-6rem)] mt-[68px] hover:opacity-80 opacity-40 transition-all duration-1000 ease-in-out bg-cover bg-no-repeat bg-center"
       ></div>
       <Films />
       <Series />
