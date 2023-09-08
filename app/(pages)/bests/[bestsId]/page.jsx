@@ -119,7 +119,7 @@ export default function Page({ params }) {
   return user ? (
     <section>
       <Navbar />
-      <main className="w-full min-h-[calc(100vh-10rem)] mx-auto flex flex-col text-2xl bg-gray-900 text-white">
+      <main className="w-full min-h-[calc(100vh-10rem)] mt-[96px] mx-auto flex flex-col text-2xl bg-gray-800 text-white">
         {detail.map((items, index) => {
           const AddItemToList = async (itemId) => {
             const userId = documentId; // Replace with the actual user ID
@@ -164,16 +164,13 @@ export default function Page({ params }) {
             }
           };
           return (
-            <div
-              key={items.id}
-              className="p-4 bg-gray-800 rounded-lg shadow-lg mb-4"
-            >
+            <div key={items.id} className="p-4 bg-gray-800">
               <div className="flex flex-col md:flex-row">
-                <div className="md:w-4/12">
+                <div className="md:w-1/3">
                   <img
                     src={items.posterUrl}
                     alt={items.title}
-                    className="w-full h-auto rounded-lg"
+                    className="w-9/12 mx-auto h-auto rounded-lg "
                   />
                 </div>
                 <div className="md:w-2/3 md:pl-4">
@@ -189,7 +186,7 @@ export default function Page({ params }) {
                   <p className="text-lg">Plot: {items.plot}</p>
                   <button
                     onClick={() => handleAddRemove(items.id)}
-                    className="mt-4 px-4 py-2 bg-yellow-500 text-gray-900 rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out"
+                    className="mt-4 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out"
                   >
                     {displayAddRemove.find(
                       (displayItem) => displayItem.id === items.id

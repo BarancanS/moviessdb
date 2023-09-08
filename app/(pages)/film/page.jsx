@@ -147,7 +147,7 @@ const Movies = () => {
         <div className="w-full">
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center mt-10">
             {filteredPosts.map((items, index) => (
-              <Link href={`/bests/${items.title}`} key={index}>
+              <Link href={`/film/${items.title}`} key={index}>
                 <div className="border rounded-sm p-2 my-10 shadow-md shadow-slate-600">
                   <div
                     style={{ backgroundImage: `url("${items.posterUrl}")` }}
