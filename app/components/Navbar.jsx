@@ -9,7 +9,7 @@ const Navbar = () => {
   const currentUrl = window.location.href;
 
   return (
-    <nav className="bg-black text-white p-4 fixed top-0 z-40 w-full">
+    <nav className="bg-black text-white p-4 fixed top-0 z-30 w-full">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="flex items-center">
           <h1
@@ -78,8 +78,8 @@ const Navbar = () => {
           } transition-transform duration-500 ease-in-out`}
         >
           <div>
-            <div className="flex flex-col-reverse">
-              <div className="flex flex-col items-center space-y-4 mt-8 ">
+            <div className="flex flex-col-reverse p-4 justify-between items-center">
+              <div className="flex flex-col items-center space-y-4 mt-4">
                 <Link
                   href="/film"
                   className={`${
