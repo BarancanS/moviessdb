@@ -119,7 +119,7 @@ export default function Page({ params }) {
   return user ? (
     <section>
       <Navbar />
-      <main className="w-full min-h-[calc(100vh-10rem)] mx-auto flex flex-col text-white text-2xl">
+      <main className="w-full min-h-[calc(100vh-10rem)] mx-auto flex flex-col text-2xl bg-gray-900 text-white">
         {detail.map((items, index) => {
           const AddItemToList = async (itemId) => {
             const userId = documentId; // Replace with the actual user ID
@@ -165,74 +165,38 @@ export default function Page({ params }) {
           };
           return (
             <div
-              key={index}
-              className="bg-[length:1920px_700px] bg-no-repeat bg-center border w-full  min-h-[50vh] shadow-md shadow-slate-500"
-              style={{
-                backgroundImage: `url("${items.posterUrl}")`,
-              }}
+              key={items.id}
+              className="p-4 bg-gray-800 rounded-lg shadow-lg mb-4"
             >
-              <div className="bg-black/[.66] w-full min-h-[50vh] px-2 py-4">
-                <div className="w-full min-h-[50vh] max-md:flex-col flex flex-row justify-center items-center gap-10">
-                  <div
-                    style={{
-                      backgroundImage: `url("${items.posterUrl}")`,
-                    }}
-                    className="max-sm:w-36 max-sm:h-52 max-md:w-44 max-md:h-60 max-lg:w-56 max-lg:h-72 w-72 h-96 bg-cover bg-no-repeat bg-center rounded-xl"
-                  ></div>
-                  <div className="w-5/12 max-md:w-11/12">
-                    <div className="flex flex-row">
-                      <h1 className="text-left mt-2 text-white text-4xl max-sm:text-3xl font-extrabold">
-                        {items.title.substring(0, 13)}
-                      </h1>
-                      <h1 className="text-left text-4xl max-sm:text-3xl mt-2 text-white">
-                        ({items.year})
-                      </h1>
-                    </div>
-                    <div className="flex flex-row gap-2 max-sm:flex-col">
-                      <h1 className="font-light text-lg">
-                        {items.genres
-                          .toString()
-                          .replace(/([A-Z])/g, " $1")
-                          .trim()}
-                      </h1>
-                      <h1 className="font-semibold text-lg">
-                        -{items.runtime}minute
-                      </h1>
-                    </div>
-                    <h1 className="text-sm font-semibold">
-                      <span className="font-extrabold text-[#FFCC00] text-lg">
-                        Platform:
-                      </span>
-                      {items.platform}
-                    </h1>
-                    <h1 className="text-sm font-semibold">
-                      <span className="font-extrabold text-[#FFCC00] text-lg">
-                        Actors:
-                      </span>
-                      {items.actors}
-                    </h1>
-                    <h1 className="text-sm font-semibold">
-                      <span className="font-extrabold text-[#FFCC00] text-lg">
-                        Director:
-                      </span>
-                      {items.director}
-                    </h1>
-                    <h1 className="text-sm font-semibold">
-                      <span className="font-extrabold text-[#FFCC00] text-lg">
-                        Plot:
-                      </span>
-                      {items.plot}
-                    </h1>
-                    <button
-                      onClick={() => handleAddRemove(items.id)}
-                      className="bg-[#FFCC00] rounded-xl mt-2 h-10 p-2 max-sm:py-8 flex flex-row items-center justify-center cursor-pointer"
-                    >
-                      {displayAddRemove.find((item) => item.id === items.id)
-                        ?.display
-                        ? "Remove from List"
-                        : "Add to List"}
-                    </button>
+              <div className="flex flex-col md:flex-row">
+                <div className="md:w-4/12">
+                  <img
+                    src={items.posterUrl}
+                    alt={items.title}
+                    className="w-full h-auto rounded-lg"
+                  />
+                </div>
+                <div className="md:w-2/3 md:pl-4">
+                  <h1 className="text-3xl font-bold">
+                    {items.title} ({items.year})
+                  </h1>
+                  <div className="text-lg text-gray-400">
+                    <p>Genres: {items.genres.join(", ")}</p>
+                    <p>Runtime: {items.runtime} minutes</p>
                   </div>
+                  <p className="text-lg">Actors: {items.actors}</p>
+                  <p className="text-lg">Director: {items.director}</p>
+                  <p className="text-lg">Plot: {items.plot}</p>
+                  <button
+                    onClick={() => handleAddRemove(items.id)}
+                    className="mt-4 px-4 py-2 bg-yellow-500 text-gray-900 rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out"
+                  >
+                    {displayAddRemove.find(
+                      (displayItem) => displayItem.id === items.id
+                    )?.display
+                      ? "Remove from List"
+                      : "Add to List"}
+                  </button>
                 </div>
               </div>
             </div>
