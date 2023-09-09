@@ -9,7 +9,7 @@ const Navbar = () => {
   const currentUrl = window.location.href;
 
   return (
-    <section className="h-[96px] w-full">
+    <section className="lg:h-[96px] max-lg:h-[68px] w-full">
       <nav className="bg-black text-white p-4 fixed top-0 z-30 w-full">
         <div className="container mx-auto flex justify-between items-center">
           <Link href="/" className="flex items-center">
