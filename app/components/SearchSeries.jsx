@@ -26,6 +26,7 @@ export const SearchSeries = () => {
               className="max-sm:w-40 ml-2 bg-transparent border-2 border-white rounded-md"
               name="search"
               onChange={(e) => setSeriesQuery(e.target.value)}
+              autocapitalize="none"
               ref={ref}
             />
             <VscChromeClose className="text-2xl" onClick={ClearInput} />
@@ -43,7 +44,9 @@ export const SearchSeries = () => {
               ) : (
                 series
                   .filter((items) =>
-                    items.title.toLowerCase().includes(seriesQuery)
+                    items.title
+                      .toLowerCase()
+                      .includes(seriesQuery.toLowerCase())
                   )
                   .map((items, index) => {
                     return (

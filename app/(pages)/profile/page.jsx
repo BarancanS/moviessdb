@@ -13,7 +13,7 @@ function Profile() {
   const [name, setName] = useState("");
   const [list, setList] = useState([]);
   const [status, setStatus] = useState(true);
-
+  const [loadMore, setLoadMore] = useState(12);
   useEffect(() => {
     if (user && user.uid) {
       const userRef = collection(db, "users");
@@ -32,7 +32,7 @@ function Profile() {
   }, [user]);
 
   return user ? (
-    <section className="w-full mx-auto min-h-[100vh]">
+    <section className="w-full pb-10 mx-auto min-h-[100vh]">
       <Navbar />
       <main className="w-full bg-[#6600CC] rounded-md">
         <div className="h-32 w-10/12 max-sm:w-full mx-auto flex flex-col justify-center max-sm:px-2 items-start">
@@ -68,7 +68,7 @@ function Profile() {
       <main className="mt-4">
         <h1 className="w-11/12 mx-auto text-3xl text-left">List</h1>
         <div className="grid grid-cols-5 max-[1364px]:grid-cols-3 max-[1650px]:grid-cols-4   max-[1100px]:grid-cols-2 max-lg:grid-cols-2 max-md:grid-cols-2 max-sm:grid-cols-2 justify-items-center mt-5">
-          {list?.map((items, index) => {
+          {list?.slice(0, loadMore).map((items, index) => {
             return (
               <Link href={`/bests/${items.title}`} key={index}>
                 <div className="border  rounded-sm p-2 my-10 shadow-md shadow-slate-600">
@@ -90,6 +90,28 @@ function Profile() {
               </Link>
             );
           })}
+        </div>
+        <div className="w-full text-center">
+          {loadMore >= list.length ? (
+            <></>
+          ) : (
+            <button
+              className="w-30 p-2 text-black font-semibold rounded-md bg-white"
+              onClick={() => setLoadMore(loadMore + 12)}
+            >
+              LoadMore
+            </button>
+          )}
+          {loadMore <= 12 ? (
+            <></>
+          ) : (
+            <button
+              className="w-30 ml-2 p-2 text-white font-semibold rounded-md bg-red-600"
+              onClick={() => setLoadMore(loadMore > 12 && loadMore - 12)}
+            >
+              LoadLess
+            </button>
+          )}
         </div>
       </main>
     </section>

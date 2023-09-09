@@ -22,11 +22,10 @@ const Bests = () => {
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
   const [status, setStatus] = useState(true);
+  const [loadMore, setLoadMore] = useState(12);
 
-  // Define button classes for consistent styling
   const buttonClasses =
     "border p-2 rounded-xl flex flex-row max-lg:w-40 w-60 mt-3";
-
   function FilterAllButtonClick() {
     SetFilteredMerge(
       merge.filter((items) => items.platform.includes(platformValue))
@@ -149,7 +148,7 @@ const Bests = () => {
         </div>
         <div className="w-full">
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center mt-10">
-            {filteredMerge.map((items, index) => (
+            {filteredMerge.slice(0, loadMore).map((items, index) => (
               <Link href={`/bests/${items.title}`} key={index}>
                 <div className="border rounded-sm p-2 my-10 shadow-md shadow-slate-600">
                   <div
@@ -171,6 +170,28 @@ const Bests = () => {
             ))}
           </div>
         </div>
+      </div>
+      <div className="w-full text-center">
+        {loadMore >= combined.length ? (
+          <></>
+        ) : (
+          <button
+            className="w-30 p-2 text-black font-semibold rounded-md bg-white"
+            onClick={() => setLoadMore(loadMore + 12)}
+          >
+            LoadMore
+          </button>
+        )}
+        {loadMore <= 12 ? (
+          <></>
+        ) : (
+          <button
+            className="w-30 ml-2 p-2 text-white font-semibold rounded-md bg-red-600"
+            onClick={() => setLoadMore(loadMore > 12 && loadMore - 12)}
+          >
+            LoadLess
+          </button>
+        )}
       </div>
       <Footer />
     </div>
