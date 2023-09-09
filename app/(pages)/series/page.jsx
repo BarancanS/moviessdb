@@ -180,7 +180,7 @@ const Series = () => {
             className="w-30 p-2 text-black font-semibold rounded-md bg-white"
             onClick={() => setLoadMore(loadMore + 12)}
           >
-            LoadMore
+            Show More
           </button>
         )}
         {loadMore <= 12 ? (
@@ -190,7 +190,7 @@ const Series = () => {
             className="w-30 ml-2 p-2 text-white font-semibold rounded-md bg-red-600"
             onClick={() => setLoadMore(loadMore > 12 && loadMore - 12)}
           >
-            LoadLess
+            Show Less
           </button>
         )}
       </div>
