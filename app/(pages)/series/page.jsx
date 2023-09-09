@@ -28,12 +28,14 @@ const Series = () => {
     "border p-2 rounded-xl flex flex-row max-lg:w-40 w-60 mt-3";
   function FilterAllButtonClick() {
     SetFilteredSeries(
-      series.filter((items) => items.platform.includes(`${platformValue}`))
+      series
+        .slice(0, loadMore)
+        .filter((items) => items.platform.includes(`${platformValue}`))
     );
   }
 
   function ClearFilterButtonClick() {
-    SetFilteredSeries(series);
+    SetFilteredSeries(series.slice(0, loadMore));
   }
 
   function FilterImdbButtonClick() {

@@ -28,12 +28,14 @@ const Movies = () => {
     "border p-2 rounded-xl flex flex-row max-lg:w-40 w-60 mt-3";
   function FilterAllButtonClick() {
     SetFilteredPosts(
-      posts.filter((items) => items.platform.includes(`${platformValue}`))
+      posts
+        .slice(0, loadMore)
+        .filter((items) => items.platform.includes(`${platformValue}`))
     );
   }
 
   function ClearFilterButtonClick() {
-    SetFilteredPosts(posts);
+    SetFilteredPosts(posts.slice(0, loadMore));
   }
 
   function FilterImdbButtonClick() {
