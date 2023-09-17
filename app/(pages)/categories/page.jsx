@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { MainContext } from "/app/components/Context";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
-import Films from "../../components/Films";
+import Movies from "../../components/Movies";
 import Link from "next/link";
 import Image from "next/image";
 import { getAuth } from "firebase/auth";
@@ -12,7 +12,7 @@ import SignIn from "../../components/SignIn";
 import SignUp from "../../components/SignUp";
 
 const Categories = () => {
-  const { merge, setMerge, combined, posts, series } = useContext(MainContext);
+  const { merge, setMerge, combined, movies, series } = useContext(MainContext);
   const [filteredMerge, SetFilteredMerge] = useState([]);
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);

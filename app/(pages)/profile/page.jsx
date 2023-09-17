@@ -69,23 +69,27 @@ function Profile() {
         <h1 className="w-11/12 mx-auto text-3xl text-left">List</h1>
         <div className="grid grid-cols-5 max-[1364px]:grid-cols-3 max-[1650px]:grid-cols-4   max-[1100px]:grid-cols-2 max-lg:grid-cols-2 max-md:grid-cols-2 max-sm:grid-cols-2 justify-items-center mt-5">
           {list?.slice(0, loadMore).map((items, index) => {
+            const checkPage = items.name ? "series" : "movies";
             return (
-              <Link href={`/bests/${items.title}`} key={index}>
-                <div className="border  rounded-sm p-2 my-10 shadow-md shadow-slate-600">
+              <Link href={`/${checkPage}/${items.id}`} key={index}>
+                <div className="rounded-sm p-2 my-10  shadow-inner hover:shadow-2xl hover:shadow-fuchsia-800 shadow-fuchsia-950 hover:scale-105 transition-all duration-700 ease-in-out">
                   <div
-                    style={{ backgroundImage: `url("${items.posterUrl}")` }}
-                    className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-sm hover:scale-105 transition-all duration-700 ease-in-out"
+                    style={{
+                      backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
+                    }}
+                    className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-sm"
                   ></div>
                   <h1 className="text-left mt-2 text-white font-extrabold">
-                    {items.title.substring(0, 13)}
+                    {items.name?.substring(0, 25) ||
+                      items.title?.substring(0, 25)}
                   </h1>
                   <h1 className="text-left ">{items.year}</h1>
-                  <h1 className="text-left block max-md:hidden">
+                  {/* <h1 className="text-left block max-md:hidden">
                     {items.genres
                       .toString()
                       .replace(/([A-Z])/g, " $1")
                       .trim()}
-                  </h1>
+                  </h1> */}
                 </div>
               </Link>
             );

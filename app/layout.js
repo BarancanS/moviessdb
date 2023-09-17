@@ -15,39 +15,52 @@ import {
 
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }) {
-  const [posts, setPosts] = useState([]);
+  const [movies, setMovies] = useState([]);
   const [series, setSeries] = useState([]);
-  const combined = posts.concat(series);
+  const combined = movies.concat(series);
   const [merge, setMerge] = useState(combined);
+  const [increasePage, setIncreasePage] = useState(1);
 
   useEffect(() => {
     getPost();
     getSeries();
-  }, []);
+  }, [increasePage]);
 
   const getPost = async () => {
-    const db = getFirestore(app);
-    const querySnapshot = await getDocs(collection(db, "posts"));
-    querySnapshot.forEach((doc) => {
-      setPosts((posts) => [...posts, doc.data()]);
-    });
+    return fetch(
+      `https://api.themoviedb.org/3/discover/movie?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8&page=${increasePage}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setMovies(data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   const getSeries = async () => {
-    const db = getFirestore(app);
-    const querySnapshot = await getDocs(collection(db, "series"));
-    querySnapshot.forEach((doc) => {
-      setSeries((series) => [...series, doc.data()]);
-    });
+    return fetch(
+      `https://api.themoviedb.org/3/discover/tv?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8&page=${increasePage}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setSeries(data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const data = {
-    posts,
-    setPosts,
+    movies,
+    setMovies,
     series,
     setSeries,
     merge,
     setMerge,
     combined,
+    increasePage,
+    setIncreasePage,
   };
   return (
     <html lang="en">

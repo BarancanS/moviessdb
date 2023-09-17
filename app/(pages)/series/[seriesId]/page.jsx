@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { MainContext } from "/app/components/Context";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
+import Image from "next/dist/client/image";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SignIn from "../../../components/SignIn";
 import { getAuth } from "firebase/auth";
@@ -15,11 +16,10 @@ import {
   getDocs,
   where,
 } from "firebase/firestore";
-import { db, onSnapshot, auth } from "../../../../shared/firebase";
+import { db } from "../../../../shared/firebase";
 
 export default function Page({ params }) {
-  const { merge, setMerge, combined, posts, series } = useContext(MainContext);
-  const [detail, setDetail] = useState(series);
+  const [detail, setDetail] = useState([]);
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
   const [documentId, setDocumentId] = useState("");
@@ -35,16 +35,6 @@ export default function Page({ params }) {
           const data = querySnapshot.docs[0].id;
           setDocumentId(data);
         }
-
-        const filteredSeries = series.filter((items) =>
-          items.title.includes(
-            `${params.seriesId
-              .replace(/%20/g, " ")
-              .replace(/%3A/g, ":")
-              .replace(/%26/g, "&")}`
-          )
-        );
-        setDetail(filteredSeries);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -53,7 +43,7 @@ export default function Page({ params }) {
     if (user && params.seriesId) {
       fetchData();
     }
-  }, [series, params.seriesId, documentId]);
+  }, [params.seriesId, documentId]);
 
   useEffect(() => {
     if (!user || !documentId) {
@@ -78,10 +68,21 @@ export default function Page({ params }) {
         console.error("Error fetching user data:", error);
       }
     };
-
+    fetchSeriesDetail();
     fetchData();
-  }, [user, documentId, detail]);
-
+  }, [user, documentId]);
+  const fetchSeriesDetail = async () => {
+    return fetch(
+      `https://api.themoviedb.org/3/tv/${params.seriesId}?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setDetail([data]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const handleAddRemove = async (itemId) => {
     const userId = documentId;
     const userDocRef = doc(db, "users", userId);
@@ -118,7 +119,7 @@ export default function Page({ params }) {
   return user ? (
     <section>
       <Navbar />
-      <main className="w-full min-h-[calc(100vh-10rem)] mx-auto flex flex-col text-2xl bg-gray-800 text-white">
+      <main className="w-full min-h-[calc(100vh-11rem)] mx-auto flex flex-col text-2xl bg-gray-800 text-white">
         {detail.map((items, index) => {
           const AddItemToList = async (itemId) => {
             const userId = documentId; // Replace with the actual user ID
@@ -166,23 +167,26 @@ export default function Page({ params }) {
             <div key={items.id} className="p-4 bg-gray-800">
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-1/3">
-                  <img
-                    src={items.posterUrl}
+                  <Image
+                    src={`https://image.tmdb.org/t/p/original${items.poster_path}`}
+                    width={500}
+                    height={500}
                     alt={items.title}
                     className="w-9/12 mx-auto h-auto rounded-lg "
                   />
                 </div>
                 <div className="md:w-2/3 md:pl-4">
                   <h1 className="text-3xl font-bold">
-                    {items.title} ({items.year})
+                    {items.name} ({items.first_air_date})
                   </h1>
                   <div className="text-lg text-gray-400">
-                    <p>Genres: {items.genres.join(", ")}</p>
+                    {/* <p>Genres: {items.genres.join(", ")}</p> */}
                     <p>Runtime: {items.runtime} minutes</p>
+                    <p className="text-lg">Tagline: {items.tagline}</p>
                   </div>
-                  <p className="text-lg">Actors: {items.actors}</p>
-                  <p className="text-lg">Director: {items.director}</p>
-                  <p className="text-lg">Plot: {items.plot}</p>
+                  <p className="text-lg">Vote: {items.vote_count}</p>
+                  <p className="text-lg">IMDB: {items.vote_average}</p>
+                  <p className="text-lg">Plot: {items.overview}</p>
                   <button
                     onClick={() => handleAddRemove(items.id)}
                     className="mt-4 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out"

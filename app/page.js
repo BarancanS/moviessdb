@@ -2,7 +2,7 @@
 import SignIn from "../app/components/SignIn";
 import SignUp from "./components/SignUp";
 import { useEffect, useState } from "react";
-import Films from "./components/Films";
+import Movies from "./components/Movies";
 import Series from "./components/Series";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
@@ -14,14 +14,14 @@ export default function Home() {
   const [user, loading] = useAuthState(auth);
   const [status, setStatus] = useState(true);
   return user ? (
-    <main className=" min-h-[calc(100vh-10rem)]  w-full  mx-auto">
+    <main className=" min-h-[calc(100vh-10rem)] w-full  mx-auto">
       <Navbar />
       <div className="lg:px-20">
         <div
           style={{ backgroundImage: "url(John-Wick.jpg)" }}
           className="min-h-[calc(100vh-6rem)]  hover:opacity-80 opacity-40 transition-all duration-1000 ease-in-out bg-cover bg-no-repeat bg-center"
         ></div>
-        <Films />
+        <Movies />
         <Series />
         <Footer />
       </div>

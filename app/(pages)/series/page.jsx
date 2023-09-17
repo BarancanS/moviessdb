@@ -12,7 +12,7 @@ import SignIn from "../../components/SignIn";
 import SignUp from "../../components/SignUp";
 
 const Series = () => {
-  const { series } = useContext(MainContext);
+  const { series, setIncreasePage, increasePage } = useContext(MainContext);
   const [filteredSeries, SetFilteredSeries] = useState(series);
   const [lowestRange, SetLowestRange] = useState(0);
   const [highestRange, SetHighestRange] = useState(10);
@@ -150,22 +150,24 @@ const Series = () => {
         <div className="w-full">
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center mt-10">
             {filteredSeries.slice(0, loadMore).map((items, index) => (
-              <Link href={`/series/${items.title}`} key={index}>
-                <div className="border rounded-sm p-2 my-10 shadow-md shadow-slate-600">
+              <Link href={`/series/${items.id}`} key={index}>
+                <div className="rounded-sm p-2 my-10  shadow-inner hover:shadow-2xl hover:shadow-fuchsia-800 shadow-fuchsia-950 hover:scale-105 transition-all duration-700 ease-in-out">
                   <div
-                    style={{ backgroundImage: `url("${items.posterUrl}")` }}
-                    className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-sm hover:scale-105 transition-all duration-700 ease-in-out"
+                    style={{
+                      backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
+                    }}
+                    className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-sm  "
                   ></div>
                   <h1 className="text-left mt-2 text-white font-extrabold">
-                    {items.title.substring(0, 13)}
+                    {items.name.substring(0, 13)}
                   </h1>
                   <h1 className="text-left ">{items.year}</h1>
-                  <h1 className="text-left block max-md:hidden">
+                  {/* <h1 className="text-left block max-md:hidden">
                     {items.genres
                       .toString()
                       .replace(/([A-Z])/g, " $1")
                       .trim()}
-                  </h1>
+                  </h1> */}
                 </div>
               </Link>
             ))}
@@ -173,25 +175,25 @@ const Series = () => {
         </div>
       </div>
       <div className="w-full text-center">
-        {loadMore >= series.length ? (
-          <></>
-        ) : (
+        {increasePage > 1 ? (
           <button
-            className="w-30 p-2 text-black font-semibold rounded-md bg-white"
-            onClick={() => setLoadMore(loadMore + 12)}
+            className="w-30 p-2 text-white font-semibold rounded-md bg-red-600"
+            onClick={() => setIncreasePage(increasePage - 1)}
           >
-            Show More
+            Previous Page
           </button>
+        ) : (
+          <></>
         )}
-        {loadMore <= 12 ? (
-          <></>
-        ) : (
+        {increasePage >= 1 ? (
           <button
-            className="w-30 ml-2 p-2 text-white font-semibold rounded-md bg-red-600"
-            onClick={() => setLoadMore(loadMore > 12 && loadMore - 12)}
+            className="w-30 p-2 ml-2 text-black font-semibold rounded-md bg-white"
+            onClick={() => setIncreasePage(increasePage + 1)}
           >
-            Show Less
+            Next Page
           </button>
+        ) : (
+          <></>
         )}
       </div>
       <Footer />

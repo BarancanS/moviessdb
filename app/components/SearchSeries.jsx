@@ -9,14 +9,30 @@ import Link from "next/link";
 export const SearchSeries = () => {
   const { series } = useContext(MainContext);
   const [seriesQuery, setSeriesQuery] = useState("");
+  const [detail, setDetail] = useState([]);
 
   const ref = useRef(seriesQuery);
   function ClearInput() {
     setSeriesQuery("");
     ref.current.value = "";
   }
+  const fetchSearchSeries = async () => {
+    return fetch(
+      `https://api.themoviedb.org/3/search/tv?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8&language=en-US&include_adult=false&query=${seriesQuery}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setDetail(data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    fetchSearchSeries();
+  }, [seriesQuery]);
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center mt-4">
       <div className="flex items-center justify-center w-80">
         <div className="relative w-80">
           <div className="flex flex-row items-center justify-center">
@@ -26,7 +42,7 @@ export const SearchSeries = () => {
               className="max-sm:w-40 ml-2 bg-transparent border-2 border-white rounded-md"
               name="search"
               onChange={(e) => setSeriesQuery(e.target.value)}
-              autocapitalize="none"
+              autoCapitalize="none"
               ref={ref}
             />
             <VscChromeClose className="text-2xl" onClick={ClearInput} />
@@ -42,28 +58,25 @@ export const SearchSeries = () => {
               {seriesQuery === "" ? (
                 <li></li>
               ) : (
-                series
-                  .filter((items) =>
-                    items.title
-                      .toLowerCase()
-                      .includes(seriesQuery.toLowerCase())
-                  )
-                  .map((items, index) => {
-                    return (
-                      <Link href={`/bests/${items.title}`} key={index}>
-                        <li className="flex flex-row items-center mt-3">
-                          <Image
-                            src={`${items.posterUrl}`}
-                            width={500}
-                            height={500}
-                            alt="about-image"
-                            className="w-20 h-20 rounded-full ml-5"
-                          />
-                          <p className="ml-2">{items.title}</p>
-                        </li>
-                      </Link>
-                    );
-                  })
+                detail.map((items, index) => {
+                  return (
+                    <Link href={`/series/${items.id}`} key={index}>
+                      <li className="flex flex-row items-center mt-3">
+                        <Image
+                          src={`https://image.tmdb.org/t/p/original${items.poster_path}`}
+                          width={500}
+                          height={500}
+                          alt={items.name || items.title}
+                          className="w-20 h-20 rounded-full ml-5"
+                        />
+                        <p className="ml-2">
+                          {items.name?.substring(0, 25) ||
+                            items.title?.substring(0, 25)}
+                        </p>
+                      </li>
+                    </Link>
+                  );
+                })
               )}
             </ul>
           </div>

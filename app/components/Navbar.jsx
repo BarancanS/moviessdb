@@ -26,9 +26,9 @@ const Navbar = () => {
           </Link>
           <div className="hidden lg:flex space-x-5 items-center justify-center text-xl">
             <Link
-              href="/film"
+              href="/movies"
               className={`${
-                currentUrl === "https://baranflix.vercel.app/film"
+                currentUrl === "https://baranflix.vercel.app/movies"
                   ? "text-red-600"
                   : "text-white"
               } hover:text-red-600`}
@@ -82,9 +82,9 @@ const Navbar = () => {
               <div className="flex flex-col-reverse p-4 justify-between items-center">
                 <div className="flex flex-col items-center space-y-4 mt-4">
                   <Link
-                    href="/film"
+                    href="/movies"
                     className={`${
-                      currentUrl === "https://baranflix.vercel.app/film"
+                      currentUrl === "https://baranflix.vercel.app/movies"
                         ? "text-red-600"
                         : "text-white"
                     } hover:text-red-600`}

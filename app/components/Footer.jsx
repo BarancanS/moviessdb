@@ -7,7 +7,7 @@ const Footer = () => {
         <h1 className="text-2xl max-sm:text-base">BaranFlix</h1>
       </Link>
       <ul className="flex flex-row gap-5 text-lg max-sm:gap-1 max-sm:text-sm ml-3">
-        <Link href="/film">
+        <Link href="/movies">
           <li>Movies</li>
         </Link>
         <Link href="/series">

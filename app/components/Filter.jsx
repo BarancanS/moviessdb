@@ -3,21 +3,21 @@ import { useState, useEffect, useContext } from "react";
 import { MainContext } from "../components/Context";
 
 const Filter = () => {
-  const { posts, setPosts } = useContext(MainContext);
-  const [filteredPosts, SetFilteredPosts] = useState([]);
+  const { movies, setMovies } = useContext(MainContext);
+  const [filteredMovies, setFilteredMovies] = useState([]);
 
   function FilterNetflixButtonClick() {
-    SetFilteredPosts(
-      posts.filter((items) => items.platform.includes("Netflix"))
+    setFilteredMovies(
+      movies.filter((items) => items.platform.includes("Netflix"))
     );
   }
   function FilterAmazonButtonClick() {
-    SetFilteredPosts(
-      posts.filter((items) => items.platform.includes("Amazon"))
+    setFilteredMovies(
+      movies.filter((items) => items.platform.includes("Amazon"))
     );
   }
   function ClearFilterButtonClick() {
-    SetFilteredPosts(posts);
+    setFilteredMovies(movies);
   }
   return (
     <div className="flex flex-col">
@@ -27,7 +27,7 @@ const Filter = () => {
       <div>
         <ul>
           <li>
-            {filteredPosts.map((items, index) => {
+            {filteredMovies.map((items, index) => {
               return (
                 <div key={index}>
                   <p>{items.title}</p>
