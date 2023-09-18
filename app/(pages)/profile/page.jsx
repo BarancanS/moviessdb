@@ -70,20 +70,27 @@ function Profile() {
         <div className="grid grid-cols-5 max-[1364px]:grid-cols-3 max-[1650px]:grid-cols-4   max-[1100px]:grid-cols-2 max-lg:grid-cols-2 max-md:grid-cols-2 max-sm:grid-cols-2 justify-items-center mt-5">
           {list?.slice(0, loadMore).map((items, index) => {
             const checkPage = items.name ? "series" : "movies";
+            const checkType = items.name ? "Series" : "Movie";
             return (
               <Link href={`/${checkPage}/${items.id}`} key={index}>
-                <div className="rounded-sm p-2 my-10  shadow-inner hover:shadow-2xl hover:shadow-fuchsia-800 shadow-fuchsia-950 hover:scale-105 transition-all duration-700 ease-in-out">
+                <div className="rounded-sm relative p-2 my-10 shadow-xl hover:shadow-[10px_10px_100px_10px_rgba(0,0,0,0.3)] hover:shadow-fuchsia-800 shadow-fuchsia-950 hover:scale-105 transition-all duration-700 ease-in-out">
+                  <span
+                    className={`${
+                      items.name ? "bg-red-900" : "bg-yellow-500"
+                    }  py-2 w-4/12 text-center max-md:text-sm max-sm:w-5/12 rounded-tl-sm rounded-br-2xl absolute top-2 left-2 text-white font-bold`}
+                  >
+                    {checkType}
+                  </span>
                   <div
                     style={{
                       backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
                     }}
-                    className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-sm"
+                    className="max-sm:w-28 max-[640px]:w-40 max-[330px]:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-sm  "
                   ></div>
-                  <h1 className="text-left mt-2 text-white font-extrabold">
-                    {items.name?.substring(0, 25) ||
-                      items.title?.substring(0, 25)}
+                  <h1 className="flex flex-row items-center justify-center h-20  max-[640px]:w-40 max-[330px]:w-28 max-sm:w-28 w-60 mt-2 max-md:text-sm text-white font-extrabold overflow-hidden">
+                    {items.name || items.title}
                   </h1>
-                  <h1 className="text-left ">{items.year}</h1>
+                  <h1 className="text-left">{items.year}</h1>
                   {/* <h1 className="text-left block max-md:hidden">
                     {items.genres
                       .toString()

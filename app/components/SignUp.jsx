@@ -20,7 +20,7 @@ function SignUp() {
   return (
     <div className="w-full h-[50vh] flex flex-col items-center justify-center">
       <h1 className="text-white ml-2 font-medium text-3xl mb-2">Register</h1>
-      <div className="flex flex-col items-center justify-center gap-2 p-2 border rounded-lg border-white border-double w-62">
+      <div className="flex flex-col items-center justify-center gap-2 p-2 shadow-inner hover:shadow-2xl hover:shadow-fuchsia-800 shadow-fuchsia-950 hover:scale-105 transition-all duration-700 ease-in-out rounded-lg w-62">
         <input
           type="text"
           className="text-center text-black font-extrabold rounded-lg w-56 h-8"

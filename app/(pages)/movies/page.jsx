@@ -150,17 +150,17 @@ const Movies = () => {
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center mt-10">
             {filteredMovies.slice(0, loadMore).map((items, index) => (
               <Link href={`/movies/${items.id}`} key={index}>
-                <div className="rounded-sm p-2 my-10  shadow-inner hover:shadow-2xl hover:shadow-fuchsia-800 shadow-fuchsia-950 hover:scale-105 transition-all duration-700 ease-in-out">
+                <div className="rounded-sm p-2 my-10 shadow-xl hover:shadow-[10px_10px_100px_10px_rgba(0,0,0,0.3)] hover:shadow-fuchsia-800 shadow-fuchsia-950 hover:scale-105 transition-all duration-700 ease-in-out">
                   <div
                     style={{
                       backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
                     }}
-                    className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-sm"
+                    className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-sm  "
                   ></div>
-                  <h1 className="text-left mt-2 text-white font-extrabold">
-                    {items.title.substring(0, 13)}
+                  <h1 className="text-left h-20 max-sm:w-28 w-60 mt-2 max-md:text-sm text-white font-extrabold overflow-hidden">
+                    {items.title}
                   </h1>
-                  <h1 className="text-left ">{items.year}</h1>
+                  <h1 className="text-left">{items.year}</h1>
                   {/* <h1 className="text-left block max-md:hidden">
                     {items.genres
                       .toString()
