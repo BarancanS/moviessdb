@@ -79,7 +79,6 @@ export default function Page({ params }) {
       .then((response) => response.json())
       .then((data) => {
         setDetail([data]);
-        console.log(data.genres);
       })
       .catch((err) => {
         console.log(err);
