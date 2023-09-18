@@ -53,6 +53,7 @@ export default function Page({ params }) {
     }
 
     const userDocRef = doc(db, "users", documentId);
+
     const fetchListData = async () => {
       try {
         const userDoc = await getDoc(userDocRef);
