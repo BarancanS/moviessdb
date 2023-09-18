@@ -18,8 +18,11 @@ export default function Home() {
       <Navbar />
       <div className="lg:px-20">
         <div
-          style={{ backgroundImage: "url(John-Wick.jpg)" }}
-          className="min-h-[calc(100vh-6rem)]  hover:opacity-80 opacity-40 transition-all duration-1000 ease-in-out bg-cover bg-no-repeat bg-center"
+          style={{
+            backgroundImage:
+              "url(https://images2.alphacoders.com/130/1307666.jpeg)",
+          }}
+          className="min-h-[calc(100vh-6rem)]  hover:opacity-80 opacity-40 transition-all duration-1000 ease-in-out bg-cover bg-no-repeat bg-top"
         ></div>
         <Movies />
         <Series />
