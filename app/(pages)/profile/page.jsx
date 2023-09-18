@@ -73,11 +73,11 @@ function Profile() {
             const checkType = items.name ? "Series" : "Movie";
             return (
               <Link href={`/${checkPage}/${items.id}`} key={index}>
-                <div className="rounded-sm relative p-2 my-10 shadow-xl hover:shadow-[10px_10px_100px_10px_rgba(0,0,0,0.3)] hover:shadow-fuchsia-800 shadow-fuchsia-950 hover:scale-105 transition-all duration-700 ease-in-out">
+                <div className="relative z-10 hover:scale-105 transition-all duration-700 ease-in-out">
                   <span
                     className={`${
                       items.name ? "bg-red-900" : "bg-yellow-500"
-                    }  py-2 w-4/12 text-center max-md:text-sm max-sm:w-5/12 rounded-tl-sm rounded-br-2xl absolute top-2 left-2 text-white font-bold`}
+                    }  py-2 w-4/12 z-20 text-center max-md:text-sm max-sm:w-5/12 rounded-tl-sm rounded-br-2xl absolute top-0 left-0 text-white font-bold`}
                   >
                     {checkType}
                   </span>
@@ -85,18 +85,12 @@ function Profile() {
                     style={{
                       backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
                     }}
-                    className="max-sm:w-28 max-[640px]:w-40 max-[330px]:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-sm  "
+                    className="rounded-lg p-2  shadow-xl hover:shadow-[10px_1px_50px_5px_rgba(0,0,0,0.3)] hover:shadow-fuchsia-800 shadow-fuchsia-950 transition-all duration-700 ease-in-out max-sm:w-28 max-[640px]:w-40 max-[330px]:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center"
                   ></div>
-                  <h1 className="flex flex-row items-center justify-center h-20  max-[640px]:w-40 max-[330px]:w-28 max-sm:w-28 w-60 mt-2 max-md:text-sm text-white font-extrabold overflow-hidden">
+                  <h1 className="flex flex-row items-start justify-center h-20  max-[640px]:w-40 max-[330px]:w-28 max-sm:w-28 w-60 mt-5 max-md:text-sm text-white font-extrabold overflow-hidden">
                     {items.name || items.title}
                   </h1>
                   <h1 className="text-left">{items.year}</h1>
-                  {/* <h1 className="text-left block max-md:hidden">
-                    {items.genres
-                      .toString()
-                      .replace(/([A-Z])/g, " $1")
-                      .trim()}
-                  </h1> */}
                 </div>
               </Link>
             );

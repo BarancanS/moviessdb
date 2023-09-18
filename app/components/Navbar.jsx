@@ -20,9 +20,9 @@ const Navbar = () => {
                   : "text-white"
               }`}
             >
-              Baran
+              Movie
             </h1>
-            <h1 className="text-3xl">Flix</h1>
+            <h1 className="text-3xl">DB</h1>
           </Link>
           <div className="hidden lg:flex space-x-5 items-center justify-center text-xl">
             <Link
@@ -55,7 +55,7 @@ const Navbar = () => {
             >
               Bests
             </Link>
-            {/* <Link
+            <Link
               href="/categories"
               className={`${
                 currentUrl === "https://baranflix.vercel.app/categories"
@@ -64,7 +64,7 @@ const Navbar = () => {
               } hover:text-red-600`}
             >
               Categories
-            </Link> */}
+            </Link>
             <SignIn />
           </div>
           <FaHamburger
@@ -114,7 +114,7 @@ const Navbar = () => {
                   >
                     Bests
                   </Link>
-                  {/* <Link
+                  <Link
                     href="/categories"
                     className={`${
                       currentUrl === "https://baranflix.vercel.app/categories"
@@ -124,7 +124,7 @@ const Navbar = () => {
                     onClick={() => setHamburgerMenu(!hamburgerMenu)}
                   >
                     Categories
-                  </Link> */}
+                  </Link>
                 </div>
                 <SignIn />
               </div>

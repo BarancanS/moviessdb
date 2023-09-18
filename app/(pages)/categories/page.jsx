@@ -53,19 +53,17 @@ const Categories = () => {
                         </div>
                       ))}
                     <Link href={`/${checkPage}/${items.id}`} key={index}>
-                      <div className="rounded-sm p-2 my-10  shadow-inner hover:shadow-2xl hover:shadow-fuchsia-800 shadow-fuchsia-950 hover:scale-105 transition-all duration-700 ease-in-out">
+                      <div className="relative z-10 hover:scale-105 transition-all duration-700 ease-in-out">
                         <div
                           style={{
                             backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
                           }}
-                          className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-sm"
+                          className="rounded-lg p-2  shadow-xl hover:shadow-[10px_1px_50px_5px_rgba(0,0,0,0.3)] hover:shadow-fuchsia-800 shadow-fuchsia-950 transition-all duration-700 ease-in-out max-sm:w-28 max-[640px]:w-40 max-[330px]:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center"
                         ></div>
-
-                        <h1 className="text-left ">{items.year}</h1>
-                        <h1 className="text-left mt-2 text-white font-extrabold">
-                          {items.title?.substring(0, 13) ||
-                            items.name?.substring(0, 13)}
+                        <h1 className="flex flex-row items-start justify-center h-20  max-[640px]:w-40 max-[330px]:w-28 max-sm:w-28 w-60 mt-5 max-md:text-sm text-white font-extrabold overflow-hidden">
+                          {items.name || items.title}
                         </h1>
+                        <h1 className="text-left">{items.year}</h1>
                       </div>
                     </Link>
                   </div>
