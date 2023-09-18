@@ -19,7 +19,7 @@ const Movies = () => {
                     style={{
                       backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
                     }}
-                    className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
+                    className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-300 ease-in-out"
                   ></div>
                   {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
                 </div>
