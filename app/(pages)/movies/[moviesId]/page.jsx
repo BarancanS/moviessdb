@@ -188,8 +188,8 @@ export default function Page({ params }) {
                     <div className="flex flex-row">
                       {items.genres.map((genresItems, genresIndex) => {
                         return (
-                          <div className="flex flex-row">
-                            <p key={genresIndex}>{genresItems.name}-</p>
+                          <div key={genresIndex} className="flex flex-row">
+                            <p>{genresItems.name}-</p>
                           </div>
                         );
                       })}
