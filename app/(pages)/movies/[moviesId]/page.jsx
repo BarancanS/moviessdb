@@ -74,12 +74,13 @@ export default function Page({ params }) {
 
   const fetchMoviesDetail = async () => {
     return fetch(
-      `https://api.themoviedb.org/3/movie/${params.moviesId}?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8`
+      `https://communicationservice.sabancidx.com/moviemap/movie/get-movie-list
+`
     )
       .then((response) => response.json())
       .then((data) => {
         setDetail([data]);
-        console.log(data.genres);
+        console.log(detail);
       })
       .catch((err) => {
         console.log(err);
