@@ -30,6 +30,18 @@ const Categories = () => {
           <div className="mt-10">
             <h1 className="text-3xl text-left">Action</h1>
             <div className="w-full flex flex-row overflow-y-scroll items-start py-10 gap-5">
+              {/* {filteredMerge
+                .filter((items) => items.genres.includes("Drama"))
+                .map((items, index) => {
+                  return (
+                    <Link href={`/bests/${items.title}`} key={index}>
+                      <div
+                        style={{ backgroundImage: `url("${items.posterUrl}")` }}
+                        className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
+                      ></div>
+                    </Link>
+                  );
+                })} */}
               {filteredMerge.map((items, index) => {
                 const checkPage = items.name ? "series" : "movies";
                 return (
