@@ -26,7 +26,6 @@ function Profile() {
           setName(data.name);
         }
       });
-
       return () => unsubscribe();
     }
   }, [user]);
