@@ -75,11 +75,13 @@ export default function Page({ params }) {
 
   const fetchMoviesDetail = async () => {
     return fetch(
-      `https://api.themoviedb.org/3/movie/${params.moviesId}?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8`
+      `https://communicationservice.sabancidx.com/moviemap/movie/get-movie-list
+`
     )
       .then((response) => response.json())
       .then((data) => {
         setDetail([data]);
+        console.log(detail);
       })
       .catch((err) => {
         console.log(err);
@@ -183,9 +185,17 @@ export default function Page({ params }) {
                     {items.title} ({items.release_date})
                   </h1>
                   <div className="text-lg text-gray-400">
-                    {/* <p>Genres: {items.genres.join(", ")}</p> */}
                     <p>Runtime: {items.runtime} minutes</p>
                     <p className="text-lg">Tagline: {items.tagline}</p>
+                    <div className="flex flex-row">
+                      {items.genres.map((genresItems, genresIndex) => {
+                        return (
+                          <div className="flex flex-row">
+                            <p key={genresIndex}>{genresItems.name}-</p>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
                   <p className="text-lg">Vote: {items.vote_count}</p>
                   <p className="text-lg">IMDB: {items.vote_average}</p>
