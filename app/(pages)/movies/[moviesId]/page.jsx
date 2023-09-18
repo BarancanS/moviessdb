@@ -19,13 +19,14 @@ import {
 import { db, onSnapshot, auth } from "../../../../shared/firebase";
 
 export default function Page({ params }) {
+  const { movies } = useContext(MainContext);
   const [detail, setDetail] = useState([]);
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
   const [documentId, setDocumentId] = useState();
   const [displayAddRemove, setDisplayAddRemove] = useState([]);
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDocumentIdData = async () => {
       try {
         const userRef = collection(db, "users");
         const userQuery = query(userRef, where("uid", "==", user.uid));
@@ -41,8 +42,9 @@ export default function Page({ params }) {
     };
 
     if (user && params.moviesId) {
-      fetchData();
+      fetchDocumentIdData();
     }
+    fetchMoviesDetail();
   }, [params.moviesId, documentId]);
 
   useEffect(() => {
@@ -52,7 +54,7 @@ export default function Page({ params }) {
 
     const userDocRef = doc(db, "users", documentId);
 
-    const fetchData = async () => {
+    const fetchListData = async () => {
       try {
         const userDoc = await getDoc(userDocRef);
         const userDocData = userDoc.data();
@@ -68,9 +70,8 @@ export default function Page({ params }) {
         console.error("Error fetching user data:", error);
       }
     };
-    fetchMoviesDetail();
-    fetchData();
-  }, [user, documentId]);
+    fetchListData();
+  }, [user, documentId, detail]);
 
   const fetchMoviesDetail = async () => {
     return fetch(

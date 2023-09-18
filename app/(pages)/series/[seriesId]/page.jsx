@@ -25,7 +25,7 @@ export default function Page({ params }) {
   const [documentId, setDocumentId] = useState("");
   const [displayAddRemove, setDisplayAddRemove] = useState([]);
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchDocumentIdData = async () => {
       try {
         const userRef = collection(db, "users");
         const userQuery = query(userRef, where("uid", "==", user.uid));
@@ -41,8 +41,9 @@ export default function Page({ params }) {
     };
 
     if (user && params.seriesId) {
-      fetchData();
+      fetchDocumentIdData();
     }
+    fetchSeriesDetail();
   }, [params.seriesId, documentId]);
 
   useEffect(() => {
@@ -52,7 +53,7 @@ export default function Page({ params }) {
 
     const userDocRef = doc(db, "users", documentId);
 
-    const fetchData = async () => {
+    const fetchListData = async () => {
       try {
         const userDoc = await getDoc(userDocRef);
         const userDocData = userDoc.data();
@@ -68,9 +69,9 @@ export default function Page({ params }) {
         console.error("Error fetching user data:", error);
       }
     };
-    fetchSeriesDetail();
-    fetchData();
-  }, [user, documentId]);
+    fetchListData();
+  }, [user, documentId, detail]);
+
   const fetchSeriesDetail = async () => {
     return fetch(
       `https://api.themoviedb.org/3/tv/${params.seriesId}?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8`
@@ -163,6 +164,7 @@ export default function Page({ params }) {
               console.error(err);
             }
           };
+
           return (
             <div key={items.id} className="p-4 bg-gray-800">
               <div className="flex flex-col md:flex-row">
