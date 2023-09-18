@@ -17,7 +17,6 @@ const Categories = () => {
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
   const [status, setStatus] = useState(true);
-
   useEffect(() => {
     setFilteredMerge(combined || []); // Ensure combined is an array or provide a default empty array
   }, [combined, setMerge]);
