@@ -26,7 +26,6 @@ const Bests = () => {
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
   const [status, setStatus] = useState(true);
-  const [loadMore, setLoadMore] = useState(40);
 
   useEffect(() => {
     SetFilteredMerge(combined);
@@ -51,13 +50,13 @@ const Bests = () => {
   function FilterAllButtonClick() {
     SetFilteredMerge(
       combined
-        .slice(0, loadMore)
+        .slice(0, 12)
         .filter((items) => items.platform.includes(platformValue))
     );
   }
 
   function ClearFilterButtonClick() {
-    SetFilteredMerge(combined.slice(0, loadMore));
+    SetFilteredMerge(combined.slice(0, 12));
   }
 
   function FilterImdbButtonClick() {
@@ -169,23 +168,21 @@ const Bests = () => {
               </div>
             </div>
             <div className="w-full">
-              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center mt-10">
-                {filteredMerge.slice(0, loadMore).map((items, index) => {
+              <div className="grid grid-cols-2 max-[500px]:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center mt-10">
+                {filteredMerge.map((items, index) => {
                   const checkPage = items.name ? "series" : "movies";
                   return (
                     <Link href={`/${checkPage}/${items.id}`} key={index}>
-                      <div className="relative hover:scale-105 transition-all duration-300 ease-in-out">
-                        <div
-                          style={{
-                            backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
-                          }}
-                          className="rounded-lg p-2  shadow-xl hover:shadow-[10px_1px_50px_5px_rgba(0,0,0,0.3)] hover:shadow-fuchsia-800 shadow-fuchsia-950 transition-all duration-300 ease-in-out max-sm:w-28 max-[640px]:w-40 max-[330px]:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center"
-                        ></div>
-                        <h1 className="flex flex-row items-start justify-center h-20  max-[640px]:w-40 max-[330px]:w-28 max-sm:w-28 w-60 mt-5 max-md:text-sm text-white font-extrabold overflow-hidden">
-                          {items.name || items.title}
-                        </h1>
-                        <h1 className="text-left">{items.year}</h1>
-                      </div>
+                      <div
+                        style={{
+                          backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
+                        }}
+                        className="rounded-lg p-2  shadow-xl hover:shadow-[10px_1px_50px_5px_rgba(0,0,0,0.3)] hover:shadow-fuchsia-800 shadow-fuchsia-950 hover:scale-105 transition-all duration-300 ease-in-out w-60 h-80 bg-cover bg-no-repeat bg-center"
+                      ></div>
+                      <h1 className="flex flex-row items-start justify-center w-60 h-20 mt-5 max-md:text-sm text-white font-extrabold overflow-hidden">
+                        {items.name || items.title}
+                      </h1>
+                      <h1 className="text-left">{items.year}</h1>
                     </Link>
                   );
                 })}
