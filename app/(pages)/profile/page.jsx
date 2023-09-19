@@ -15,22 +15,21 @@ function Profile() {
   const [list, setList] = useState([]);
   const [status, setStatus] = useState(true);
   const [loadMore, setLoadMore] = useState(12);
+  if (loading) {
+    return (
+      <div className="w-full h-screen flex flex-col items-center justify-center">
+        <Image
+          src={`/loader1.gif`}
+          width={500}
+          height={500}
+          alt="loading gif"
+          className="w-5/12 mx-auto h-auto rounded-lg "
+        />
+      </div>
+    );
+  }
 
   useEffect(() => {
-    if (loading) {
-      return (
-        <div className="w-full h-screen flex flex-col items-center justify-center">
-          <Image
-            src={`/loader1.gif`}
-            width={500}
-            height={500}
-            alt="loading gif"
-            className="w-5/12 mx-auto h-auto rounded-lg "
-          />
-        </div>
-      );
-    }
-
     if (user && user.uid) {
       const userRef = collection(db, "users");
       const userQuery = query(userRef, where("uid", "==", user.uid));
