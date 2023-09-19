@@ -23,6 +23,7 @@ export default function Page({ params }) {
   const [user, loading] = useAuthState(auth);
   const [documentId, setDocumentId] = useState("");
   const [displayAddRemove, setDisplayAddRemove] = useState([]);
+  const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
     if (user && params.seriesId) {
@@ -73,6 +74,18 @@ export default function Page({ params }) {
 
     fetchListData();
   }, [user, documentId, detail]);
+
+  useEffect(() => {
+    // Delay the button display for 0.7 seconds after component mounts
+    const timer = setTimeout(() => {
+      setShowButton(true);
+    }, 700);
+
+    return () => {
+      // Clear the timer if the component unmounts before 0.7 seconds
+      clearTimeout(timer);
+    };
+  }, []);
 
   const fetchSeriesDetail = async () => {
     try {
@@ -138,49 +151,6 @@ export default function Page({ params }) {
       <Navbar />
       <main className="w-full min-h-[calc(100vh-11rem)] mx-auto flex flex-col text-2xl bg-gray-800 text-white">
         {detail.map((items, index) => {
-          const AddItemToList = async (itemId) => {
-            const userId = documentId; // Replace with the actual user ID
-            const userDocRef = doc(db, "users", userId);
-
-            try {
-              // 2. Retrieve the current data
-              const userDoc = await getDoc(userDocRef);
-              const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
-
-              // 3. Check if the data already exists in the List using the 'id'
-              const isDataAlreadyInList = List.some(
-                (item) => item.id === itemId
-              );
-
-              if (isDataAlreadyInList) {
-                // Delete the data with the specified ID from the List
-                const updatedUserData = List.filter(
-                  (item) => item.id !== itemId
-                );
-                await updateDoc(userDocRef, { List: updatedUserData });
-                console.log("Document successfully updated! (Deleted)");
-              } else {
-                // Add the data to the List
-                const newData = {
-                  id: items.id,
-                  title: items.title,
-                  year: items.year,
-                  runtime: items.runtime,
-                  genres: items.genres,
-                  director: items.director,
-                  actors: items.actors,
-                  plot: items.plot,
-                  posterUrl: items.posterUrl,
-                };
-                const updatedUserData = [...List, newData];
-                await updateDoc(userDocRef, { List: updatedUserData });
-                console.log("Document successfully updated! (Added)");
-              }
-            } catch (err) {
-              console.error(err);
-            }
-          };
-
           return (
             <div key={items.id} className="p-4 bg-gray-800">
               <div className="flex flex-col md:flex-row">
@@ -189,7 +159,7 @@ export default function Page({ params }) {
                     src={`https://image.tmdb.org/t/p/original${items.poster_path}`}
                     width={500}
                     height={500}
-                    alt={items.title}
+                    alt={items.name}
                     className="w-9/12 mx-auto h-auto rounded-lg "
                   />
                 </div>
@@ -198,23 +168,26 @@ export default function Page({ params }) {
                     {items.name} ({items.first_air_date})
                   </h1>
                   <div className="text-lg text-gray-400">
-                    {/* <p>Genres: {items.genres.join(", ")}</p> */}
-                    <p>Runtime: {items.runtime} minutes</p>
+                    <p>Runtime: {items.episode_run_time.join(", ")} minutes</p>
                     <p className="text-lg">Tagline: {items.tagline}</p>
                   </div>
                   <p className="text-lg">Vote: {items.vote_count}</p>
                   <p className="text-lg">IMDB: {items.vote_average}</p>
                   <p className="text-lg">Plot: {items.overview}</p>
-                  <button
-                    onClick={() => handleAddRemove(items.id)}
-                    className="mt-4 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out"
-                  >
-                    {displayAddRemove.find(
-                      (displayItem) => displayItem.id === items.id
-                    )?.display
-                      ? "Remove from List"
-                      : "Add to List"}
-                  </button>
+
+                  {/* Render the button only if showButton is true */}
+                  {showButton && (
+                    <button
+                      onClick={() => handleAddRemove(items.id)}
+                      className="mt-4 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out"
+                    >
+                      {displayAddRemove.find(
+                        (displayItem) => displayItem.id === items.id
+                      )?.display
+                        ? "Remove from List"
+                        : "Add to List"}
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

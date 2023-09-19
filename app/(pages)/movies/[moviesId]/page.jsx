@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
 import Image from "next/dist/client/image";
@@ -15,7 +15,7 @@ import {
   getDocs,
   where,
 } from "firebase/firestore";
-import { db, onSnapshot, auth } from "../../../../shared/firebase";
+import { db } from "../../../../shared/firebase";
 
 export default function Page({ params }) {
   const [detail, setDetail] = useState([]);
@@ -23,6 +23,7 @@ export default function Page({ params }) {
   const [user, loading] = useAuthState(auth);
   const [documentId, setDocumentId] = useState();
   const [displayAddRemove, setDisplayAddRemove] = useState([]);
+  const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
     if (user && params.moviesId) {
@@ -86,38 +87,17 @@ export default function Page({ params }) {
     fetchListData();
   }, [user, documentId, detail]);
 
-  const handleAddRemove = async (itemId) => {
-    const userId = documentId;
-    const userDocRef = doc(db, "users", userId);
+  useEffect(() => {
+    // Delay the button display for 0.7 seconds after component mounts
+    const timer = setTimeout(() => {
+      setShowButton(true);
+    }, 700);
 
-    try {
-      const userDoc = await getDoc(userDocRef);
-      const List = userDoc.data().List || [];
-
-      const isDataAlreadyInList = List.some((item) => item.id === itemId);
-
-      if (isDataAlreadyInList) {
-        const updatedUserData = List.filter((item) => item.id !== itemId);
-        await updateDoc(userDocRef, { List: updatedUserData });
-        console.log("Document successfully updated! (Deleted)");
-      } else {
-        const itemToAdd = detail.find((item) => item.id === itemId);
-        if (itemToAdd) {
-          const updatedUserData = [...List, itemToAdd];
-          await updateDoc(userDocRef, { List: updatedUserData });
-          console.log("Document successfully updated! (Added)");
-        }
-      }
-
-      // Update the displayAddRemove state after the add/remove operation
-      const updatedDisplayAddRemove = displayAddRemove.map((item) =>
-        item.id === itemId ? { ...item, display: !isDataAlreadyInList } : item
-      );
-      setDisplayAddRemove(updatedDisplayAddRemove);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+    return () => {
+      // Clear the timer if the component unmounts before 0.7 seconds
+      clearTimeout(timer);
+    };
+  }, []);
 
   if (loading) {
     return (
@@ -210,16 +190,20 @@ export default function Page({ params }) {
                   <p className="text-lg">IMDB: {items.vote_average}</p>
                   <p className="text-lg">Plot: {items.overview}</p>
                   <p className="text-lg">Revenue: {items.revenue}</p>
-                  <button
-                    onClick={() => handleAddRemove(items.id)}
-                    className="mt-4 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out"
-                  >
-                    {displayAddRemove.find(
-                      (displayItem) => displayItem.id === items.id
-                    )?.display
-                      ? "Remove from List"
-                      : "Add to List"}
-                  </button>
+
+                  {/* Render the button only if showButton is true */}
+                  {showButton && (
+                    <button
+                      onClick={() => handleAddRemove(items.id)}
+                      className="mt-4 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out"
+                    >
+                      {displayAddRemove.find(
+                        (displayItem) => displayItem.id === items.id
+                      )?.display
+                        ? "Remove from List"
+                        : "Add to List"}
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
