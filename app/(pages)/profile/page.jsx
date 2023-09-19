@@ -15,31 +15,38 @@ function Profile() {
   const [list, setList] = useState([]);
   const [status, setStatus] = useState(true);
   const [loadMore, setLoadMore] = useState(12);
-
   if (loading) {
     return (
       <div className="w-full h-screen flex flex-col items-center justify-center">
-        asd
+        <Image
+          src={`/loader1.gif`}
+          width={500}
+          height={500}
+          alt="loading gif"
+          className="w-5/12 mx-auto h-auto rounded-lg "
+        />
       </div>
     );
   }
 
   useEffect(() => {
-    if (user && user.uid) {
-      const userRef = collection(db, "users");
-      const userQuery = query(userRef, where("uid", "==", user.uid));
-
-      const unsubscribe = onSnapshot(userQuery, (querySnapshot) => {
-        if (!querySnapshot.empty) {
-          const data = querySnapshot.docs[0].data();
-          setList(data.List);
-          setName(data.name);
-        }
-      });
-
-      return () => unsubscribe();
+    if (!user || !user.uid) {
+      return; // Return early if user is not available
     }
-  }, [user, loading]);
+
+    const userRef = collection(db, "users");
+    const userQuery = query(userRef, where("uid", "==", user.uid));
+
+    const unsubscribe = onSnapshot(userQuery, (querySnapshot) => {
+      if (!querySnapshot.empty) {
+        const data = querySnapshot.docs[0].data();
+        setList(data.List);
+        setName(data.name);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [user]);
 
   return user ? (
     <section className="w-full pb-10 mx-auto min-h-[100vh]">
