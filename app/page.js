@@ -33,9 +33,9 @@ export default function Home() {
     <div>
       {status ? (
         <div
-          className="w-full flex flex-col items-center justify-center h-screen"
+          className="w-full flex flex-col items-center justify-center h-screen bg-cover bg-center"
           style={{
-            backgroundImage: `url("${`https://images2.alphacoders.com/130/1307666.jpeg`}")`,
+            backgroundImage: `url("${`/pexels-james-wheeler-1519088.jpg`}")`,
           }}
         >
           <SignIn />
@@ -48,9 +48,9 @@ export default function Home() {
         </div>
       ) : (
         <div
-          className="w-full flex flex-col items-center justify-center h-screen bg-center"
+          className="w-full flex flex-col items-center justify-center h-screen bg-cover bg-center"
           style={{
-            backgroundImage: `url("${`https://images4.alphacoders.com/130/1302452.jpg`}")`,
+            backgroundImage: `url("${`/pexels-piccinng-3075993.jpg`}")`,
           }}
         >
           <SignUp />
