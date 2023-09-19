@@ -71,7 +71,60 @@ function Profile() {
           </ul>
         </div>
       </main>
-      <main className="mt-4">{/* Rest of your component code... */}</main>
+      <main className="mt-4">
+        <h1 className="w-11/12 mx-auto text-3xl text-left">List</h1>
+        <div className="grid grid-cols-5 max-[1364px]:grid-cols-3 max-[1650px]:grid-cols-4   max-[1100px]:grid-cols-2 max-lg:grid-cols-2 max-md:grid-cols-2 max-sm:grid-cols-2 justify-items-center mt-5">
+          {list?.slice(0, loadMore).map((items, index) => {
+            const checkPage = items.name ? "series" : "movies";
+            const checkType = items.name ? "Series" : "Movie";
+            return (
+              <Link href={`/${checkPage}/${items.id}`} key={index}>
+                <div className="relative z-10 hover:scale-105 transition-all duration-300 ease-in-out">
+                  <span
+                    className={`${
+                      items.name ? "bg-red-900" : "bg-yellow-500"
+                    }  py-2 w-4/12 z-20 text-center max-md:text-sm max-sm:w-5/12 rounded-tl-sm rounded-br-2xl absolute top-0 left-0 text-white font-bold`}
+                  >
+                    {checkType}
+                  </span>
+                  <div
+                    style={{
+                      backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
+                    }}
+                    className="rounded-lg p-2  shadow-xl hover:shadow-[10px_1px_50px_5px_rgba(0,0,0,0.3)] hover:shadow-fuchsia-800 shadow-fuchsia-950 transition-all duration-300 ease-in-out max-sm:w-28 max-[640px]:w-40 max-[330px]:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center"
+                  ></div>
+                  <h1 className="flex flex-row items-start justify-center h-20  max-[640px]:w-40 max-[330px]:w-28 max-sm:w-28 w-60 mt-5 max-md:text-sm text-white font-extrabold overflow-hidden">
+                    {items.name || items.title}
+                  </h1>
+                  <h1 className="text-left">{items.year}</h1>
+                </div>
+              </Link>
+            );
+          })}
+        </div>
+        <div className="w-full text-center">
+          {loadMore >= list.length ? (
+            <></>
+          ) : (
+            <button
+              className="w-30 p-2 text-black font-semibold rounded-md bg-white"
+              onClick={() => setLoadMore(loadMore + 12)}
+            >
+              Show More
+            </button>
+          )}
+          {loadMore <= 12 ? (
+            <></>
+          ) : (
+            <button
+              className="w-30 ml-2 p-2 text-white font-semibold rounded-md bg-red-600"
+              onClick={() => setLoadMore(loadMore > 12 && loadMore - 12)}
+            >
+              Show Less
+            </button>
+          )}
+        </div>
+      </main>
     </section>
   ) : (
     <div>
