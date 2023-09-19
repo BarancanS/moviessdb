@@ -155,7 +155,7 @@ const Bests = () => {
               const checkPage = items.name ? "series" : "movies";
               return (
                 <Link href={`/${checkPage}/${items.id}`} key={index}>
-                  <div className="relative z-10 hover:scale-105 transition-all duration-300 ease-in-out">
+                  <div className="relative hover:scale-105 transition-all duration-300 ease-in-out">
                     <div
                       style={{
                         backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
