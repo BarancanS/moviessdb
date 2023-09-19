@@ -1,6 +1,5 @@
 "use client";
 import { useState, useEffect, useContext } from "react";
-import { MainContext } from "/app/components/Context";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
 import Image from "next/dist/client/image";
@@ -19,33 +18,46 @@ import {
 import { db, onSnapshot, auth } from "../../../../shared/firebase";
 
 export default function Page({ params }) {
-  const { movies } = useContext(MainContext);
   const [detail, setDetail] = useState([]);
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);
   const [documentId, setDocumentId] = useState();
   const [displayAddRemove, setDisplayAddRemove] = useState([]);
-  useEffect(() => {
-    const fetchDocumentIdData = async () => {
-      try {
-        const userRef = collection(db, "users");
-        const userQuery = query(userRef, where("uid", "==", user.uid));
-        const querySnapshot = await getDocs(userQuery);
 
-        if (!querySnapshot.empty) {
-          const data = querySnapshot.docs[0].id;
-          setDocumentId(data);
+  useEffect(() => {
+    if (user && params.moviesId) {
+      const fetchDocumentIdData = async () => {
+        try {
+          const userRef = collection(db, "users");
+          const userQuery = query(userRef, where("uid", "==", user.uid));
+          const querySnapshot = await getDocs(userQuery);
+
+          if (!querySnapshot.empty) {
+            const data = querySnapshot.docs[0].id;
+            setDocumentId(data);
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error);
         }
-      } catch (error) {
-        console.error("Error fetching data:", error);
+      };
+
+      fetchDocumentIdData();
+    }
+
+    const fetchMoviesDetail = async () => {
+      try {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/movie/${params.moviesId}?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8`
+        );
+        const data = await response.json();
+        setDetail([data]);
+      } catch (err) {
+        console.log(err);
       }
     };
 
-    if (user && params.moviesId) {
-      fetchDocumentIdData();
-    }
     fetchMoviesDetail();
-  }, [params.moviesId, documentId]);
+  }, [params.moviesId, user]);
 
   useEffect(() => {
     if (!user || !documentId) {
@@ -53,6 +65,7 @@ export default function Page({ params }) {
     }
 
     const userDocRef = doc(db, "users", documentId);
+
     const fetchListData = async () => {
       try {
         const userDoc = await getDoc(userDocRef);
@@ -69,21 +82,9 @@ export default function Page({ params }) {
         console.error("Error fetching user data:", error);
       }
     };
+
     fetchListData();
   }, [user, documentId, detail]);
-
-  const fetchMoviesDetail = async () => {
-    return fetch(
-      `https://api.themoviedb.org/3/movie/${params.moviesId}?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setDetail([data]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
 
   const handleAddRemove = async (itemId) => {
     const userId = documentId;
@@ -117,34 +118,45 @@ export default function Page({ params }) {
       console.error(err);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="w-full h-screen flex flex-col items-center justify-center">
+        <Image
+          src={`/loader1.gif`}
+          width={500}
+          height={500}
+          alt="loading gif"
+          className="w-5/12 mx-auto h-auto rounded-lg"
+        />
+      </div>
+    );
+  }
+
   return user ? (
     <section>
       <Navbar />
       <main className="w-full min-h-[calc(100vh-11rem)]  mx-auto flex flex-col text-2xl bg-gray-800 text-white">
         {detail.map((items, index) => {
           const AddItemToList = async (itemId) => {
-            const userId = documentId; // Replace with the actual user ID
+            const userId = documentId;
             const userDocRef = doc(db, "users", userId);
 
             try {
-              // 2. Retrieve the current data
               const userDoc = await getDoc(userDocRef);
-              const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
+              const List = userDoc.data().List || [];
 
-              // 3. Check if the data already exists in the List using the 'id'
               const isDataAlreadyInList = List.some(
                 (item) => item.id === itemId
               );
 
               if (isDataAlreadyInList) {
-                // Delete the data with the specified ID from the List
                 const updatedUserData = List.filter(
                   (item) => item.id !== itemId
                 );
                 await updateDoc(userDocRef, { List: updatedUserData });
                 console.log("Document successfully updated! (Deleted)");
               } else {
-                // Add the data to the List
                 const newData = {
                   id: items.id,
                   title: items.title,

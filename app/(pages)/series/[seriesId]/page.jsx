@@ -1,6 +1,5 @@
 "use client";
-import { useState, useEffect, useContext } from "react";
-import { MainContext } from "/app/components/Context";
+import { useState, useEffect } from "react";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
 import Image from "next/dist/client/image";
@@ -24,25 +23,27 @@ export default function Page({ params }) {
   const [user, loading] = useAuthState(auth);
   const [documentId, setDocumentId] = useState("");
   const [displayAddRemove, setDisplayAddRemove] = useState([]);
+
   useEffect(() => {
-    const fetchDocumentIdData = async () => {
-      try {
-        const userRef = collection(db, "users");
-        const userQuery = query(userRef, where("uid", "==", user.uid));
-        const querySnapshot = await getDocs(userQuery);
-
-        if (!querySnapshot.empty) {
-          const data = querySnapshot.docs[0].id;
-          setDocumentId(data);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
     if (user && params.seriesId) {
+      const fetchDocumentIdData = async () => {
+        try {
+          const userRef = collection(db, "users");
+          const userQuery = query(userRef, where("uid", "==", user.uid));
+          const querySnapshot = await getDocs(userQuery);
+
+          if (!querySnapshot.empty) {
+            const data = querySnapshot.docs[0].id;
+            setDocumentId(data);
+          }
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      };
+
       fetchDocumentIdData();
     }
+
     fetchSeriesDetail();
   }, [params.seriesId, documentId]);
 
@@ -69,21 +70,22 @@ export default function Page({ params }) {
         console.error("Error fetching user data:", error);
       }
     };
+
     fetchListData();
   }, [user, documentId, detail]);
 
   const fetchSeriesDetail = async () => {
-    return fetch(
-      `https://api.themoviedb.org/3/tv/${params.seriesId}?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setDetail([data]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/tv/${params.seriesId}?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8`
+      );
+      const data = await response.json();
+      setDetail([data]);
+    } catch (err) {
+      console.log(err);
+    }
   };
+
   const handleAddRemove = async (itemId) => {
     const userId = documentId;
     const userDocRef = doc(db, "users", userId);
@@ -116,6 +118,20 @@ export default function Page({ params }) {
       console.error(err);
     }
   };
+
+  if (loading) {
+    return (
+      <div className="w-full h-screen flex flex-col items-center justify-center">
+        <Image
+          src={`/loader1.gif`}
+          width={500}
+          height={500}
+          alt="loading gif"
+          className="w-5/12 mx-auto h-auto rounded-lg"
+        />
+      </div>
+    );
+  }
 
   return user ? (
     <section>
