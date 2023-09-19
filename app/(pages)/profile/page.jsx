@@ -15,21 +15,9 @@ function Profile() {
   const [list, setList] = useState([]);
   const [status, setStatus] = useState(true);
   const [loadMore, setLoadMore] = useState(12);
-  if (loading) {
-    return (
-      <div className="w-full h-screen flex flex-col items-center justify-center">
-        <Image
-          src={`/loader1.gif`}
-          width={500}
-          height={500}
-          alt="loading gif"
-          className="w-5/12 mx-auto h-auto rounded-lg "
-        />
-      </div>
-    );
-  }
 
-  useEffect(() => {
+  // Create a separate function for the data retrieval logic
+  const fetchData = async () => {
     if (!user || !user.uid) {
       return; // Return early if user is not available
     }
@@ -46,9 +34,23 @@ function Profile() {
     });
 
     return () => unsubscribe();
+  };
+
+  useEffect(() => {
+    fetchData(); // Call the fetchData function unconditionally
   }, [user]);
 
-  return user ? (
+  return loading ? (
+    <div className="w-full h-screen flex flex-col items-center justify-center">
+      <Image
+        src={`/loader1.gif`}
+        width={500}
+        height={500}
+        alt="loading gif"
+        className="w-5/12 mx-auto h-auto rounded-lg "
+      />
+    </div>
+  ) : user ? (
     <section className="w-full pb-10 mx-auto min-h-[100vh]">
       <Navbar />
       <main className="w-full bg-[#6600CC] rounded-md">
