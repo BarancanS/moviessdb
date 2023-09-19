@@ -86,7 +86,7 @@ function Profile() {
       </main>
       <main className="mt-4">
         <h1 className="w-11/12 mx-auto text-3xl text-left">List</h1>
-        <div className="grid grid-cols-5 max-[1364px]:grid-cols-3 max-[1650px]:grid-cols-4   max-[1100px]:grid-cols-2 max-lg:grid-cols-2 max-md:grid-cols-2 max-sm:grid-cols-2 justify-items-center mt-5">
+        <div className="grid grid-cols-2 max-[500px]:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 justify-items-center mt-10">
           {list?.slice(0, loadMore).map((items, index) => {
             const checkPage = items.name ? "series" : "movies";
             const checkType = items.name ? "Series" : "Movie";
@@ -104,9 +104,9 @@ function Profile() {
                     style={{
                       backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
                     }}
-                    className="rounded-lg p-2  shadow-xl hover:shadow-[10px_1px_50px_5px_rgba(0,0,0,0.3)] hover:shadow-fuchsia-800 shadow-fuchsia-950 transition-all duration-300 ease-in-out max-sm:w-28 max-[640px]:w-40 max-[330px]:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center"
+                    className="rounded-lg p-2  shadow-xl hover:shadow-[10px_1px_50px_5px_rgba(0,0,0,0.3)] hover:shadow-fuchsia-800 shadow-fuchsia-950 hover:scale-105 transition-all duration-300 ease-in-out w-60 h-80 bg-cover bg-no-repeat bg-center"
                   ></div>
-                  <h1 className="flex flex-row items-start justify-center h-20  max-[640px]:w-40 max-[330px]:w-28 max-sm:w-28 w-60 mt-5 max-md:text-sm text-white font-extrabold overflow-hidden">
+                  <h1 className="flex flex-row items-start justify-center w-60 h-20 mt-5 max-md:text-sm text-white font-extrabold overflow-hidden">
                     {items.name || items.title}
                   </h1>
                   <h1 className="text-left">{items.year}</h1>
