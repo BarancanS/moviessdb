@@ -18,42 +18,42 @@ function SignUp() {
   };
   useEffect(() => {}, [user, loading]);
   return (
-    <div className="w-full h-[50vh] flex flex-col items-center justify-center">
-      <h1 className="text-white ml-2 font-medium text-3xl mb-2">Register</h1>
-      <div className="flex flex-col items-center justify-center gap-2 p-2 transition-all duration-300 ease-in-out rounded-lg w-62">
+    <div className="w-full flex flex-col items-center justify-center">
+      <h1 className="text-white text-3xl font-bold mb-4">Register</h1>
+      <div className="bg-white rounded-lg max-sm:w-52 p-6 shadow-md w-96">
         <input
           type="text"
-          className="text-center text-black font-extrabold rounded-lg w-56 h-8"
+          className="w-full py-2 px-3 mb-4 rounded-md border border-gray-300"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Full Name"
         />
         <input
           type="text"
-          className="text-center text-black font-extrabold rounded-lg w-56 h-8"
+          className="w-full py-2 px-3 mb-4 rounded-md border border-gray-300"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="E-mail Address"
         />
         <input
           type="password"
-          className="text-center text-black font-extrabold rounded-lg w-56 h-8"
+          className="w-full py-2 px-3 mb-4 rounded-md border border-gray-300"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
         <button
-          className="bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
           onClick={register}
+          className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md font-bold"
         >
           Register
         </button>
         <button
           onClick={signInWithGoogle}
-          className="bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
+          className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md font-bold flex items-center justify-center mt-2"
         >
-          <FcGoogle className="text-2xl" />
-          <h1 className="text-white ml-2 font-medium">Login with Google</h1>
+          <FcGoogle className="text-xl mr-2" />
+          Login with Google
         </button>
       </div>
     </div>

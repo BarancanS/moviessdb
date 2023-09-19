@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FaHamburger } from "react-icons/fa";
-import { VscChromeClose } from "react-icons/vsc";
 import Link from "next/link";
 import SignIn from "./SignIn";
 

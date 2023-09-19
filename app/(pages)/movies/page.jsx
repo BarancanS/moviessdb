@@ -1,30 +1,33 @@
 "use client";
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { MainContext } from "/app/components/Context";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
 import { SearchMovies } from "/app/components/SearchMovies";
 import { AiFillCaretDown, AiFillCaretRight } from "react-icons/ai";
 import Link from "next/link";
+import Image from "next/image";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SignIn from "../../components/SignIn";
 import SignUp from "../../components/SignUp";
 
-const Movies = () => {
-  const { movies, setIncreasePage, increasePage } = useContext(MainContext);
-  const [filteredMovies, setFilteredMovies] = useState(movies);
+const MoviesContent = ({
+  movies,
+  increasePage,
+  setIncreasePage,
+  filteredMovies, // Pass filteredMovies as a prop
+  setFilteredMovies, // Pass setFilteredMovies as a prop
+}) => {
   const [lowestRange, SetLowestRange] = useState(0);
   const [highestRange, SetHighestRange] = useState(10);
   const [platformValue, SetPlatformValue] = useState();
   const [filterBoolean, SetFilterBoolean] = useState(false);
   const [sortBoolean, SetSortBoolean] = useState(false);
-  const auth = getAuth();
-  const [user, loading] = useAuthState(auth);
-  const [status, setStatus] = useState(true);
 
   const buttonClasses =
     "border p-2 rounded-xl flex flex-row max-lg:w-40 w-60 mt-3";
+
   function FilterAllButtonClick() {
     setFilteredMovies(
       movies
@@ -44,12 +47,13 @@ const Movies = () => {
       })
     );
   }
+
   useEffect(() => {
     setFilteredMovies(movies);
   }, [movies, increasePage]);
-  return user ? (
+
+  return (
     <div>
-      <Navbar />
       <SearchMovies />
       <div className="flex flex-col lg:flex lg:flex-row">
         <div className="flex flex-col max-lg:mx-auto w-96 h-2/5 max-lg:w-60 max-md:w-60 max-sm:w-52 text-xl mt-20 ml-2 border-2 rounded-xl">
@@ -188,6 +192,42 @@ const Movies = () => {
           <></>
         )}
       </div>
+    </div>
+  );
+};
+
+const Movies = () => {
+  const { movies, setIncreasePage, increasePage } = useContext(MainContext);
+  const [filteredMovies, setFilteredMovies] = useState(movies); // Initialize filteredMovies
+
+  const auth = getAuth();
+  const [user, loading] = useAuthState(auth);
+  const [status, setStatus] = useState(true);
+
+  if (loading) {
+    return (
+      <div className="w-full h-screen flex flex-col items-center justify-center">
+        <Image
+          src={`/loader1.gif`}
+          width={500}
+          height={500}
+          alt="loading gif"
+          className="w-5/12 mx-auto h-auto rounded-lg"
+        />
+      </div>
+    );
+  }
+
+  return user ? (
+    <div>
+      <Navbar />
+      <MoviesContent
+        movies={movies}
+        increasePage={increasePage}
+        setIncreasePage={setIncreasePage}
+        filteredMovies={filteredMovies} // Pass filteredMovies as a prop
+        setFilteredMovies={setFilteredMovies} // Pass setFilteredMovies as a prop
+      />
       <Footer />
     </div>
   ) : (

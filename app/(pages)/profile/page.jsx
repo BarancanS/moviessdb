@@ -2,10 +2,11 @@
 import { useState, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, onSnapshot } from "../../../shared/firebase";
-import { query, collection, getDocs, where } from "firebase/firestore";
+import { query, collection, where } from "firebase/firestore";
 import SignIn from "../../components/SignIn";
 import SignUp from "../../components/SignUp";
 import Link from "next/link";
+import Image from "next/image";
 import Navbar from "../../components/Navbar";
 
 function Profile() {
@@ -14,6 +15,19 @@ function Profile() {
   const [list, setList] = useState([]);
   const [status, setStatus] = useState(true);
   const [loadMore, setLoadMore] = useState(12);
+  if (loading) {
+    return (
+      <div className="w-full h-screen flex flex-col items-center justify-center">
+        <Image
+          src={`/loader1.gif`}
+          width={500}
+          height={500}
+          alt="loading gif"
+          className="w-5/12 mx-auto h-auto rounded-lg "
+        />
+      </div>
+    );
+  }
   useEffect(() => {
     if (user && user.uid) {
       const userRef = collection(db, "users");

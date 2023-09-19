@@ -1,33 +1,36 @@
 "use client";
-import { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { MainContext } from "/app/components/Context";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
 import { SearchSeries } from "/app/components/SearchSeries";
 import { AiFillCaretDown, AiFillCaretRight } from "react-icons/ai";
 import Link from "next/link";
+import Image from "next/image";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SignIn from "../../components/SignIn";
 import SignUp from "../../components/SignUp";
 
-const Series = () => {
-  const { series, setIncreasePage, increasePage } = useContext(MainContext);
-  const [filteredSeries, SetFilteredSeries] = useState(series);
+const SeriesContent = ({
+  series,
+  increasePage,
+  setIncreasePage,
+  filteredSeries, // Pass filteredSeries as a prop
+  setFilteredSeries, // Pass setFilteredSeries as a prop
+}) => {
   const [lowestRange, SetLowestRange] = useState(0);
   const [highestRange, SetHighestRange] = useState(10);
   const [platformValue, SetPlatformValue] = useState();
   const [filterBoolean, SetFilterBoolean] = useState(false);
   const [sortBoolean, SetSortBoolean] = useState(false);
-  const auth = getAuth();
-  const [user, loading] = useAuthState(auth);
-  const [status, setStatus] = useState(true);
   const [loadMore, setLoadMore] = useState(12);
 
   const buttonClasses =
     "border p-2 rounded-xl flex flex-row max-lg:w-40 w-60 mt-3";
+
   function FilterAllButtonClick() {
-    SetFilteredSeries(
+    setFilteredSeries(
       series
         .slice(0, loadMore)
         .filter((items) => items.platform.includes(`${platformValue}`))
@@ -35,23 +38,23 @@ const Series = () => {
   }
 
   function ClearFilterButtonClick() {
-    SetFilteredSeries(series.slice(0, loadMore));
+    setFilteredSeries(series.slice(0, loadMore));
   }
 
   function FilterImdbButtonClick() {
-    SetFilteredSeries(
+    setFilteredSeries(
       series.filter((items) => {
         return items.imdb >= lowestRange && items.imdb <= highestRange;
       })
     );
   }
-  useEffect(() => {
-    SetFilteredSeries(series);
-  }, [series]);
 
-  return user ? (
+  useEffect(() => {
+    setFilteredSeries(series);
+  }, [series, loadMore]);
+
+  return (
     <div>
-      <Navbar />
       <SearchSeries />
       <div className="flex flex-col lg:flex lg:flex-row">
         <div className="flex flex-col max-lg:mx-auto w-96 h-2/5 max-lg:w-60 max-md:w-60 max-sm:w-52 text-xl mt-20 ml-2 border-2 rounded-xl">
@@ -149,7 +152,7 @@ const Series = () => {
         </div>
         <div className="w-full">
           <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 justify-items-center mt-10">
-            {filteredSeries.map((items, index) => {
+            {filteredSeries.slice(0, loadMore).map((items, index) => {
               return (
                 <Link href={`/series/${items.id}`} key={index}>
                   <div
@@ -166,6 +169,16 @@ const Series = () => {
               );
             })}
           </div>
+          {loadMore < filteredSeries.length && (
+            <div className="w-full text-center mt-5">
+              <button
+                className="w-30 p-2 text-white font-semibold rounded-md bg-red-600"
+                onClick={() => setLoadMore(loadMore + 12)}
+              >
+                Load More
+              </button>
+            </div>
+          )}
         </div>
       </div>
       <div className="w-full text-center">
@@ -190,6 +203,42 @@ const Series = () => {
           <></>
         )}
       </div>
+    </div>
+  );
+};
+
+const Series = () => {
+  const { series, setIncreasePage, increasePage } = useContext(MainContext);
+  const [filteredSeries, setFilteredSeries] = useState(series); // Initialize filteredSeries
+
+  const auth = getAuth();
+  const [user, loading] = useAuthState(auth);
+  const [status, setStatus] = useState(true);
+
+  if (loading) {
+    return (
+      <div className="w-full h-screen flex flex-col items-center justify-center">
+        <Image
+          src={`/loader1.gif`}
+          width={500}
+          height={500}
+          alt="loading gif"
+          className="w-5/12 mx-auto h-auto rounded-lg"
+        />
+      </div>
+    );
+  }
+
+  return user ? (
+    <div>
+      <Navbar />
+      <SeriesContent
+        series={series}
+        increasePage={increasePage}
+        setIncreasePage={setIncreasePage}
+        filteredSeries={filteredSeries} // Pass filteredSeries as a prop
+        setFilteredSeries={setFilteredSeries} // Pass setFilteredSeries as a prop
+      />
       <Footer />
     </div>
   ) : (
