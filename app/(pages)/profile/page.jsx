@@ -16,6 +16,14 @@ function Profile() {
   const [status, setStatus] = useState(true);
   const [loadMore, setLoadMore] = useState(12);
 
+  if (loading) {
+    return (
+      <div className="w-full h-screen flex flex-col items-center justify-center">
+        asd
+      </div>
+    );
+  }
+
   useEffect(() => {
     if (user && user.uid) {
       const userRef = collection(db, "users");
@@ -30,19 +38,6 @@ function Profile() {
       });
 
       return () => unsubscribe();
-    }
-    if (loading) {
-      return (
-        <div className="w-full h-screen flex flex-col items-center justify-center">
-          <Image
-            src={`/loader1.gif`}
-            width={500}
-            height={500}
-            alt="loading gif"
-            className="w-5/12 mx-auto h-auto rounded-lg "
-          />
-        </div>
-      );
     }
   }, [user, loading]);
 
