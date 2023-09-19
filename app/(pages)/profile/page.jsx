@@ -31,20 +31,20 @@ function Profile() {
 
       return () => unsubscribe();
     }
+    if (loading) {
+      return (
+        <div className="w-full h-screen flex flex-col items-center justify-center">
+          <Image
+            src={`/loader1.gif`}
+            width={500}
+            height={500}
+            alt="loading gif"
+            className="w-5/12 mx-auto h-auto rounded-lg "
+          />
+        </div>
+      );
+    }
   }, [user, loading]);
-  if (loading) {
-    return (
-      <div className="w-full h-screen flex flex-col items-center justify-center">
-        <Image
-          src={`/loader1.gif`}
-          width={500}
-          height={500}
-          alt="loading gif"
-          className="w-5/12 mx-auto h-auto rounded-lg "
-        />
-      </div>
-    );
-  }
 
   return user ? (
     <section className="w-full pb-10 mx-auto min-h-[100vh]">
