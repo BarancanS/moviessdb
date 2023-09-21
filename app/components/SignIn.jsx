@@ -31,13 +31,15 @@ function SignIn() {
       >
         Profile
       </Link>
-      <Image
-        src={user.photoURL || ""}
-        width={50}
-        height={50}
-        alt="user-image"
-        className="rounded-full w-[4rem] h-[4rem]"
-      />
+      {user.photoURL && (
+        <Image
+          src={user.photoURL || ""}
+          width={50}
+          height={50}
+          alt="user-image"
+          className="rounded-full w-[4rem] h-[4rem]"
+        />
+      )}
     </div>
   ) : (
     <div className="w-full  flex flex-col items-center justify-center">

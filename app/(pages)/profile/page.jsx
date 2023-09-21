@@ -55,15 +55,21 @@ function Profile() {
       <Navbar />
       <main className="w-full bg-[#6600CC] rounded-md">
         <div className="h-32 w-10/12 max-sm:w-full mx-auto flex flex-col justify-center max-sm:px-2 items-start">
-          <h1 className="text-3xl text-white max-lg:text-2xl">
-            {user.displayName}'s List
-          </h1>
+          {user.displayName && (
+            <h1 className="text-3xl text-white max-lg:text-2xl">
+              {user.displayName}'s List
+            </h1>
+          )}
           <ul className="">
             <div>
               <li>
-                <span className="text-[#FFCC00] font-bold text-xl max-lg:text-base max-sm:text-sm">
-                  Name :
-                </span>
+                {user.displayName ? (
+                  <span className="text-[#FFCC00] font-bold text-xl max-lg:text-base max-sm:text-sm">
+                    Name :
+                  </span>
+                ) : (
+                  <p>Welcome</p>
+                )}
                 <span className="text-white font-bold text-xl max-lg:text-base max-sm:text-sm ">
                   {" "}
                   {user.displayName}
