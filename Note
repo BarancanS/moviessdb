@@ -1,1046 +1,1046 @@
-// const fetchUserName = async () => {
+// // const fetchUserName = async () => {
+// //   try {
+// //     const q = query(collection(db, "users", user.uid));
+// //     const doc = await getDocs(q);
+// //     const data = doc.docs[0].data();
+// //     setList(data.List);
+// //     console.log(data.List);
+// //   } catch (err) {
+// //     console.error(err);
+// //     //   alert("An error occured while fetching user data");
+// //   }
+// // };
+
+// const addTodoForUser = async (uid, todoText) => {
 //   try {
-//     const q = query(collection(db, "users", user.uid));
-//     const doc = await getDocs(q);
-//     const data = doc.docs[0].data();
-//     setList(data.List);
-//     console.log(data.List);
+//     const userRef = doc(db, "users", uid);
+//     const todoCollectionRef = collection(userRef, "todos");
+
+//     await addDoc(todoCollectionRef, {
+//       text: todoText,
+//       timestamp: serverTimestamp(), // You might need to import this from firebase.firestore
+//     });
+
+//     console.log("Todo added successfully.");
 //   } catch (err) {
 //     console.error(err);
-//     //   alert("An error occured while fetching user data");
+//     alert(err.message);
 //   }
 // };
 
-const addTodoForUser = async (uid, todoText) => {
-  try {
-    const userRef = doc(db, "users", uid);
-    const todoCollectionRef = collection(userRef, "todos");
-
-    await addDoc(todoCollectionRef, {
-      text: todoText,
-      timestamp: serverTimestamp(), // You might need to import this from firebase.firestore
-    });
-
-    console.log("Todo added successfully.");
-  } catch (err) {
-    console.error(err);
-    alert(err.message);
-  }
-};
-
-// Usage
-const currentUser = auth.currentUser;
-if (currentUser) {
-  addTodoForUser(currentUser.uid, "Buy groceries");
-} else {
-  alert("User not authenticated.");
-}
-
-const asd = async () => {
-  const querySnapshot = await getDocs(collection(db, "users"));
-  querySnapshot.forEach((doc) => {
-    const fgh = doc._key.path.segments[6];
-    console.log(fgh);
-  });
-};
-asd();
-/////////////////////////////////////////////////////////////////////////
-const fgh = async () => {
-  const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
-  const userDocRef = doc(db, "users", userId);
-
-  try {
-    // 2. Retrieve the current data
-    const userDoc = await getDoc(userDocRef);
-    const List = userDoc.data().List || {}; // If 'List' doesn't exist yet, create an empty object
-
-    // 3. Update the Nested Object
-    const updatedUserData = {
-      ...List,
-      movies: [
-        {
-          id: `${items.id}`,
-          title: `${items.title}`,
-          year: `${items.year}`,
-          runtime: `${items.runtime}`,
-          genres: [`${items.genres}`],
-          director: `${items.director}`,
-          actors: `${items.actors}`,
-          plot: `${items.plot}`,
-          posterUrl: `${items.posterUrl}`,
-        },
-      ], // Add the new 'location' field
-      series: [
-        {
-          id: `${items.id}`,
-          title: `${items.title}`,
-          year: `${items.year}`,
-          runtime: `${items.runtime}`,
-          genres: [`${items.genres}`],
-          director: `${items.director}`,
-          actors: `${items.actors}`,
-          plot: `${items.plot}`,
-          posterUrl: `${items.posterUrl}`,
-        },
-      ],
-    };
-
-    // 4. Update the Document
-    await updateDoc(userDocRef, { List: updatedUserData });
-
-    console.log("Document successfully updated!");
-  } catch (err) {
-    console.error(err);
-    alert("Failed to update document: " + err.message);
-  }
-};
-//////////////////////////////////////////////////////////////
-const fgh = async () => {
-  const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
-  const userDocRef = doc(db, "users", userId);
-
-  try {
-    // 2. Retrieve the current data
-    const userDoc = await getDoc(userDocRef);
-    const List = userDoc.data().List || {}; // If 'List' doesn't exist yet, create an empty object
-
-    // 3. Update the Nested Object
-    const updatedUserData = {
-      ...List,
-      id: items.id,
-      title: items.title,
-      year: items.year,
-      runtime: items.runtime,
-      genres: items.genres,
-      director: items.director,
-      actors: items.actors,
-      plot: items.plot,
-      posterUrl: items.posterUrl,
-    };
-
-    // 4. Update the Document
-    await updateDoc(userDocRef, { List: updatedUserData });
-
-    console.log("Document successfully updated!");
-  } catch (err) {
-    console.error(err);
-    alert("Failed to update document: " + err.message);
-  }
-};
-fgh();
-//////////////////////////////////////////////////////////////
-const fgh = async () => {
-  const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
-  const userDocRef = doc(db, "users", userId);
-
-  try {
-    // 2. Retrieve the current data
-    const userDoc = await getDoc(userDocRef);
-    const List = userDoc.data().List || {}; // If 'List' doesn't exist yet, create an empty object
-
-    // 3. Update the Nested Object
-    const yuio = {
-      id: items.id,
-      title: items.title,
-      year: items.year,
-      runtime: items.runtime,
-      genres: items.genres,
-      director: items.director,
-      actors: items.actors,
-      plot: items.plot,
-      posterUrl: items.posterUrl,
-    };
-    List.push(yuio),
-      // 4. Update the Document
-      await updateDoc(userDocRef, {
-        List: List,
-      });
-
-    console.log("Document successfully updated!");
-  } catch (err) {
-    console.error(err);
-    alert("Failed to update document: " + err.message);
-  }
-};
-////////////////////////////////////////////////////////
-const fgh = async () => {
-  const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
-  const userDocRef = doc(db, "users", userId);
-
-  try {
-    // 2. Retrieve the current data
-    const userDoc = await getDoc(userDocRef);
-    const List = userDoc.data().List || {}; // If 'List' doesn't exist yet, create an empty object
-
-    // 3. Update the Nested Object
-    const updatedUserData = {
-      ...List,
-      id: items.id,
-      title: items.title,
-      year: items.year,
-      runtime: items.runtime,
-      genres: items.genres,
-      director: items.director,
-      actors: items.actors,
-      plot: items.plot,
-      posterUrl: items.posterUrl,
-    };
-
-    // 4. Update the Document
-    await updateDoc(userDocRef, { List: updatedUserData });
-
-    console.log("Document successfully updated!");
-  } catch (err) {
-    console.error(err);
-    alert("Failed to update document: " + err.message);
-  }
-};
-//////////////////////////////////////////////////
-const fgh = async () => {
-  const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
-  const userDocRef = doc(db, "users", userId);
-
-  try {
-    // 2. Retrieve the current data
-    const userDoc = await getDoc(userDocRef);
-    const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
-
-    // 3. Create the new data object
-    const newData = {
-      id: items.id,
-      title: items.title,
-      year: items.year,
-      runtime: items.runtime,
-      genres: items.genres,
-      director: items.director,
-      actors: items.actors,
-      plot: items.plot,
-      posterUrl: items.posterUrl,
-    };
-
-    // 4. Update the Document with the combined data
-    const updatedUserData = [...List, newData];
-
-    await updateDoc(userDocRef, { List: updatedUserData });
-
-    console.log("Document successfully updated!");
-  } catch (err) {
-    console.error(err);
-    alert("Failed to update document: " + err.message);
-  }
-};
-///////////////////////////////////////////////////////////
-const fgh = async () => {
-  const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
-  const userDocRef = doc(db, "users", userId);
-
-  try {
-    // 2. Retrieve the current data
-    const userDoc = await getDoc(userDocRef);
-    const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
-
-    // 3. Check if the data already exists in the List using the 'id'
-    const newData = {
-      id: items.id,
-      title: items.title,
-      year: items.year,
-      runtime: items.runtime,
-      genres: items.genres,
-      director: items.director,
-      actors: items.actors,
-      plot: items.plot,
-      posterUrl: items.posterUrl,
-    };
-
-    const isDataAlreadyInList = List.some((item) => item.id === newData.id);
-
-    if (isDataAlreadyInList) {
-      console.log("Data already exists in the list.");
-    } else {
-      // 4. Update the Document with the combined data
-      const updatedUserData = [...List, newData];
-      await updateDoc(userDocRef, { List: updatedUserData });
-      console.log("Document successfully updated!");
-    }
-  } catch (err) {
-    console.error(err);
-    alert("Failed to update document: " + err.message);
-  }
-};
-///////////////////////////////////////////////////////////
-("use client");
-import { useState, useEffect, useContext } from "react";
-import { MainContext } from "/app/components/Context";
-import Footer from "/app/components/Footer";
-import Navbar from "/app/components/Navbar";
-import { useAuthState } from "react-firebase-hooks/auth";
-import SignIn from "../../../components/SignIn";
-import { getAuth } from "firebase/auth";
-import {
-  doc,
-  updateDoc,
-  getDoc,
-  query,
-  collection,
-  getDocs,
-  where,
-} from "firebase/firestore";
-import { db, onSnapshot, auth } from "../../../../shared/firebase";
-
-export default function Page({ params }) {
-  const { merge, setMerge, combined, posts, series } = useContext(MainContext);
-  const [detail, setDetail] = useState(series);
-  const auth = getAuth();
-  const [user, loading] = useAuthState(auth);
-  const [documentId, setDocumentId] = useState("");
-  const [displayAddRemove, setDisplayAddRemove] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const userRef = collection(db, "users");
-        const userQuery = query(userRef, where("uid", "==", user.uid));
-        const querySnapshot = await getDocs(userQuery);
-
-        if (!querySnapshot.empty) {
-          const data = querySnapshot.docs[0].id;
-          setDocumentId(data);
-        }
-
-        const filteredSeries = series.filter((items) =>
-          items.title.includes(
-            `${params.seriesId
-              .replace(/%20/g, " ")
-              .replace(/%3A/g, ":")
-              .replace(/%26/g, "&")}`
-          )
-        );
-        setDetail(filteredSeries);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    if (user && params.seriesId) {
-      fetchData();
-    }
-  }, [series, params.bestsId, documentId]);
-
-  useEffect(() => {
-    if (!user || !documentId) {
-      return;
-    }
-
-    const userDocRef = doc(db, "users", documentId);
-
-    const fetchData = async () => {
-      try {
-        const userDoc = await getDoc(userDocRef);
-        const userDocData = userDoc.data();
-        if (userDocData && userDocData.List) {
-          const userItemListIds = userDocData.List.map((item) => item.id);
-          const updatedDisplayAddRemove = detail.map((item) => ({
-            id: item.id,
-            display: userItemListIds.includes(item.id),
-          }));
-          setDisplayAddRemove(updatedDisplayAddRemove);
-        }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-
-    fetchData();
-  }, [user, documentId, detail]);
-
-  const handleAddRemove = async (itemId) => {
-    const userId = documentId;
-    const userDocRef = doc(db, "users", userId);
-
-    try {
-      const userDoc = await getDoc(userDocRef);
-      const List = userDoc.data().List || [];
-
-      const isDataAlreadyInList = List.some((item) => item.id === itemId);
-
-      if (isDataAlreadyInList) {
-        const updatedUserData = List.filter((item) => item.id !== itemId);
-        await updateDoc(userDocRef, { List: updatedUserData });
-        console.log("Document successfully updated! (Deleted)");
-      } else {
-        const itemToAdd = detail.find((item) => item.id === itemId);
-        if (itemToAdd) {
-          const updatedUserData = [...List, itemToAdd];
-          await updateDoc(userDocRef, { List: updatedUserData });
-          console.log("Document successfully updated! (Added)");
-        }
-      }
-
-      // Update the displayAddRemove state after the add/remove operation
-      const updatedDisplayAddRemove = displayAddRemove.map((item) =>
-        item.id === itemId ? { ...item, display: !isDataAlreadyInList } : item
-      );
-      setDisplayAddRemove(updatedDisplayAddRemove);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  return user ? (
-    <section>
-      <Navbar />
-      <main className="w-full min-h-[calc(100vh-10rem)] mx-auto flex flex-col text-white text-2xl">
-        {detail.map((items, index) => {
-          const AddItemToList = async (itemId) => {
-            const userId = documentId; // Replace with the actual user ID
-            const userDocRef = doc(db, "users", userId);
-
-            try {
-              // 2. Retrieve the current data
-              const userDoc = await getDoc(userDocRef);
-              const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
-
-              // 3. Check if the data already exists in the List using the 'id'
-              const isDataAlreadyInList = List.some(
-                (item) => item.id === itemId
-              );
-
-              if (isDataAlreadyInList) {
-                // Delete the data with the specified ID from the List
-                const updatedUserData = List.filter(
-                  (item) => item.id !== itemId
-                );
-                await updateDoc(userDocRef, { List: updatedUserData });
-                console.log("Document successfully updated! (Deleted)");
-              } else {
-                // Add the data to the List
-                const newData = {
-                  id: items.id,
-                  title: items.title,
-                  year: items.year,
-                  runtime: items.runtime,
-                  genres: items.genres,
-                  director: items.director,
-                  actors: items.actors,
-                  plot: items.plot,
-                  posterUrl: items.posterUrl,
-                };
-                const updatedUserData = [...List, newData];
-                await updateDoc(userDocRef, { List: updatedUserData });
-                console.log("Document successfully updated! (Added)");
-              }
-            } catch (err) {
-              console.error(err);
-            }
-          };
-          return (
-            <div
-              key={index}
-              className="bg-[length:1920px_700px] bg-no-repeat bg-center border w-full  min-h-[50vh] shadow-md shadow-slate-500"
-              style={{
-                backgroundImage: `url("${items.posterUrl}")`,
-              }}
-            >
-              <div className="bg-black/[.66] w-full min-h-[50vh] px-2 py-4">
-                <div className="w-full min-h-[50vh] max-md:flex-col flex flex-row justify-center items-center gap-10">
-                  <div
-                    style={{
-                      backgroundImage: `url("${items.posterUrl}")`,
-                    }}
-                    className="max-sm:w-36 max-sm:h-52 max-md:w-44 max-md:h-60 max-lg:w-56 max-lg:h-72 w-72 h-96 bg-cover bg-no-repeat bg-center rounded-xl"
-                  ></div>
-                  <div className="w-5/12 max-md:w-11/12">
-                    <div className="flex flex-row">
-                      <h1 className="text-left mt-2 text-white font-extrabold">
-                        {items.title.substring(0, 13)}
-                      </h1>
-                      <h1 className="text-left mt-2 text-white">
-                        ({items.year})
-                      </h1>
-                    </div>
-                    <div className="flex flex-row gap-2">
-                      <h1 className="text-sm font-light">
-                        {items.genres
-                          .toString()
-                          .replace(/([A-Z])/g, " $1")
-                          .trim()}
-                      </h1>
-                      <h1 className="text-sm font-light">
-                        -{items.runtime}minute
-                      </h1>
-                    </div>
-                    <h1 className="text-sm font-light">
-                      <span className="font-bold text-[#FFCC00] text-base">
-                        Platform:
-                      </span>
-                      {items.platform}
-                    </h1>
-                    <h1 className="text-sm font-light">
-                      <span className="font-bold text-[#FFCC00] text-base">
-                        Actors:
-                      </span>
-                      {items.actors}
-                    </h1>
-                    <h1 className="text-sm font-light">
-                      <span className="font-bold text-[#FFCC00] text-base">
-                        Director:
-                      </span>
-                      {items.director}
-                    </h1>
-                    <h1 className="text-sm font-light">
-                      <span className="font-bold text-[#FFCC00] text-base">
-                        Plot:
-                      </span>
-                      {items.plot}
-                    </h1>
-                    <button
-                      onClick={() => handleAddRemove(items.id)}
-                      className="bg-[#FFCC00] rounded-xl mt-2 h-10 p-2 flex flex-row items-center justify-center cursor-pointer"
-                    >
-                      {displayAddRemove.find((item) => item.id === items.id)
-                        ?.display
-                        ? "Remove from List"
-                        : "Add to List"}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </main>
-      <Footer />
-    </section>
-  ) : (
-    <SignIn />
-  );
-}
-/////////////////////////////////////
-"use client";
-import { useState, useEffect, useContext } from "react";
-import { MainContext } from "/app/components/Context";
-import Footer from "/app/components/Footer";
-import Navbar from "/app/components/Navbar";
-import Image from "next/dist/client/image";
-import { useAuthState } from "react-firebase-hooks/auth";
-import SignIn from "../../../components/SignIn";
-import { getAuth } from "firebase/auth";
-import {
-  doc,
-  updateDoc,
-  getDoc,
-  query,
-  collection,
-  getDocs,
-  where,
-} from "firebase/firestore";
-import { db, onSnapshot, auth } from "../../../../shared/firebase";
-
-export default function Page({ params }) {
-  const { merge, setMerge, combined, posts, series } = useContext(MainContext);
-  const [detail, setDetail] = useState(combined);
-  const auth = getAuth();
-  const [user, loading] = useAuthState(auth);
-  const [documentId, setDocumentId] = useState();
-  const [displayAddRemove, setDisplayAddRemove] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const userRef = collection(db, "users");
-        const userQuery = query(userRef, where("uid", "==", user.uid));
-        const querySnapshot = await getDocs(userQuery);
-
-        if (!querySnapshot.empty) {
-          const data = querySnapshot.docs[0].id;
-          setDocumentId(data);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    if (user && params.bestsId) {
-      fetchData();
-    }
-  }, [combined, params.bestsId, documentId]);
-
-  useEffect(() => {
-    if (!user || !documentId) {
-      return;
-    }
-
-    const userDocRef = doc(db, "users", documentId);
-
-    const fetchData = async () => {
-      try {
-        const userDoc = await getDoc(userDocRef);
-        const userDocData = userDoc.data();
-        if (userDocData && userDocData.List) {
-          const userItemListIds = userDocData.List.map((item) => item.id);
-          const updatedDisplayAddRemove = detail.map((item) => ({
-            id: item.id,
-            display: userItemListIds.includes(item.id),
-          }));
-          setDisplayAddRemove(updatedDisplayAddRemove);
-        }
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-    asdasd();
-    fetchData();
-  }, [user, documentId]);
-  const asdasd = async () => {
-    // const filteredBests = combined.filter((items) =>
-    //   items.id
-    //     .toString()
-    //     .includes(
-    //       `${params.bestsId
-    //         .replace(/%20/g, " ")
-    //         .replace(/%3A/g, ":")
-    //         .replace(/%26/g, "&")}`
-    //     )
-    // );
-    // setDetail(filteredBests);
-    return fetch(
-      `https://api.themoviedb.org/3/multi/${params.bestsId}?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setDetail([data]);
-        console.log(detail);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const handleAddRemove = async (itemId) => {
-    const userId = documentId;
-    const userDocRef = doc(db, "users", userId);
-
-    try {
-      const userDoc = await getDoc(userDocRef);
-      const List = userDoc.data().List || [];
-
-      const isDataAlreadyInList = List.some((item) => item.id === itemId);
-
-      if (isDataAlreadyInList) {
-        const updatedUserData = List.filter((item) => item.id !== itemId);
-        await updateDoc(userDocRef, { List: updatedUserData });
-        console.log("Document successfully updated! (Deleted)");
-      } else {
-        const itemToAdd = detail.find((item) => item.id === itemId);
-        if (itemToAdd) {
-          const updatedUserData = [...List, itemToAdd];
-          await updateDoc(userDocRef, { List: updatedUserData });
-          console.log("Document successfully updated! (Added)");
-        }
-      }
-
-      // Update the displayAddRemove state after the add/remove operation
-      const updatedDisplayAddRemove = displayAddRemove.map((item) =>
-        item.id === itemId ? { ...item, display: !isDataAlreadyInList } : item
-      );
-      setDisplayAddRemove(updatedDisplayAddRemove);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  return user ? (
-    <section>
-      <Navbar />
-      <main className="w-full min-h-[calc(100vh-10rem)] mx-auto flex flex-col text-2xl bg-gray-800 text-white">
-        {detail.map((items, index) => {
-          const AddItemToList = async (itemId) => {
-            const userId = documentId; // Replace with the actual user ID
-            const userDocRef = doc(db, "users", userId);
-
-            try {
-              // 2. Retrieve the current data
-              const userDoc = await getDoc(userDocRef);
-              const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
-
-              // 3. Check if the data already exists in the List using the 'id'
-              const isDataAlreadyInList = List.some(
-                (item) => item.id === itemId
-              );
-
-              if (isDataAlreadyInList) {
-                // Delete the data with the specified ID from the List
-                const updatedUserData = List.filter(
-                  (item) => item.id !== itemId
-                );
-                await updateDoc(userDocRef, { List: updatedUserData });
-                console.log("Document successfully updated! (Deleted)");
-              } else {
-                // Add the data to the List
-                const newData = {
-                  id: items.id,
-                  title: items.title,
-                  year: items.year,
-                  runtime: items.runtime,
-                  genres: items.genres,
-                  director: items.director,
-                  actors: items.actors,
-                  plot: items.plot,
-                  posterUrl: items.posterUrl,
-                };
-                const updatedUserData = [...List, newData];
-                await updateDoc(userDocRef, { List: updatedUserData });
-                console.log("Document successfully updated! (Added)");
-              }
-            } catch (err) {
-              console.error(err);
-            }
-          };
-          return (
-            <div key={items.id} className="p-4 bg-gray-800">
-              <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/3">
-                  <Image
-                    src={`https://image.tmdb.org/t/p/original${items.poster_path}`}
-                    width={500}
-                    height={500}
-                    alt={items.title}
-                    className="w-9/12 mx-auto h-auto rounded-lg "
-                  />
-                </div>
-                <div className="md:w-2/3 md:pl-4">
-                  <h1 className="text-3xl font-bold">
-                    {items.title || items.name} (
-                    {items.release_date || items.first_air_date})
-                  </h1>
-                  <div className="text-lg text-gray-400">
-                    {/* <p>Genres: {items.genres.join(", ")}</p> */}
-                    <p>Runtime: {items.runtime} minutes</p>
-                  </div>
-                  <p className="text-lg">Vote: {items.vote_count}</p>
-                  <p className="text-lg">IMDB: {items.vote_average}</p>
-                  <p className="text-lg">Plot: {items.overview}</p>
-                  <button
-                    onClick={() => handleAddRemove(items.id)}
-                    className="mt-4 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out"
-                  >
-                    {displayAddRemove.find(
-                      (displayItem) => displayItem.id === items.id
-                    )?.display
-                      ? "Remove from List"
-                      : "Add to List"}
-                  </button>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </main>
-      <Footer />
-    </section>
-  ) : (
-    <SignIn />
-  );
-}
-///////////////////////////////////////////////////
-"use client";
-import { useState, useEffect, useContext } from "react";
-import { MainContext } from "/app/components/Context";
-import Footer from "/app/components/Footer";
-import Navbar from "/app/components/Navbar";
-import Movies from "../../components/Movies";
-import Link from "next/link";
-import Image from "next/image";
-import { getAuth } from "firebase/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
-import SignIn from "../../components/SignIn";
-import SignUp from "../../components/SignUp";
-
-const Categories = () => {
-  const { merge, setMerge, combined, movies, series } = useContext(MainContext);
-  const [filteredMerge, setFilteredMerge] = useState([]);
-  const auth = getAuth();
-  const [user, loading] = useAuthState(auth);
-  const [status, setStatus] = useState(true);
-
-  useEffect(() => {
-    setFilteredMerge(combined || []); // Ensure combined is an array or provide a default empty array
-  }, [combined, setMerge]);
-
-  return user ? (
-    <main>
-      <Navbar />
-      <section className="flex flex-row mt-5 xl:px-10 px-1">
-        <div className="w-full">
-          <div className="mt-10">
-            <h1 className="text-3xl text-left">Action</h1>
-            <div className="w-full flex flex-row overflow-y-scroll items-start py-10 gap-5">
-              {filteredMerge.map((items, index) => {
-                const checkPage = items.name ? "series" : "movies";
-                return (
-                  <div key={index}>
-                    {items.genres &&
-                      items.genres.map((genresItems, genresIndex) => (
-                        <div className="flex flex-row" key={genresIndex}>
-                          <p>{genresItems.name}</p>
-                        </div>
-                      ))}
-                    <Link href={`/${checkPage}/${items.id}`} key={index}>
-                      <div className="rounded-sm p-2 my-10  shadow-inner hover:shadow-2xl hover:shadow-fuchsia-800 shadow-fuchsia-950 hover:scale-105 transition-all duration-700 ease-in-out">
-                        <div
-                          style={{
-                            backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
-                          }}
-                          className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-sm"
-                        ></div>
-
-                        <h1 className="text-left ">{items.year}</h1>
-                        <h1 className="text-left mt-2 text-white font-extrabold">
-                          {items.title?.substring(0, 13) ||
-                            items.name?.substring(0, 13)}
-                        </h1>
-                      </div>
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </section>
-      <Footer />
-    </main>
-  ) : (
-    <div>
-      {status ? (
-        <div className="w-full flex flex-col items-center justify-center">
-          <SignIn />
-          <button
-            onClick={() => setStatus(!status)}
-            className="text-white font-medium bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
-          >
-            Register Page
-          </button>
-        </div>
-      ) : (
-        <div className="w-full flex flex-col items-center justify-center">
-          <SignUp />
-          <button
-            onClick={() => setStatus(!status)}
-            className="text-white font-medium bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
-          >
-            Login Page
-          </button>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default Categories;
-////////////////////////////
-              {filteredMerge
-                .filter((items) => items.genres.includes("Drama"))
-                .map((items, index) => {
-                  return (
-                    <Link href={`/bests/${items.title}`} key={index}>
-                      <div
-                        style={{ backgroundImage: `url("${items.posterUrl}")` }}
-                        className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
-                      ></div>
-                    </Link>
-                  );
-                })}
-/////////////////////////////////////////////////////////////////////
-"use client";
-import { useState, useEffect, useContext } from "react";
-import { MainContext } from "/app/components/Context";
-import Footer from "/app/components/Footer";
-import Navbar from "/app/components/Navbar";
-import Movies from "../../components/Movies";
-import Link from "next/link";
-import Image from "next/image";
-import { getAuth } from "firebase/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
-import SignIn from "../../components/SignIn";
-import SignUp from "../../components/SignUp";
-
-const Categories = () => {
-  const { combined } = useContext(MainContext);
-  const [filteredMerge, setFilteredMerge] = useState([]);
-  const auth = getAuth();
-  const [user, loading] = useAuthState(auth);
-  const [status, setStatus] = useState(true);
-
-  useEffect(() => {
-    setFilteredMerge(combined || []);
-  }, [combined]);
-
-  return user ? (
-    <main>
-      <Navbar />
-      <section className="flex flex-row mt-5 xl:px-10 px-1">
-        <div className="w-full">
-          <div className="mt-10">
-            <h1 className="text-3xl text-left">Action</h1>
-            <div className="w-full flex flex-row overflow-y-scroll items-start py-10 gap-5">
-              {filteredMerge
-                .filter(
-                  (items) =>
-                    Array.isArray(items.genres) &&
-                    items.genres.some(
-                      (genreItem) => genreItem.name === "Action"
-                    )
-                )
-                .map((items, index) => {
-                  const checkPage = items.name ? "series" : "movies";
-                  return (
-                    <div key={index}>
-                      {items.genres &&
-                        items.genres.map((genresItems, genresIndex) => (
-                          <div className="flex flex-row" key={genresIndex}>
-                            <p>{genresItems.name}</p>
-                          </div>
-                        ))}
-                      <Link href={`/${checkPage}/${items.id}`} key={index}>
-                        <div className="rounded-sm p-2 my-10  shadow-inner hover:shadow-2xl hover:shadow-fuchsia-800 shadow-fuchsia-950 hover:scale-105 transition-all duration-700 ease-in-out">
-                          <div
-                            style={{
-                              backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
-                            }}
-                            className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-sm"
-                          ></div>
-                          <h1 className="text-left ">{items.year}</h1>
-                          <h1 className="text-left mt-2 text-white font-extrabold">
-                            {items.title?.substring(0, 13) ||
-                              items.name?.substring(0, 13)}
-                          </h1>
-                        </div>
-                      </Link>
-                    </div>
-                  );
-                })}
-            </div>
-          </div>
-        </div>
-      </section>
-      <Footer />
-    </main>
-  ) : (
-    <div>
-      {status ? (
-        <div className="w-full flex flex-col items-center justify-center">
-          <SignIn />
-          <button
-            onClick={() => setStatus(!status)}
-            className="text-white font-medium bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
-          >
-            Register Page
-          </button>
-        </div>
-      ) : (
-        <div className="w-full flex flex-col items-center justify-center">
-          <SignUp />
-          <button
-            onClick={() => setStatus(!status)}
-            className="text-white font-medium bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
-          >
-            Login Page
-          </button>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default Categories;
-////////////////////////////////////////////////////////////////////////
-              {/* {filteredMerge
-                .filter((items) => items.genres.includes("Drama"))
-                .map((items, index) => {
-                  return (
-                    <Link href={`/bests/${items.title}`} key={index}>
-                      <div
-                        style={{ backgroundImage: `url("${items.posterUrl}")` }}
-                        className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-300 ease-in-out"
-                      ></div>
-                    </Link>
-                  );
-                })} */}
-////////////////////////////////////////////////////////////////////////
-<div class="bg-white p-8 rounded shadow-md w-96">
-      <h1 class="text-2xl font-semibold mb-4">Login</h1>
-      <div class="mb-4">
-        <label for="text" class="block text-sm font-medium text-gray-600">
-          Full Name
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          class="mt-1 p-2 w-full border rounded-md"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div class="mb-4">
-        <label for="email" class="block text-sm font-medium text-gray-600">
-          Email Address
-        </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          class="mt-1 p-2 w-full border rounded-md"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div class="mb-4">
-        <label for="password" class="block text-sm font-medium text-gray-600">
-          Password
-        </label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          class="mt-1 p-2 w-full border rounded-md"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div class="flex items-center justify-between mb-4">
-        <label for="remember" class="flex items-center">
-          <input type="checkbox" id="remember" name="remember" class="mr-2" />
-          <span class="text-sm text-gray-600">Remember me</span>
-        </label>
-        <a href="#" class="text-sm text-blue-600 hover:underline">
-          Forgot your password?
-        </a>
-      </div>
-      <div className="flex flex-row justify-center items-center gap-2">
-        <button
-          type="submit"
-          class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-          onClick={register}
-        >
-          Register
-        </button>
-        <button
-          type="submit"
-          class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-          onClick={signInWithGoogle}
-        >
-          <span className="flex flex-row">
-            <FcGoogle className="text-2xl" />
-            SignIn WithGoogle
-          </span>
-        </button>
-      </div>
-      <p class="mt-4 text-sm text-gray-600">
-        Do You have an account?{" "}
-        <a href="#" class="text-blue-600 hover:underline">
-          Sign In
-        </a>
-      </p>
-    </div>
-    ////////////////////////////////////////////////////////////////////////////////////////
+// // Usage
+// const currentUser = auth.currentUser;
+// if (currentUser) {
+//   addTodoForUser(currentUser.uid, "Buy groceries");
+// } else {
+//   alert("User not authenticated.");
+// }
+
+// const asd = async () => {
+//   const querySnapshot = await getDocs(collection(db, "users"));
+//   querySnapshot.forEach((doc) => {
+//     const fgh = doc._key.path.segments[6];
+//     console.log(fgh);
+//   });
+// };
+// asd();
+// /////////////////////////////////////////////////////////////////////////
+// const fgh = async () => {
+//   const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
+//   const userDocRef = doc(db, "users", userId);
+
+//   try {
+//     // 2. Retrieve the current data
+//     const userDoc = await getDoc(userDocRef);
+//     const List = userDoc.data().List || {}; // If 'List' doesn't exist yet, create an empty object
+
+//     // 3. Update the Nested Object
+//     const updatedUserData = {
+//       ...List,
+//       movies: [
+//         {
+//           id: `${items.id}`,
+//           title: `${items.title}`,
+//           year: `${items.year}`,
+//           runtime: `${items.runtime}`,
+//           genres: [`${items.genres}`],
+//           director: `${items.director}`,
+//           actors: `${items.actors}`,
+//           plot: `${items.plot}`,
+//           posterUrl: `${items.posterUrl}`,
+//         },
+//       ], // Add the new 'location' field
+//       series: [
+//         {
+//           id: `${items.id}`,
+//           title: `${items.title}`,
+//           year: `${items.year}`,
+//           runtime: `${items.runtime}`,
+//           genres: [`${items.genres}`],
+//           director: `${items.director}`,
+//           actors: `${items.actors}`,
+//           plot: `${items.plot}`,
+//           posterUrl: `${items.posterUrl}`,
+//         },
+//       ],
+//     };
+
+//     // 4. Update the Document
+//     await updateDoc(userDocRef, { List: updatedUserData });
+
+//     console.log("Document successfully updated!");
+//   } catch (err) {
+//     console.error(err);
+//     alert("Failed to update document: " + err.message);
+//   }
+// };
+// //////////////////////////////////////////////////////////////
+// const fgh = async () => {
+//   const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
+//   const userDocRef = doc(db, "users", userId);
+
+//   try {
+//     // 2. Retrieve the current data
+//     const userDoc = await getDoc(userDocRef);
+//     const List = userDoc.data().List || {}; // If 'List' doesn't exist yet, create an empty object
+
+//     // 3. Update the Nested Object
+//     const updatedUserData = {
+//       ...List,
+//       id: items.id,
+//       title: items.title,
+//       year: items.year,
+//       runtime: items.runtime,
+//       genres: items.genres,
+//       director: items.director,
+//       actors: items.actors,
+//       plot: items.plot,
+//       posterUrl: items.posterUrl,
+//     };
+
+//     // 4. Update the Document
+//     await updateDoc(userDocRef, { List: updatedUserData });
+
+//     console.log("Document successfully updated!");
+//   } catch (err) {
+//     console.error(err);
+//     alert("Failed to update document: " + err.message);
+//   }
+// };
+// fgh();
+// //////////////////////////////////////////////////////////////
+// const fgh = async () => {
+//   const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
+//   const userDocRef = doc(db, "users", userId);
+
+//   try {
+//     // 2. Retrieve the current data
+//     const userDoc = await getDoc(userDocRef);
+//     const List = userDoc.data().List || {}; // If 'List' doesn't exist yet, create an empty object
+
+//     // 3. Update the Nested Object
+//     const yuio = {
+//       id: items.id,
+//       title: items.title,
+//       year: items.year,
+//       runtime: items.runtime,
+//       genres: items.genres,
+//       director: items.director,
+//       actors: items.actors,
+//       plot: items.plot,
+//       posterUrl: items.posterUrl,
+//     };
+//     List.push(yuio),
+//       // 4. Update the Document
+//       await updateDoc(userDocRef, {
+//         List: List,
+//       });
+
+//     console.log("Document successfully updated!");
+//   } catch (err) {
+//     console.error(err);
+//     alert("Failed to update document: " + err.message);
+//   }
+// };
+// ////////////////////////////////////////////////////////
+// const fgh = async () => {
+//   const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
+//   const userDocRef = doc(db, "users", userId);
+
+//   try {
+//     // 2. Retrieve the current data
+//     const userDoc = await getDoc(userDocRef);
+//     const List = userDoc.data().List || {}; // If 'List' doesn't exist yet, create an empty object
+
+//     // 3. Update the Nested Object
+//     const updatedUserData = {
+//       ...List,
+//       id: items.id,
+//       title: items.title,
+//       year: items.year,
+//       runtime: items.runtime,
+//       genres: items.genres,
+//       director: items.director,
+//       actors: items.actors,
+//       plot: items.plot,
+//       posterUrl: items.posterUrl,
+//     };
+
+//     // 4. Update the Document
+//     await updateDoc(userDocRef, { List: updatedUserData });
+
+//     console.log("Document successfully updated!");
+//   } catch (err) {
+//     console.error(err);
+//     alert("Failed to update document: " + err.message);
+//   }
+// };
+// //////////////////////////////////////////////////
+// const fgh = async () => {
+//   const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
+//   const userDocRef = doc(db, "users", userId);
+
+//   try {
+//     // 2. Retrieve the current data
+//     const userDoc = await getDoc(userDocRef);
+//     const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
+
+//     // 3. Create the new data object
+//     const newData = {
+//       id: items.id,
+//       title: items.title,
+//       year: items.year,
+//       runtime: items.runtime,
+//       genres: items.genres,
+//       director: items.director,
+//       actors: items.actors,
+//       plot: items.plot,
+//       posterUrl: items.posterUrl,
+//     };
+
+//     // 4. Update the Document with the combined data
+//     const updatedUserData = [...List, newData];
+
+//     await updateDoc(userDocRef, { List: updatedUserData });
+
+//     console.log("Document successfully updated!");
+//   } catch (err) {
+//     console.error(err);
+//     alert("Failed to update document: " + err.message);
+//   }
+// };
+// ///////////////////////////////////////////////////////////
+// const fgh = async () => {
+//   const userId = "WWVP8uzf1Gn7WC7vJsfL"; // Replace with the actual user ID
+//   const userDocRef = doc(db, "users", userId);
+
+//   try {
+//     // 2. Retrieve the current data
+//     const userDoc = await getDoc(userDocRef);
+//     const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
+
+//     // 3. Check if the data already exists in the List using the 'id'
+//     const newData = {
+//       id: items.id,
+//       title: items.title,
+//       year: items.year,
+//       runtime: items.runtime,
+//       genres: items.genres,
+//       director: items.director,
+//       actors: items.actors,
+//       plot: items.plot,
+//       posterUrl: items.posterUrl,
+//     };
+
+//     const isDataAlreadyInList = List.some((item) => item.id === newData.id);
+
+//     if (isDataAlreadyInList) {
+//       console.log("Data already exists in the list.");
+//     } else {
+//       // 4. Update the Document with the combined data
+//       const updatedUserData = [...List, newData];
+//       await updateDoc(userDocRef, { List: updatedUserData });
+//       console.log("Document successfully updated!");
+//     }
+//   } catch (err) {
+//     console.error(err);
+//     alert("Failed to update document: " + err.message);
+//   }
+// };
+// ///////////////////////////////////////////////////////////
+// ("use client");
+// import { useState, useEffect, useContext } from "react";
+// import { MainContext } from "/app/components/Context";
+// import Footer from "/app/components/Footer";
+// import Navbar from "/app/components/Navbar";
+// import { useAuthState } from "react-firebase-hooks/auth";
+// import SignIn from "../../../components/SignIn";
+// import { getAuth } from "firebase/auth";
+// import {
+//   doc,
+//   updateDoc,
+//   getDoc,
+//   query,
+//   collection,
+//   getDocs,
+//   where,
+// } from "firebase/firestore";
+// import { db, onSnapshot, auth } from "../../../../shared/firebase";
+
+// export default function Page({ params }) {
+//   const { merge, setMerge, combined, posts, series } = useContext(MainContext);
+//   const [detail, setDetail] = useState(series);
+//   const auth = getAuth();
+//   const [user, loading] = useAuthState(auth);
+//   const [documentId, setDocumentId] = useState("");
+//   const [displayAddRemove, setDisplayAddRemove] = useState([]);
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const userRef = collection(db, "users");
+//         const userQuery = query(userRef, where("uid", "==", user.uid));
+//         const querySnapshot = await getDocs(userQuery);
+
+//         if (!querySnapshot.empty) {
+//           const data = querySnapshot.docs[0].id;
+//           setDocumentId(data);
+//         }
+
+//         const filteredSeries = series.filter((items) =>
+//           items.title.includes(
+//             `${params.seriesId
+//               .replace(/%20/g, " ")
+//               .replace(/%3A/g, ":")
+//               .replace(/%26/g, "&")}`
+//           )
+//         );
+//         setDetail(filteredSeries);
+//       } catch (error) {
+//         console.error("Error fetching data:", error);
+//       }
+//     };
+
+//     if (user && params.seriesId) {
+//       fetchData();
+//     }
+//   }, [series, params.bestsId, documentId]);
+
+//   useEffect(() => {
+//     if (!user || !documentId) {
+//       return;
+//     }
+
+//     const userDocRef = doc(db, "users", documentId);
+
+//     const fetchData = async () => {
+//       try {
+//         const userDoc = await getDoc(userDocRef);
+//         const userDocData = userDoc.data();
+//         if (userDocData && userDocData.List) {
+//           const userItemListIds = userDocData.List.map((item) => item.id);
+//           const updatedDisplayAddRemove = detail.map((item) => ({
+//             id: item.id,
+//             display: userItemListIds.includes(item.id),
+//           }));
+//           setDisplayAddRemove(updatedDisplayAddRemove);
+//         }
+//       } catch (error) {
+//         console.error("Error fetching user data:", error);
+//       }
+//     };
+
+//     fetchData();
+//   }, [user, documentId, detail]);
+
+//   const handleAddRemove = async (itemId) => {
+//     const userId = documentId;
+//     const userDocRef = doc(db, "users", userId);
+
+//     try {
+//       const userDoc = await getDoc(userDocRef);
+//       const List = userDoc.data().List || [];
+
+//       const isDataAlreadyInList = List.some((item) => item.id === itemId);
+
+//       if (isDataAlreadyInList) {
+//         const updatedUserData = List.filter((item) => item.id !== itemId);
+//         await updateDoc(userDocRef, { List: updatedUserData });
+//         console.log("Document successfully updated! (Deleted)");
+//       } else {
+//         const itemToAdd = detail.find((item) => item.id === itemId);
+//         if (itemToAdd) {
+//           const updatedUserData = [...List, itemToAdd];
+//           await updateDoc(userDocRef, { List: updatedUserData });
+//           console.log("Document successfully updated! (Added)");
+//         }
+//       }
+
+//       // Update the displayAddRemove state after the add/remove operation
+//       const updatedDisplayAddRemove = displayAddRemove.map((item) =>
+//         item.id === itemId ? { ...item, display: !isDataAlreadyInList } : item
+//       );
+//       setDisplayAddRemove(updatedDisplayAddRemove);
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   };
+
+//   return user ? (
+//     <section>
+//       <Navbar />
+//       <main className="w-full min-h-[calc(100vh-10rem)] mx-auto flex flex-col text-white text-2xl">
+//         {detail.map((items, index) => {
+//           const AddItemToList = async (itemId) => {
+//             const userId = documentId; // Replace with the actual user ID
+//             const userDocRef = doc(db, "users", userId);
+
+//             try {
+//               // 2. Retrieve the current data
+//               const userDoc = await getDoc(userDocRef);
+//               const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
+
+//               // 3. Check if the data already exists in the List using the 'id'
+//               const isDataAlreadyInList = List.some(
+//                 (item) => item.id === itemId
+//               );
+
+//               if (isDataAlreadyInList) {
+//                 // Delete the data with the specified ID from the List
+//                 const updatedUserData = List.filter(
+//                   (item) => item.id !== itemId
+//                 );
+//                 await updateDoc(userDocRef, { List: updatedUserData });
+//                 console.log("Document successfully updated! (Deleted)");
+//               } else {
+//                 // Add the data to the List
+//                 const newData = {
+//                   id: items.id,
+//                   title: items.title,
+//                   year: items.year,
+//                   runtime: items.runtime,
+//                   genres: items.genres,
+//                   director: items.director,
+//                   actors: items.actors,
+//                   plot: items.plot,
+//                   posterUrl: items.posterUrl,
+//                 };
+//                 const updatedUserData = [...List, newData];
+//                 await updateDoc(userDocRef, { List: updatedUserData });
+//                 console.log("Document successfully updated! (Added)");
+//               }
+//             } catch (err) {
+//               console.error(err);
+//             }
+//           };
+//           return (
+//             <div
+//               key={index}
+//               className="bg-[length:1920px_700px] bg-no-repeat bg-center border w-full  min-h-[50vh] shadow-md shadow-slate-500"
+//               style={{
+//                 backgroundImage: `url("${items.posterUrl}")`,
+//               }}
+//             >
+//               <div className="bg-black/[.66] w-full min-h-[50vh] px-2 py-4">
+//                 <div className="w-full min-h-[50vh] max-md:flex-col flex flex-row justify-center items-center gap-10">
+//                   <div
+//                     style={{
+//                       backgroundImage: `url("${items.posterUrl}")`,
+//                     }}
+//                     className="max-sm:w-36 max-sm:h-52 max-md:w-44 max-md:h-60 max-lg:w-56 max-lg:h-72 w-72 h-96 bg-cover bg-no-repeat bg-center rounded-xl"
+//                   ></div>
+//                   <div className="w-5/12 max-md:w-11/12">
+//                     <div className="flex flex-row">
+//                       <h1 className="text-left mt-2 text-white font-extrabold">
+//                         {items.title.substring(0, 13)}
+//                       </h1>
+//                       <h1 className="text-left mt-2 text-white">
+//                         ({items.year})
+//                       </h1>
+//                     </div>
+//                     <div className="flex flex-row gap-2">
+//                       <h1 className="text-sm font-light">
+//                         {items.genres
+//                           .toString()
+//                           .replace(/([A-Z])/g, " $1")
+//                           .trim()}
+//                       </h1>
+//                       <h1 className="text-sm font-light">
+//                         -{items.runtime}minute
+//                       </h1>
+//                     </div>
+//                     <h1 className="text-sm font-light">
+//                       <span className="font-bold text-[#FFCC00] text-base">
+//                         Platform:
+//                       </span>
+//                       {items.platform}
+//                     </h1>
+//                     <h1 className="text-sm font-light">
+//                       <span className="font-bold text-[#FFCC00] text-base">
+//                         Actors:
+//                       </span>
+//                       {items.actors}
+//                     </h1>
+//                     <h1 className="text-sm font-light">
+//                       <span className="font-bold text-[#FFCC00] text-base">
+//                         Director:
+//                       </span>
+//                       {items.director}
+//                     </h1>
+//                     <h1 className="text-sm font-light">
+//                       <span className="font-bold text-[#FFCC00] text-base">
+//                         Plot:
+//                       </span>
+//                       {items.plot}
+//                     </h1>
+//                     <button
+//                       onClick={() => handleAddRemove(items.id)}
+//                       className="bg-[#FFCC00] rounded-xl mt-2 h-10 p-2 flex flex-row items-center justify-center cursor-pointer"
+//                     >
+//                       {displayAddRemove.find((item) => item.id === items.id)
+//                         ?.display
+//                         ? "Remove from List"
+//                         : "Add to List"}
+//                     </button>
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+//           );
+//         })}
+//       </main>
+//       <Footer />
+//     </section>
+//   ) : (
+//     <SignIn />
+//   );
+// }
+// /////////////////////////////////////
+// "use client";
+// import { useState, useEffect, useContext } from "react";
+// import { MainContext } from "/app/components/Context";
+// import Footer from "/app/components/Footer";
+// import Navbar from "/app/components/Navbar";
+// import Image from "next/dist/client/image";
+// import { useAuthState } from "react-firebase-hooks/auth";
+// import SignIn from "../../../components/SignIn";
+// import { getAuth } from "firebase/auth";
+// import {
+//   doc,
+//   updateDoc,
+//   getDoc,
+//   query,
+//   collection,
+//   getDocs,
+//   where,
+// } from "firebase/firestore";
+// import { db, onSnapshot, auth } from "../../../../shared/firebase";
+
+// export default function Page({ params }) {
+//   const { merge, setMerge, combined, posts, series } = useContext(MainContext);
+//   const [detail, setDetail] = useState(combined);
+//   const auth = getAuth();
+//   const [user, loading] = useAuthState(auth);
+//   const [documentId, setDocumentId] = useState();
+//   const [displayAddRemove, setDisplayAddRemove] = useState([]);
+
+//   useEffect(() => {
+//     const fetchData = async () => {
+//       try {
+//         const userRef = collection(db, "users");
+//         const userQuery = query(userRef, where("uid", "==", user.uid));
+//         const querySnapshot = await getDocs(userQuery);
+
+//         if (!querySnapshot.empty) {
+//           const data = querySnapshot.docs[0].id;
+//           setDocumentId(data);
+//         }
+//       } catch (error) {
+//         console.error("Error fetching data:", error);
+//       }
+//     };
+
+//     if (user && params.bestsId) {
+//       fetchData();
+//     }
+//   }, [combined, params.bestsId, documentId]);
+
+//   useEffect(() => {
+//     if (!user || !documentId) {
+//       return;
+//     }
+
+//     const userDocRef = doc(db, "users", documentId);
+
+//     const fetchData = async () => {
+//       try {
+//         const userDoc = await getDoc(userDocRef);
+//         const userDocData = userDoc.data();
+//         if (userDocData && userDocData.List) {
+//           const userItemListIds = userDocData.List.map((item) => item.id);
+//           const updatedDisplayAddRemove = detail.map((item) => ({
+//             id: item.id,
+//             display: userItemListIds.includes(item.id),
+//           }));
+//           setDisplayAddRemove(updatedDisplayAddRemove);
+//         }
+//       } catch (error) {
+//         console.error("Error fetching user data:", error);
+//       }
+//     };
+//     asdasd();
+//     fetchData();
+//   }, [user, documentId]);
+//   const asdasd = async () => {
+//     // const filteredBests = combined.filter((items) =>
+//     //   items.id
+//     //     .toString()
+//     //     .includes(
+//     //       `${params.bestsId
+//     //         .replace(/%20/g, " ")
+//     //         .replace(/%3A/g, ":")
+//     //         .replace(/%26/g, "&")}`
+//     //     )
+//     // );
+//     // setDetail(filteredBests);
+//     return fetch(
+//       `https://api.themoviedb.org/3/multi/${params.bestsId}?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8`
+//     )
+//       .then((response) => response.json())
+//       .then((data) => {
+//         setDetail([data]);
+//         console.log(detail);
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   };
+
+//   const handleAddRemove = async (itemId) => {
+//     const userId = documentId;
+//     const userDocRef = doc(db, "users", userId);
+
+//     try {
+//       const userDoc = await getDoc(userDocRef);
+//       const List = userDoc.data().List || [];
+
+//       const isDataAlreadyInList = List.some((item) => item.id === itemId);
+
+//       if (isDataAlreadyInList) {
+//         const updatedUserData = List.filter((item) => item.id !== itemId);
+//         await updateDoc(userDocRef, { List: updatedUserData });
+//         console.log("Document successfully updated! (Deleted)");
+//       } else {
+//         const itemToAdd = detail.find((item) => item.id === itemId);
+//         if (itemToAdd) {
+//           const updatedUserData = [...List, itemToAdd];
+//           await updateDoc(userDocRef, { List: updatedUserData });
+//           console.log("Document successfully updated! (Added)");
+//         }
+//       }
+
+//       // Update the displayAddRemove state after the add/remove operation
+//       const updatedDisplayAddRemove = displayAddRemove.map((item) =>
+//         item.id === itemId ? { ...item, display: !isDataAlreadyInList } : item
+//       );
+//       setDisplayAddRemove(updatedDisplayAddRemove);
+//     } catch (err) {
+//       console.error(err);
+//     }
+//   };
+
+//   return user ? (
+//     <section>
+//       <Navbar />
+//       <main className="w-full min-h-[calc(100vh-10rem)] mx-auto flex flex-col text-2xl bg-gray-800 text-white">
+//         {detail.map((items, index) => {
+//           const AddItemToList = async (itemId) => {
+//             const userId = documentId; // Replace with the actual user ID
+//             const userDocRef = doc(db, "users", userId);
+
+//             try {
+//               // 2. Retrieve the current data
+//               const userDoc = await getDoc(userDocRef);
+//               const List = userDoc.data().List || []; // If 'List' doesn't exist yet, create an empty array
+
+//               // 3. Check if the data already exists in the List using the 'id'
+//               const isDataAlreadyInList = List.some(
+//                 (item) => item.id === itemId
+//               );
+
+//               if (isDataAlreadyInList) {
+//                 // Delete the data with the specified ID from the List
+//                 const updatedUserData = List.filter(
+//                   (item) => item.id !== itemId
+//                 );
+//                 await updateDoc(userDocRef, { List: updatedUserData });
+//                 console.log("Document successfully updated! (Deleted)");
+//               } else {
+//                 // Add the data to the List
+//                 const newData = {
+//                   id: items.id,
+//                   title: items.title,
+//                   year: items.year,
+//                   runtime: items.runtime,
+//                   genres: items.genres,
+//                   director: items.director,
+//                   actors: items.actors,
+//                   plot: items.plot,
+//                   posterUrl: items.posterUrl,
+//                 };
+//                 const updatedUserData = [...List, newData];
+//                 await updateDoc(userDocRef, { List: updatedUserData });
+//                 console.log("Document successfully updated! (Added)");
+//               }
+//             } catch (err) {
+//               console.error(err);
+//             }
+//           };
+//           return (
+//             <div key={items.id} className="p-4 bg-gray-800">
+//               <div className="flex flex-col md:flex-row">
+//                 <div className="md:w-1/3">
+//                   <Image
+//                     src={`https://image.tmdb.org/t/p/original${items.poster_path}`}
+//                     width={500}
+//                     height={500}
+//                     alt={items.title}
+//                     className="w-9/12 mx-auto h-auto rounded-lg "
+//                   />
+//                 </div>
+//                 <div className="md:w-2/3 md:pl-4">
+//                   <h1 className="text-3xl font-bold">
+//                     {items.title || items.name} (
+//                     {items.release_date || items.first_air_date})
+//                   </h1>
+//                   <div className="text-lg text-gray-400">
+//                     {/* <p>Genres: {items.genres.join(", ")}</p> */}
+//                     <p>Runtime: {items.runtime} minutes</p>
+//                   </div>
+//                   <p className="text-lg">Vote: {items.vote_count}</p>
+//                   <p className="text-lg">IMDB: {items.vote_average}</p>
+//                   <p className="text-lg">Plot: {items.overview}</p>
+//                   <button
+//                     onClick={() => handleAddRemove(items.id)}
+//                     className="mt-4 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-300 ease-in-out"
+//                   >
+//                     {displayAddRemove.find(
+//                       (displayItem) => displayItem.id === items.id
+//                     )?.display
+//                       ? "Remove from List"
+//                       : "Add to List"}
+//                   </button>
+//                 </div>
+//               </div>
+//             </div>
+//           );
+//         })}
+//       </main>
+//       <Footer />
+//     </section>
+//   ) : (
+//     <SignIn />
+//   );
+// }
+// ///////////////////////////////////////////////////
+// "use client";
+// import { useState, useEffect, useContext } from "react";
+// import { MainContext } from "/app/components/Context";
+// import Footer from "/app/components/Footer";
+// import Navbar from "/app/components/Navbar";
+// import Movies from "../../components/Movies";
+// import Link from "next/link";
+// import Image from "next/image";
+// import { getAuth } from "firebase/auth";
+// import { useAuthState } from "react-firebase-hooks/auth";
+// import SignIn from "../../components/SignIn";
+// import SignUp from "../../components/SignUp";
+
+// const Categories = () => {
+//   const { merge, setMerge, combined, movies, series } = useContext(MainContext);
+//   const [filteredMerge, setFilteredMerge] = useState([]);
+//   const auth = getAuth();
+//   const [user, loading] = useAuthState(auth);
+//   const [status, setStatus] = useState(true);
+
+//   useEffect(() => {
+//     setFilteredMerge(combined || []); // Ensure combined is an array or provide a default empty array
+//   }, [combined, setMerge]);
+
+//   return user ? (
+//     <main>
+//       <Navbar />
+//       <section className="flex flex-row mt-5 xl:px-10 px-1">
+//         <div className="w-full">
+//           <div className="mt-10">
+//             <h1 className="text-3xl text-left">Action</h1>
+//             <div className="w-full flex flex-row overflow-y-scroll items-start py-10 gap-5">
+//               {filteredMerge.map((items, index) => {
+//                 const checkPage = items.name ? "series" : "movies";
+//                 return (
+//                   <div key={index}>
+//                     {items.genres &&
+//                       items.genres.map((genresItems, genresIndex) => (
+//                         <div className="flex flex-row" key={genresIndex}>
+//                           <p>{genresItems.name}</p>
+//                         </div>
+//                       ))}
+//                     <Link href={`/${checkPage}/${items.id}`} key={index}>
+//                       <div className="rounded-sm p-2 my-10  shadow-inner hover:shadow-2xl hover:shadow-fuchsia-800 shadow-fuchsia-950 hover:scale-105 transition-all duration-700 ease-in-out">
+//                         <div
+//                           style={{
+//                             backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
+//                           }}
+//                           className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-sm"
+//                         ></div>
+
+//                         <h1 className="text-left ">{items.year}</h1>
+//                         <h1 className="text-left mt-2 text-white font-extrabold">
+//                           {items.title?.substring(0, 13) ||
+//                             items.name?.substring(0, 13)}
+//                         </h1>
+//                       </div>
+//                     </Link>
+//                   </div>
+//                 );
+//               })}
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+//       <Footer />
+//     </main>
+//   ) : (
+//     <div>
+//       {status ? (
+//         <div className="w-full flex flex-col items-center justify-center">
+//           <SignIn />
+//           <button
+//             onClick={() => setStatus(!status)}
+//             className="text-white font-medium bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
+//           >
+//             Register Page
+//           </button>
+//         </div>
+//       ) : (
+//         <div className="w-full flex flex-col items-center justify-center">
+//           <SignUp />
+//           <button
+//             onClick={() => setStatus(!status)}
+//             className="text-white font-medium bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
+//           >
+//             Login Page
+//           </button>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Categories;
+// ////////////////////////////
+//               {filteredMerge
+//                 .filter((items) => items.genres.includes("Drama"))
+//                 .map((items, index) => {
+//                   return (
+//                     <Link href={`/bests/${items.title}`} key={index}>
+//                       <div
+//                         style={{ backgroundImage: `url("${items.posterUrl}")` }}
+//                         className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-700 ease-in-out"
+//                       ></div>
+//                     </Link>
+//                   );
+//                 })}
+// /////////////////////////////////////////////////////////////////////
+// "use client";
+// import { useState, useEffect, useContext } from "react";
+// import { MainContext } from "/app/components/Context";
+// import Footer from "/app/components/Footer";
+// import Navbar from "/app/components/Navbar";
+// import Movies from "../../components/Movies";
+// import Link from "next/link";
+// import Image from "next/image";
+// import { getAuth } from "firebase/auth";
+// import { useAuthState } from "react-firebase-hooks/auth";
+// import SignIn from "../../components/SignIn";
+// import SignUp from "../../components/SignUp";
+
+// const Categories = () => {
+//   const { combined } = useContext(MainContext);
+//   const [filteredMerge, setFilteredMerge] = useState([]);
+//   const auth = getAuth();
+//   const [user, loading] = useAuthState(auth);
+//   const [status, setStatus] = useState(true);
+
+//   useEffect(() => {
+//     setFilteredMerge(combined || []);
+//   }, [combined]);
+
+//   return user ? (
+//     <main>
+//       <Navbar />
+//       <section className="flex flex-row mt-5 xl:px-10 px-1">
+//         <div className="w-full">
+//           <div className="mt-10">
+//             <h1 className="text-3xl text-left">Action</h1>
+//             <div className="w-full flex flex-row overflow-y-scroll items-start py-10 gap-5">
+//               {filteredMerge
+//                 .filter(
+//                   (items) =>
+//                     Array.isArray(items.genres) &&
+//                     items.genres.some(
+//                       (genreItem) => genreItem.name === "Action"
+//                     )
+//                 )
+//                 .map((items, index) => {
+//                   const checkPage = items.name ? "series" : "movies";
+//                   return (
+//                     <div key={index}>
+//                       {items.genres &&
+//                         items.genres.map((genresItems, genresIndex) => (
+//                           <div className="flex flex-row" key={genresIndex}>
+//                             <p>{genresItems.name}</p>
+//                           </div>
+//                         ))}
+//                       <Link href={`/${checkPage}/${items.id}`} key={index}>
+//                         <div className="rounded-sm p-2 my-10  shadow-inner hover:shadow-2xl hover:shadow-fuchsia-800 shadow-fuchsia-950 hover:scale-105 transition-all duration-700 ease-in-out">
+//                           <div
+//                             style={{
+//                               backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
+//                             }}
+//                             className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-sm"
+//                           ></div>
+//                           <h1 className="text-left ">{items.year}</h1>
+//                           <h1 className="text-left mt-2 text-white font-extrabold">
+//                             {items.title?.substring(0, 13) ||
+//                               items.name?.substring(0, 13)}
+//                           </h1>
+//                         </div>
+//                       </Link>
+//                     </div>
+//                   );
+//                 })}
+//             </div>
+//           </div>
+//         </div>
+//       </section>
+//       <Footer />
+//     </main>
+//   ) : (
+//     <div>
+//       {status ? (
+//         <div className="w-full flex flex-col items-center justify-center">
+//           <SignIn />
+//           <button
+//             onClick={() => setStatus(!status)}
+//             className="text-white font-medium bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
+//           >
+//             Register Page
+//           </button>
+//         </div>
+//       ) : (
+//         <div className="w-full flex flex-col items-center justify-center">
+//           <SignUp />
+//           <button
+//             onClick={() => setStatus(!status)}
+//             className="text-white font-medium bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
+//           >
+//             Login Page
+//           </button>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default Categories;
+// ////////////////////////////////////////////////////////////////////////
+//               {/* {filteredMerge
+//                 .filter((items) => items.genres.includes("Drama"))
+//                 .map((items, index) => {
+//                   return (
+//                     <Link href={`/bests/${items.title}`} key={index}>
+//                       <div
+//                         style={{ backgroundImage: `url("${items.posterUrl}")` }}
+//                         className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-300 ease-in-out"
+//                       ></div>
+//                     </Link>
+//                   );
+//                 })} */}
+// ////////////////////////////////////////////////////////////////////////
+// <div class="bg-white p-8 rounded shadow-md w-96">
+//       <h1 class="text-2xl font-semibold mb-4">Login</h1>
+//       <div class="mb-4">
+//         <label for="text" class="block text-sm font-medium text-gray-600">
+//           Full Name
+//         </label>
+//         <input
+//           type="text"
+//           id="name"
+//           name="name"
+//           class="mt-1 p-2 w-full border rounded-md"
+//           value={name}
+//           onChange={(e) => setName(e.target.value)}
+//         />
+//       </div>
+//       <div class="mb-4">
+//         <label for="email" class="block text-sm font-medium text-gray-600">
+//           Email Address
+//         </label>
+//         <input
+//           type="email"
+//           id="email"
+//           name="email"
+//           class="mt-1 p-2 w-full border rounded-md"
+//           value={email}
+//           onChange={(e) => setEmail(e.target.value)}
+//         />
+//       </div>
+//       <div class="mb-4">
+//         <label for="password" class="block text-sm font-medium text-gray-600">
+//           Password
+//         </label>
+//         <input
+//           type="password"
+//           id="password"
+//           name="password"
+//           class="mt-1 p-2 w-full border rounded-md"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//         />
+//       </div>
+//       <div class="flex items-center justify-between mb-4">
+//         <label for="remember" class="flex items-center">
+//           <input type="checkbox" id="remember" name="remember" class="mr-2" />
+//           <span class="text-sm text-gray-600">Remember me</span>
+//         </label>
+//         <a href="#" class="text-sm text-blue-600 hover:underline">
+//           Forgot your password?
+//         </a>
+//       </div>
+//       <div className="flex flex-row justify-center items-center gap-2">
+//         <button
+//           type="submit"
+//           class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+//           onClick={register}
+//         >
+//           Register
+//         </button>
+//         <button
+//           type="submit"
+//           class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+//           onClick={signInWithGoogle}
+//         >
+//           <span className="flex flex-row">
+//             <FcGoogle className="text-2xl" />
+//             SignIn WithGoogle
+//           </span>
+//         </button>
+//       </div>
+//       <p class="mt-4 text-sm text-gray-600">
+//         Do You have an account?{" "}
+//         <a href="#" class="text-blue-600 hover:underline">
+//           Sign In
+//         </a>
+//       </p>
+//     </div>
+//     ////////////////////////////////////////////////////////////////////////////////////////
