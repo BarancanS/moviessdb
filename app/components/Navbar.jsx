@@ -9,7 +9,7 @@ const Navbar = () => {
 
   return (
     <section className="lg:h-[96px] max-lg:h-[68px] fixed top-0 z-30 bg-black w-full flex flex-col items-center justify-center">
-      <nav className="text-white p-4 w-10/12">
+      <nav className="text-white p-4 w-10/12 relative">
         <div className="container mx-auto flex justify-between items-center">
           <Link href="/" className="flex items-center">
             <h1

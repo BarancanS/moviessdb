@@ -101,7 +101,7 @@ export default function Page({ params }) {
 
   if (loading) {
     return (
-      <div className="w-full h-screen flex flex-col items-center justify-center bg-[#0C0C0C]">
+      <div className="w-full h-screen flex flex-col items-center justify-center">
         <Image
           src={`/loader1.gif`}
           width={500}
@@ -148,7 +148,7 @@ export default function Page({ params }) {
   return user ? (
     <section>
       <Navbar />
-      <main className="w-full min-h-[calc(100vh-11rem)]  mx-auto flex flex-col text-2xl bg-gray-800 text-white">
+      <main className="w-full min-h-[calc(100vh-11rem)]  mx-auto flex flex-col text-2xl bg-gray-800 text-white max-lg:mt-16 mt-24">
         {detail.map((items, index) => {
           const AddItemToList = async (itemId) => {
             const userId = documentId;

@@ -23,7 +23,7 @@ const Categories = () => {
 
   if (loading) {
     return (
-      <div className="w-full h-screen flex flex-col items-center justify-center bg-[#0C0C0C]">
+      <div className="w-full min-h-screen flex flex-col items-center justify-center bg-[#0C0C0C]">
         <Image
           src={`/loader1.gif`}
           width={500}
@@ -41,7 +41,7 @@ const Categories = () => {
         // Render the logged-in state
         <>
           <Navbar />
-          <section className="flex flex-row mt-5 xl:px-10 px-1 min-h-[calc(100vh-13rem)]">
+          <section className="flex flex-row xl:px-10 px-1 min-h-[calc(100vh-13rem)] max-lg:mt-16 mt-20">
             <div className="w-full">
               <div className="mt-10">
                 <h1 className="text-3xl text-left">Action</h1>
@@ -57,7 +57,7 @@ const Categories = () => {
                             </div>
                           ))}
                         <Link href={`/${checkPage}/${items.id}`} key={index}>
-                          <div className="relative z-10 hover:scale-105 transition-all duration-300 ease-in-out">
+                          <div className="relative z-10 pl-4 hover:scale-105 transition-all duration-300 ease-in-out">
                             <div
                               style={{
                                 backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,

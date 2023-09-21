@@ -51,9 +51,9 @@ function Profile() {
       />
     </div>
   ) : user ? (
-    <section className="w-full pb-10 mx-auto min-h-[100vh]">
+    <section className="w-full pb-10 mx-auto min-h-[100vh] max-lg:mt-16 mt-24">
       <Navbar />
-      <main className="w-full bg-[#6600CC] rounded-md">
+      <main className="w-full bg-[#6600CC]">
         <div className="h-32 w-10/12 max-sm:w-full mx-auto flex flex-col justify-center max-sm:px-2 items-start">
           {user.displayName && (
             <h1 className="text-3xl text-white max-lg:text-2xl">

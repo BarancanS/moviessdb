@@ -73,7 +73,7 @@ const Bests = () => {
         <>
           <Navbar />
           <SearchAll />
-          <div className="flex flex-col lg:flex lg:flex-row">
+          <div className="flex flex-col lg:flex lg:flex-row lg:mt-16">
             <div className="flex flex-col max-lg:mx-auto w-96 h-2/5 max-lg:w-60 max-md:w-60 max-sm:w-52 text-xl mt-20 ml-2 border-2 rounded-xl">
               <div className="flex flex-col items-center justify-center p-5">
                 <div className="flex flex-col items-center justify-center">
