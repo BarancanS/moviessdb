@@ -112,6 +112,38 @@ export default function Page({ params }) {
       </div>
     );
   }
+  const handleAddRemove = async (itemId) => {
+    const userId = documentId;
+    const userDocRef = doc(db, "users", userId);
+
+    try {
+      const userDoc = await getDoc(userDocRef);
+      const List = userDoc.data().List || [];
+
+      const isDataAlreadyInList = List.some((item) => item.id === itemId);
+
+      if (isDataAlreadyInList) {
+        const updatedUserData = List.filter((item) => item.id !== itemId);
+        await updateDoc(userDocRef, { List: updatedUserData });
+        console.log("Document successfully updated! (Deleted)");
+      } else {
+        const itemToAdd = detail.find((item) => item.id === itemId);
+        if (itemToAdd) {
+          const updatedUserData = [...List, itemToAdd];
+          await updateDoc(userDocRef, { List: updatedUserData });
+          console.log("Document successfully updated! (Added)");
+        }
+      }
+
+      // Update the displayAddRemove state after the add/remove operation
+      const updatedDisplayAddRemove = displayAddRemove.map((item) =>
+        item.id === itemId ? { ...item, display: !isDataAlreadyInList } : item
+      );
+      setDisplayAddRemove(updatedDisplayAddRemove);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return user ? (
     <section>
