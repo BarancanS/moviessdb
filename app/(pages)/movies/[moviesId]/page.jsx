@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
-import Image from "next/dist/client/image";
+import Image from "next/image";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SignIn from "../../../components/SignIn";
 import { getAuth } from "firebase/auth";
