@@ -28,7 +28,7 @@ const Movies = () => {
           })}
         </div>
       </div>
-      <div className="w-3/12 flex flex-col items-left max-[1800px]:hidden ">
+      <div className="w-3/12 flex flex-col items-left max-2xl:hidden">
         <h1 className="mb-3 ml-1 font-extrabold text-xl">Trend Series</h1>
         <div className="flex flex-col">
           <div className="w-96 bg-stone-700  p-4 rounded-2xl ">
