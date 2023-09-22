@@ -24,7 +24,11 @@ export default function Page({ params }) {
   const [documentId, setDocumentId] = useState("");
   const [displayAddRemove, setDisplayAddRemove] = useState([]);
   const [showButton, setShowButton] = useState(false);
+  const [status, setStatus] = useState(true);
 
+  const handleStatusChange = () => {
+    setStatus(!status);
+  };
   useEffect(() => {
     if (user && params.seriesId) {
       const fetchDocumentIdData = async () => {
@@ -197,6 +201,38 @@ export default function Page({ params }) {
       <Footer />
     </section>
   ) : (
-    <SignIn />
+    <div>
+      {status ? (
+        <div
+          className="w-full flex flex-col items-center justify-center h-screen bg-cover bg-center"
+          style={{
+            backgroundImage: `url("${`/pexels-james-wheeler-1519088.jpg`}")`,
+          }}
+        >
+          <SignIn />
+          <button
+            onClick={handleStatusChange}
+            className="bg-blue-500 hover:bg-blue-600 text-white mt-20 py-2 px-4 rounded-md font-bold flex items-center justify-center"
+          >
+            Register Page
+          </button>
+        </div>
+      ) : (
+        <div
+          className="w-full flex flex-col items-center justify-center h-screen bg-cover bg-center"
+          style={{
+            backgroundImage: `url("${`/pexels-piccinng-3075993.jpg`}")`,
+          }}
+        >
+          <SignUp />
+          <button
+            onClick={handleStatusChange}
+            className="bg-blue-500 hover:bg-blue-600 text-white mt-20 py-2 px-4 rounded-md font-bold flex items-center justify-center"
+          >
+            Login Page
+          </button>
+        </div>
+      )}
+    </div>
   );
 }

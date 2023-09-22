@@ -17,6 +17,9 @@ const Categories = () => {
   const [user, loading] = useAuthState(auth);
   const [status, setStatus] = useState(true);
 
+  const handleStatusChange = () => {
+    setStatus(!status);
+  };
   useEffect(() => {
     setFilteredMerge(combined || []); // Ensure combined is an array or provide a default empty array
   }, [combined, setMerge]);
@@ -80,24 +83,33 @@ const Categories = () => {
           <Footer />
         </>
       ) : (
-        // Render the logged-out state
         <div>
           {status ? (
-            <div className="w-full flex flex-col items-center justify-center">
+            <div
+              className="w-full flex flex-col items-center justify-center h-screen bg-cover bg-center"
+              style={{
+                backgroundImage: `url("${`/pexels-james-wheeler-1519088.jpg`}")`,
+              }}
+            >
               <SignIn />
               <button
-                onClick={() => setStatus(!status)}
-                className="text-white font-medium bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
+                onClick={handleStatusChange}
+                className="bg-blue-500 hover:bg-blue-600 text-white mt-20 py-2 px-4 rounded-md font-bold flex items-center justify-center"
               >
                 Register Page
               </button>
             </div>
           ) : (
-            <div className="w-full flex flex-col items-center justify-center">
+            <div
+              className="w-full flex flex-col items-center justify-center h-screen bg-cover bg-center"
+              style={{
+                backgroundImage: `url("${`/pexels-piccinng-3075993.jpg`}")`,
+              }}
+            >
               <SignUp />
               <button
-                onClick={() => setStatus(!status)}
-                className="text-white font-medium bg-slate-600 w-56 h-10 rounded-xl p-2 flex flex-row items-center justify-center cursor-pointer"
+                onClick={handleStatusChange}
+                className="bg-blue-500 hover:bg-blue-600 text-white mt-20 py-2 px-4 rounded-md font-bold flex items-center justify-center"
               >
                 Login Page
               </button>
