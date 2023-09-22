@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { MainContext } from "../components/Context";
 
 const Filter = () => {

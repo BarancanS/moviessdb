@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { AiOutlineMail } from "react-icons/ai";
 import {
   auth,
   logout,
-  signInWithEmailAndPassword,
   signInWithGoogle,
   logInWithEmailAndPassword,
   sendPasswordReset,
