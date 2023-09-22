@@ -26,6 +26,17 @@ export default function Page({ params }) {
   const [displayAddRemove, setDisplayAddRemove] = useState([]);
   const [showButton, setShowButton] = useState(false);
   const [status, setStatus] = useState(true);
+  const fetchSeriesDetail = async () => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/tv/${params.seriesId}?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8`
+      );
+      const data = await response.json();
+      setDetail([data]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleStatusChange = () => {
     setStatus(!status);
@@ -49,10 +60,9 @@ export default function Page({ params }) {
 
       fetchDocumentIdData();
     }
-
     fetchSeriesDetail();
-  }, [params.seriesId, documentId]);
-
+  }, [params.seriesId, documentId, user]);
+  console.log("asd");
   useEffect(() => {
     if (!user || !documentId) {
       return;
@@ -91,18 +101,6 @@ export default function Page({ params }) {
       clearTimeout(timer);
     };
   }, []);
-
-  const fetchSeriesDetail = async () => {
-    try {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/tv/${params.seriesId}?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8`
-      );
-      const data = await response.json();
-      setDetail([data]);
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   const handleAddRemove = async (itemId) => {
     const userId = documentId;
