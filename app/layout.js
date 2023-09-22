@@ -12,6 +12,7 @@ import {
   collection,
   getDocs,
 } from "firebase/firestore";
+import "react-alice-carousel/lib/alice-carousel.css";
 
 const inter = Inter({ subsets: ["latin"] });
 export default function RootLayout({ children }) {

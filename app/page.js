@@ -9,6 +9,8 @@ import Navbar from "./components/Navbar";
 import { getAuth } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Image from "next/image";
+import AliceCarousel from "react-alice-carousel";
+import Carousel from "./components/Carousel";
 
 export default function Home() {
   const auth = getAuth();
@@ -36,14 +38,8 @@ export default function Home() {
   return user ? (
     <main className="min-h-[calc(100vh-10rem)] w-full mx-auto">
       <Navbar />
-      <div className="lg:px-20">
-        <video
-          autoPlay
-          loop
-          muted
-          src="/samurai-vs-assassin-battle-moonlit-night-moewalls-com.mp4"
-          className="min-h-[calc(100vh-4rem)] object-center object-fill hover:opacity-80 opacity-40 transition-all duration-1000 ease-in-out"
-        ></video>
+      <div className="lg:px-20 max-lg:mt-16 mt-24">
+        <Carousel />
         <Movies />
         <Series />
         <Footer />

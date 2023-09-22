@@ -11,6 +11,7 @@ const nextConfig = {
       "ia.media-imdb.com",
       "images.moviesanywhere.com",
       "image.tmdb.org",
+      "images.hdqwalls.com",
     ],
   },
 };
