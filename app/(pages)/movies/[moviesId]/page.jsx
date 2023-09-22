@@ -17,6 +17,7 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../../../../shared/firebase";
+import { motion } from "framer-motion";
 
 export default function Page({ params }) {
   const [detail, setDetail] = useState([]);
@@ -199,13 +200,20 @@ export default function Page({ params }) {
             <div key={items.id} className="p-4 bg-gray-800">
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-1/3">
-                  <Image
-                    src={`https://image.tmdb.org/t/p/original${items.poster_path}`}
-                    width={500}
-                    height={500}
-                    alt={items.title}
-                    className="w-9/12 mx-auto h-auto rounded-lg "
-                  />
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.5 }} // Adjust the duration as needed
+                  >
+                    <Image
+                      src={`https://image.tmdb.org/t/p/original${items.poster_path}`}
+                      width={500}
+                      height={500}
+                      alt={items.title}
+                      className="w-9/12 mx-auto h-auto rounded-lg"
+                    />
+                  </motion.div>
                 </div>
                 <div className="md:w-2/3 md:pl-4">
                   <h1 className="text-3xl font-bold">
