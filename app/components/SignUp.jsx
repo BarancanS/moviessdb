@@ -92,9 +92,10 @@ function SignUp() {
           onClick={signInWithGoogle}
           className="w-full bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md font-bold flex items-center justify-center mt-2"
         >
-          <FcGoogle />
-          <span className="text-xl mr-2">Google Icon</span>
-          Login with Google
+          Register With
+          <span className="text-xl mr-2">
+            <FcGoogle />
+          </span>
         </button>
       </form>
       <div className="text-center mt-4">
