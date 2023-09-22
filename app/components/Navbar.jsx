@@ -14,7 +14,7 @@ const Navbar = () => {
           <Link href="/" className="flex items-center">
             <h1
               className={`text-3xl ${
-                currentUrl === "https://baranflix.vercel.app/"
+                currentUrl === "https://moviessdb.vercel.app/"
                   ? "text-red-600"
                   : "text-white"
               }`}
@@ -27,7 +27,7 @@ const Navbar = () => {
             <Link
               href="/movies"
               className={`${
-                currentUrl === "https://baranflix.vercel.app/movies"
+                currentUrl === "https://moviessdb.vercel.app/movies"
                   ? "text-red-600"
                   : "text-white"
               } hover:text-red-600`}
@@ -37,7 +37,7 @@ const Navbar = () => {
             <Link
               href="/series"
               className={`${
-                currentUrl === "https://baranflix.vercel.app/series"
+                currentUrl === "https://moviessdb.vercel.app/series"
                   ? "text-red-600"
                   : "text-white"
               } hover:text-red-600`}
@@ -47,7 +47,7 @@ const Navbar = () => {
             <Link
               href="/bests"
               className={`${
-                currentUrl === "https://baranflix.vercel.app/bests"
+                currentUrl === "https://moviessdb.vercel.app/bests"
                   ? "text-red-600"
                   : "text-white"
               } hover:text-red-600`}
@@ -57,7 +57,7 @@ const Navbar = () => {
             <Link
               href="/categories"
               className={`${
-                currentUrl === "https://baranflix.vercel.app/categories"
+                currentUrl === "https://moviessdb.vercel.app/categories"
                   ? "text-red-600"
                   : "text-white"
               } hover:text-red-600`}
@@ -83,7 +83,7 @@ const Navbar = () => {
                   <Link
                     href="/movies"
                     className={`${
-                      currentUrl === "https://baranflix.vercel.app/movies"
+                      currentUrl === "https://moviessdb.vercel.app/movies"
                         ? "text-red-600"
                         : "text-white"
                     } hover:text-red-600`}
@@ -94,7 +94,7 @@ const Navbar = () => {
                   <Link
                     href="/series"
                     className={`${
-                      currentUrl === "https://baranflix.vercel.app/series"
+                      currentUrl === "https://moviessdb.vercel.app/series"
                         ? "text-red-600"
                         : "text-white"
                     } hover:text-red-600`}
@@ -105,7 +105,7 @@ const Navbar = () => {
                   <Link
                     href="/bests"
                     className={`${
-                      currentUrl === "https://baranflix.vercel.app/bests"
+                      currentUrl === "https://moviessdb.vercel.app/bests"
                         ? "text-red-600"
                         : "text-white"
                     } hover:text-red-600`}
@@ -116,7 +116,7 @@ const Navbar = () => {
                   <Link
                     href="/categories"
                     className={`${
-                      currentUrl === "https://baranflix.vercel.app/categories"
+                      currentUrl === "https://moviessdb.vercel.app/categories"
                         ? "text-red-600"
                         : "text-white"
                     } hover:text-red-600`}
