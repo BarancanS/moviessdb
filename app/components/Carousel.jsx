@@ -29,12 +29,12 @@ const Carousel = () => {
       height={960}
       src={src}
       alt=""
-      className="mx-auto object-contain object-center pl-5 pr-5"
+      className="mx-auto object-contain object-center pl-10 pr-10"
     />
   ));
 
   return (
-    <div className="w-full flex flex-row gap-5 mt-24 items-center justify-center">
+    <div className="w-full flex flex-row gap-5 max-lg:mt-16 mt-24 items-center justify-center">
       <AliceCarousel
         mouseTracking
         infinite
