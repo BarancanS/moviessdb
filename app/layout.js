@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
 
   const getPost = async () => {
     return fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8&page=${increasePage}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8&page=${increasePage}&sort_by=vote_average.desc&vote_count.gte=200`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -27,7 +27,7 @@ export default function RootLayout({ children }) {
   };
   const getSeries = async () => {
     return fetch(
-      `https://api.themoviedb.org/3/discover/tv?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8&page=${increasePage}`
+      `https://api.themoviedb.org/3/discover/tv?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8&page=${increasePage}&sort_by=vote_average.desc&vote_count.gte=200`
     )
       .then((response) => response.json())
       .then((data) => {
