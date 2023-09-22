@@ -33,7 +33,7 @@ const SeriesContent = ({
       series.slice(0, 12).filter((items) => items.vote_average > lowestRange)
     );
   }
-  console.log(series);
+
   function ClearFilterButtonClick() {
     setFilteredSeries(series.slice(0, 12));
   }
