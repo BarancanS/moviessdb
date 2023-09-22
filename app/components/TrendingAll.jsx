@@ -3,15 +3,15 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const Movies = () => {
-  const [trendMovies, setTrendMovies] = useState([]);
+const TrendingAll = () => {
+  const [trendAll, setTrendAll] = useState([]);
   const getTrendMovies = async () => {
     return fetch(
-      "https://api.themoviedb.org/3/trending/movie/day?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8&language=en-US"
+      "https://api.themoviedb.org/3/trending/all/day?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8&language=en-US"
     )
       .then((response) => response.json())
       .then((data) => {
-        setTrendMovies(data.results);
+        setTrendAll(data.results);
       })
       .catch((err) => {
         console.log(err);
@@ -23,11 +23,12 @@ const Movies = () => {
   return (
     <section className="flex flex-row mt-5">
       <div className="2xl:w-9/12 w-full">
-        <h1 className="mb-3 ml-3 text-3xl text-left">Trend Movies</h1>
+        <h1 className="mb-3 ml-3 text-3xl text-left">Trending All</h1>
         <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
-          {trendMovies.map((items, index) => {
+          {trendAll.map((items, index) => {
+            const checkPage = items.name ? "series" : "movies";
             return (
-              <Link href={`movies/${items.id}`} key={index}>
+              <Link href={`/${checkPage}/${items.id}`} key={index}>
                 <div
                   style={{
                     backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
@@ -40,12 +41,13 @@ const Movies = () => {
         </div>
       </div>
       <div className="w-3/12 flex flex-col items-left max-2xl:hidden">
-        <h1 className="mb-3 ml-1 font-extrabold text-xl">Trend Movies</h1>
+        <h1 className="mb-3 ml-1 font-extrabold text-xl">Trending All</h1>
         <div className="flex flex-col">
           <div className="w-96 bg-stone-700  p-4 rounded-2xl ">
-            {trendMovies.slice(0, 6).map((items, index) => {
+            {trendAll.slice(0, 6).map((items, index) => {
+              const checkPage = items.name ? "series" : "movies";
               return (
-                <Link href={`movies/${items.id}`} key={index}>
+                <Link href={`/${checkPage}/${items.id}`} key={index}>
                   <div className="flex flex-row items-center mb-2">
                     <div className="w-3/12">
                       <Image
@@ -58,10 +60,10 @@ const Movies = () => {
                     </div>
                     <div className="w-9/12">
                       <h1 className="text-black font-bold text-base">
-                        {items.title}
+                        {items.name || items.title}
                       </h1>
                       <h4 className="text-sm font-bold whitespace-wrap overflow-ellipsis">
-                        {items.overview.substring(0, 60)}
+                        {items.overview?.substring(0, 60)}
                         <span className="text-red-500 ">...Read More</span>
                       </h4>
                     </div>
@@ -76,4 +78,4 @@ const Movies = () => {
   );
 };
 
-export default Movies;
+export default TrendingAll;

@@ -1,28 +1,38 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MainContext } from "../components/Context";
-import { useContext } from "react";
-const Movies = () => {
-  const { series } = useContext(MainContext);
+const Series = () => {
+  const [trendSeries, setTrendSeries] = useState([]);
+  const getTrendSeries = async () => {
+    return fetch(
+      "https://api.themoviedb.org/3/trending/tv/day?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8&language=en-US"
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setTrendSeries(data.results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  useEffect(() => {
+    getTrendSeries();
+  }, []);
   return (
     <section className="flex flex-row mt-5 ">
       <div className="2xl:w-9/12 w-full">
         <h1 className="mb-3 ml-3 text-3xl text-left">Trend Series</h1>
         <div className="w-11/12 flex flex-row overflow-y-scroll items-start py-10 mx-auto pl-2  h-fit gap-5">
-          {series.slice(0, 20).map((items, index) => {
+          {trendSeries.map((items, index) => {
             return (
               <Link href={`series/${items.id}`} key={index}>
-                <div key={index}>
-                  <div
-                    style={{
-                      backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
-                    }}
-                    className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-300 ease-in-out"
-                  ></div>
-                  {/* <h1 className="text-left mt-3">{items.plot}</h1> */}
-                </div>
+                <div
+                  style={{
+                    backgroundImage: `url("${`https://image.tmdb.org/t/p/original${items.poster_path}`}")`,
+                  }}
+                  className="max-sm:w-28 max-sm:h-40 w-60 h-80 bg-cover bg-no-repeat bg-center rounded-xl hover:scale-105 transition-all duration-300 ease-in-out"
+                ></div>
               </Link>
             );
           })}
@@ -32,7 +42,7 @@ const Movies = () => {
         <h1 className="mb-3 ml-1 font-extrabold text-xl">Trend Series</h1>
         <div className="flex flex-col">
           <div className="w-96 bg-stone-700  p-4 rounded-2xl ">
-            {series.slice(0, 6).map((items, index) => {
+            {trendSeries.slice(0, 6).map((items, index) => {
               return (
                 <Link href={`series/${items.id}`} key={index}>
                   <div className="flex flex-row items-center mb-2">
@@ -65,4 +75,4 @@ const Movies = () => {
   );
 };
 
-export default Movies;
+export default Series;

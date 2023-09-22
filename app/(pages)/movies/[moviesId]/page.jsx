@@ -27,7 +27,7 @@ export default function Page({ params }) {
   const [displayAddRemove, setDisplayAddRemove] = useState([]);
   const [showButton, setShowButton] = useState(false);
   const [status, setStatus] = useState(true);
-
+  console.log(detail);
   const handleStatusChange = () => {
     setStatus(!status);
   };
