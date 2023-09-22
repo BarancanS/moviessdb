@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, onSnapshot } from "../../../shared/firebase";
 import { query, collection, where } from "firebase/firestore";
@@ -19,8 +19,7 @@ function Profile() {
   const handleStatusChange = () => {
     setStatus(!status);
   };
-  // Create a separate function for the data retrieval logic
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     if (!user || !user.uid) {
       return; // Return early if user is not available
     }
@@ -37,20 +36,21 @@ function Profile() {
     });
 
     return () => unsubscribe();
-  };
+  }, [user]);
 
   useEffect(() => {
     fetchData(); // Call the fetchData function unconditionally
-  }, [user]);
+  }, [fetchData]);
 
   return loading ? (
     <div className="w-full h-screen flex flex-col items-center justify-center bg-[#0C0C0C]">
       <Image
-        src={`/loader1.gif`}
+        src="/loader1.gif"
         width={500}
         height={500}
         alt="loading gif"
-        className="w-5/12 mx-auto h-auto rounded-lg "
+        className="w-5/12 mx-auto h-auto rounded-lg"
+        priority={true} // Set the priority to true for above-the-fold images
       />
     </div>
   ) : user ? (
@@ -68,7 +68,7 @@ function Profile() {
               <li>
                 {user.displayName ? (
                   <span className="text-[#FFCC00] font-bold text-xl max-lg:text-base max-sm:text-sm">
-                    Name :
+                    Name:
                   </span>
                 ) : (
                   <p>Welcome</p>
@@ -82,7 +82,7 @@ function Profile() {
             <div>
               <li>
                 <span className="text-[#FFCC00] font-bold text-xl max-lg:text-base max-sm:text-sm">
-                  Email :
+                  Email:
                 </span>
                 <span className="text-white font-bold text-xl  max-lg:text-base max-sm:text-sm">
                   {" "}

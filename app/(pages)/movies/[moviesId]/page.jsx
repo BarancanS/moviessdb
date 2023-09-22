@@ -113,6 +113,7 @@ export default function Page({ params }) {
           height={500}
           alt="loading gif"
           className="w-5/12 mx-auto h-auto rounded-lg"
+          priority={true}
         />
       </div>
     );

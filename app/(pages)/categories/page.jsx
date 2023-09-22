@@ -32,7 +32,8 @@ const Categories = () => {
           width={500}
           height={500}
           alt="loading gif"
-          className="w-5/12 mx-auto h-auto rounded-lg "
+          className="w-5/12 mx-auto h-auto rounded-lg"
+          priority={true}
         />
       </div>
     );

@@ -49,7 +49,11 @@ const MoviesContent = ({
   }
 
   useEffect(() => {
-    setFilteredMovies(movies);
+    // Use the functional form of setFilteredMovies
+    setFilteredMovies((prevFilteredMovies) => {
+      // Update the state based on the previous state value
+      return movies;
+    });
   }, [movies, increasePage]);
 
   return (
@@ -216,6 +220,7 @@ const Movies = () => {
           height={500}
           alt="loading gif"
           className="w-5/12 mx-auto h-auto rounded-lg"
+          priority={true}
         />
       </div>
     );
