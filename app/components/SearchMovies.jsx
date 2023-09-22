@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useContext, useRef, useCallback } from "react";
 import { MainContext } from "../components/Context";
 import { BsSearch } from "react-icons/bs";
 import { VscChromeClose } from "react-icons/vsc";
@@ -16,7 +16,7 @@ export const SearchMovies = () => {
     setMoviesQuery("");
     ref.current.value = "";
   }
-  const fetchSearchMovies = async () => {
+  const fetchSearchMovies = useCallback(async () => {
     return fetch(
       `https://api.themoviedb.org/3/search/movie?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8&language=en-US&include_adult=false&query=${moviesQuery}`
     )
@@ -27,10 +27,11 @@ export const SearchMovies = () => {
       .catch((err) => {
         console.log(err);
       });
-  };
+  }, [moviesQuery]);
+
   useEffect(() => {
     fetchSearchMovies();
-  }, [moviesQuery]);
+  }, [moviesQuery, fetchSearchMovies]);
   return (
     <div className="relative w-full mx-auto mt-4">
       <div className="flex flex-row items-center justify-center">
@@ -51,7 +52,7 @@ export const SearchMovies = () => {
           className={`absolute top-10 left-0 right-0 rounded-xl flex flex-col items-start p-3 z-10 lg:w-96 max-lg:w-60 box-content mx-auto   ${
             moviesQuery === ""
               ? ""
-              : "bg-[#6600CC] h-[calc(35rem-5rem)] overflow-y-scroll "
+              : "bg-[#6600CC] h-[calc(60vh-0rem)] overflow-y-scroll "
           } `}
         >
           {moviesQuery === "" ? (

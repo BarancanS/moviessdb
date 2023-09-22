@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useContext, useRef, useCallback } from "react";
 import { MainContext } from "../components/Context";
 import { BsSearch } from "react-icons/bs";
 import { VscChromeClose } from "react-icons/vsc";
@@ -17,21 +17,21 @@ export const SearchAll = () => {
     ref.current.value = "";
   }
 
-  const fetchAllSearch = async () => {
-    return fetch(
-      `https://api.themoviedb.org/3/search/multi?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8&language=en-US&include_adult=false&query=${allQuery}`
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setSearchResults(data.results);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const fetchAllSearch = useCallback(async () => {
+    try {
+      const response = await fetch(
+        `https://api.themoviedb.org/3/search/multi?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8&language=en-US&include_adult=false&query=${allQuery}`
+      );
+      const data = await response.json();
+      setSearchResults(data.results);
+    } catch (err) {
+      console.error(err);
+    }
+  }, [allQuery]);
+
   useEffect(() => {
     fetchAllSearch();
-  }, [allQuery]);
+  }, [fetchAllSearch]);
   return (
     <div className="relative w-full mx-auto mt-4">
       <div className="flex flex-row items-center justify-center">
@@ -52,7 +52,7 @@ export const SearchAll = () => {
           className={`absolute top-10 left-0 right-0 rounded-xl flex flex-col items-start p-3 z-10 lg:w-96 max-lg:w-60 box-content mx-auto   ${
             allQuery === ""
               ? ""
-              : "bg-[#6600CC] h-[calc(35rem-5rem)] overflow-y-scroll "
+              : "bg-[#6600CC] h-[calc(60vh-0rem)] overflow-y-scroll "
           } `}
         >
           {allQuery === "" ? (

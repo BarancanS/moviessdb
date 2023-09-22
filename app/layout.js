@@ -21,11 +21,6 @@ export default function RootLayout({ children }) {
   const [merge, setMerge] = useState(combined);
   const [increasePage, setIncreasePage] = useState(1);
 
-  useEffect(() => {
-    getPost();
-    getSeries();
-  }, [increasePage]);
-
   const getPost = async () => {
     return fetch(
       `https://api.themoviedb.org/3/discover/movie?api_key=d760df5f0ef5e7c8ef5b52b71da88ce8&page=${increasePage}`
@@ -50,6 +45,13 @@ export default function RootLayout({ children }) {
         console.log(err);
       });
   };
+  useEffect(() => {
+    getPost();
+  }, [increasePage]);
+
+  useEffect(() => {
+    getSeries();
+  }, [increasePage]);
 
   const data = {
     movies,

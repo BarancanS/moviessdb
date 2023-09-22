@@ -62,7 +62,6 @@ export default function Page({ params }) {
     }
     fetchSeriesDetail();
   }, [params.seriesId, documentId, user]);
-  console.log("asd");
   useEffect(() => {
     if (!user || !documentId) {
       return;
