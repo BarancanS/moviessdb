@@ -3,15 +3,6 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import { MainContext } from "../app/components/Context";
 import { useState, useEffect } from "react";
-import { app } from "../shared/firebase";
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  getDoc,
-  collection,
-  getDocs,
-} from "firebase/firestore";
 import "react-alice-carousel/lib/alice-carousel.css";
 
 const inter = Inter({ subsets: ["latin"] });

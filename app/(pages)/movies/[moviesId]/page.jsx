@@ -106,7 +106,7 @@ export default function Page({ params }) {
 
   if (loading) {
     return (
-      <div className="w-full h-screen flex flex-col items-center justify-center">
+      <div className="w-full h-screen flex flex-col items-center justify-center bg-[#0C0C0C]">
         <Image
           src={`/loader1.gif`}
           width={500}
