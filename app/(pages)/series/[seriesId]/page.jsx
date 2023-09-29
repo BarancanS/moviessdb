@@ -156,7 +156,7 @@ export default function Page({ params }) {
       <main className="w-full min-h-[calc(100vh-11rem)] mx-auto flex flex-col text-2xl bg-gray-800 text-white max-lg:mt-16 mt-24">
         {detail.map((items, index) => {
           return (
-            <div key={items.id} className="p-4 bg-gray-800">
+            <div key={index} className="p-4 bg-gray-800">
               <div className="flex flex-col md:flex-row">
                 <div className="md:w-1/3">
                   <motion.div

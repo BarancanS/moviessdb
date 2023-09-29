@@ -28,26 +28,58 @@ const MoviesContent = ({
   const buttonClasses =
     "border p-2 rounded-xl flex flex-row max-lg:w-40 w-60 mt-3";
 
-  function FilterAllButtonClick() {
-    setFilteredMovies(
-      movies
-        .slice(0, 10)
-        .filter((items) => items.platform.includes(`${platformValue}`))
+  function SortIncreased() {
+    // Use the spread operator to create a new array before sorting
+    const sortedMovies = [...filteredMovies].sort((a, b) =>
+      a.vote_average >= b.vote_average ? 1 : -1
     );
+    setFilteredMovies(sortedMovies);
+  }
+  function SortDecreased() {
+    // Use the spread operator to create a new array before sorting
+    const sortedMovies = [...filteredMovies].sort((a, b) =>
+      b.vote_average >= a.vote_average ? 1 : -1
+    );
+    setFilteredMovies(sortedMovies);
+  }
+  function SortAsc() {
+    // Use the spread operator to create a new array before sorting
+    const sortedMovies = [...filteredMovies].sort((a, b) =>
+      a.vote_average > b.vote_average ? -1 : 1
+    );
+    setFilteredMovies(sortedMovies);
+  }
+  function SortDesc() {
+    // Use the spread operator to create a new array before sorting
+    const sortedMovies = [...filteredMovies].sort((a, b) =>
+      a.title > b.title ? 1 : -1
+    );
+    setFilteredMovies(sortedMovies);
   }
 
+  function SortAsc() {
+    // Use the spread operator to create a new array before sorting
+    const sortedMovies = [...filteredMovies].sort((a, b) =>
+      a.title > b.title ? -1 : 1
+    );
+    setFilteredMovies(sortedMovies);
+  }
   function ClearFilterButtonClick() {
     setFilteredMovies(movies.slice(0, 10));
+    SetLowestRange(0);
+    SetHighestRange(10);
   }
 
   function FilterImdbButtonClick() {
     setFilteredMovies(
       movies.filter((items) => {
-        return items.imdb >= lowestRange && items.imdb <= highestRange;
+        return (
+          items.vote_average >= lowestRange &&
+          items.vote_average <= highestRange
+        );
       })
     );
   }
-
   useEffect(() => {
     // Use the functional form of setFilteredMovies
     setFilteredMovies((prevFilteredMovies) => {
@@ -77,18 +109,9 @@ const MoviesContent = ({
                 </button>
                 {filterBoolean && (
                   <section className="flex flex-col items-center justify-center mt-1">
-                    <select
-                      name=""
-                      onChange={(e) => SetPlatformValue(e.target.value)}
-                      className="bg-black border-2"
-                    >
-                      <option value="">Select Platform</option>
-                      <option value="Netflix">Netflix</option>
-                      <option value="Amazon">Amazon</option>
-                      <option value="YouTube">YouTube</option>
-                    </select>
                     {/* Add more select options here */}
                     <div className="flex flex-col mt-5">
+                      <h1>User Score</h1>
                       <input
                         type="range"
                         id="vol"
@@ -127,21 +150,15 @@ const MoviesContent = ({
                 </button>
                 {sortBoolean && (
                   <section className="flex flex-col items-center justify-center mt-3">
-                    <select
-                      name=""
-                      onChange={(e) => SetPlatformValue(e.target.value)}
-                      className="bg-black border-2"
-                    >
-                      <option value="Netflix">Increased Votes</option>
-                      <option value="Amazon">Decreased Votes</option>
-                      <option value="YouTube">A to Z</option>
-                    </select>
+                    <button onClick={SortIncreased}>Increased Votes</button>
+                    <button onClick={SortDecreased}>Decreased Votes</button>
+                    <button onClick={SortDesc}>A to Z</button>
+                    <button onClick={SortAsc}>Z to A</button>
                   </section>
                 )}
               </div>
-
               <button
-                onClick={FilterAllButtonClick}
+                onClick={FilterImdbButtonClick}
                 className={`text-white font-bold p-2 ${buttonClasses} bg-red-600`}
               >
                 Apply Filter
