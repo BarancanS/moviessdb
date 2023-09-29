@@ -1,6 +1,6 @@
 "use client";
-import { useState, useEffect, useContext } from "react";
-import { MainContext } from "/app/components/Context";
+import { useState, useEffect } from "react";
+import { MainState } from "/app/components/MainContext";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
 import { SearchAll } from "/app/components/SearchAll";
@@ -13,8 +13,7 @@ import SignIn from "../../components/SignIn";
 import SignUp from "../../components/SignUp";
 
 const Bests = () => {
-  const { merge, combined, setIncreasePage, increasePage } =
-    useContext(MainContext);
+  const { merge, combined, setIncreasePage, increasePage } = MainState();
   const [filteredMerge, SetFilteredMerge] = useState(combined);
   const [lowestRange, SetLowestRange] = useState(0);
   const [highestRange, SetHighestRange] = useState(10);

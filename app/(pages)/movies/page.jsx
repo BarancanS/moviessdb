@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useEffect, useContext } from "react";
-import { MainContext } from "/app/components/Context";
+import React, { useState, useEffect } from "react";
+import { MainState } from "/app/components/MainContext";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
 import { SearchMovies } from "/app/components/SearchMovies";
@@ -221,7 +221,7 @@ const MoviesContent = ({
 };
 
 const Movies = () => {
-  const { movies, setIncreasePage, increasePage } = useContext(MainContext);
+  const { movies, setIncreasePage, increasePage } = MainState();
   const [filteredMovies, setFilteredMovies] = useState(movies); // Initialize filteredMovies
 
   const auth = getAuth();

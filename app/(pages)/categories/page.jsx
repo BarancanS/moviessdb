@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useEffect, useContext } from "react";
-import { MainContext } from "/app/components/Context";
+import React, { useState, useEffect } from "react";
+import { MainState } from "/app/components/MainContext";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
 import Link from "next/link";
@@ -11,7 +11,7 @@ import SignIn from "../../components/SignIn";
 import SignUp from "../../components/SignUp";
 
 const Categories = () => {
-  const { merge, setMerge, combined, movies, series } = useContext(MainContext);
+  const { merge, setMerge, combined, movies, series } = MainState();
   const [filteredMerge, setFilteredMerge] = useState([]);
   const auth = getAuth();
   const [user, loading] = useAuthState(auth);

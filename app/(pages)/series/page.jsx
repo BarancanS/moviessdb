@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useEffect, useContext } from "react";
-import { MainContext } from "/app/components/Context";
+import React, { useState, useEffect } from "react";
+import { MainState } from "/app/components/MainContext";
 import Footer from "/app/components/Footer";
 import Navbar from "/app/components/Navbar";
 import { SearchSeries } from "/app/components/SearchSeries";
@@ -217,7 +217,7 @@ const SeriesContent = ({
 };
 
 const Series = () => {
-  const { series, setIncreasePage, increasePage } = useContext(MainContext);
+  const { series, setIncreasePage, increasePage } = MainState();
   const [filteredSeries, setFilteredSeries] = useState(series); // Initialize filteredSeries
 
   const auth = getAuth();

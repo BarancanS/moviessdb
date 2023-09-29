@@ -1,13 +1,13 @@
 "use client";
-import { useState, useEffect, useContext, useRef, useCallback } from "react";
-import { MainContext } from "../components/Context";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { MainState } from "../components/MainContext";
 import { BsSearch } from "react-icons/bs";
 import { VscChromeClose } from "react-icons/vsc";
 import Image from "next/image";
 import Link from "next/link";
 
 export const SearchAll = () => {
-  const { combined } = useContext(MainContext);
+  const { combined } = MainState();
   const [allQuery, setAllQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 

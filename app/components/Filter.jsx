@@ -1,9 +1,9 @@
 "use client";
-import { useState, useContext } from "react";
-import { MainContext } from "../components/Context";
+import { useState } from "react";
+import { MainState } from "../components/MainContext";
 
 const Filter = () => {
-  const { movies, setMovies } = useContext(MainContext);
+  const { movies, setMovies } = MainState();
   const [filteredMovies, setFilteredMovies] = useState([]);
 
   function FilterNetflixButtonClick() {
