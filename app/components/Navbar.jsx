@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaHamburger } from "react-icons/fa";
 import Link from "next/link";
-import SignIn from "./SignIn";
+import Auth from "../components/Auth";
 
 const Navbar = () => {
   const [hamburgerMenu, setHamburgerMenu] = useState(false);
@@ -64,7 +64,7 @@ const Navbar = () => {
             >
               Categories
             </Link>
-            <SignIn />
+            <Auth />
           </div>
           <FaHamburger
             className="lg:hidden text-2xl cursor-pointer"
@@ -125,7 +125,7 @@ const Navbar = () => {
                     Categories
                   </Link>
                 </div>
-                <SignIn />
+                <Auth />
               </div>
             </div>
           </div>
